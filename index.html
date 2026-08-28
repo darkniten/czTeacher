@@ -11,19 +11,35 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link rel="apple-touch-icon" href="icon.png" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
       /* =========================================
-         ТЕМИ ТА ЗМІННІ (PREMIUM 3D & LIQUID GLASS)
+         ТЕМИ ТА ЗМІННІ (PRECISION LIQUID GLASS)
       ========================================= */
       :root {
-        --bg-gradient: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
-        --surface-glass: #f1f5f9; /* Чистий плоский колір замість розмиття */
-        --surface-solid: #f8fafc;
-        --card-border: #e2e8f0;
-        --card-glow: none; /* Вимкнено навантажуюче свічення */
-        --text-main: #334155;
-        --text-sec: #64748b;
+        --bg-gradient:
+          radial-gradient(
+            circle at 12% 15%,
+            rgba(0, 122, 255, 0.12),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 88% 85%,
+            rgba(16, 185, 129, 0.1),
+            transparent 45%
+          ),
+          linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+
+        --surface-glass: rgba(255, 255, 255, 0.65);
+        --surface-solid: rgba(255, 255, 255, 0.88);
+        --card-border: rgba(255, 255, 255, 0.7);
+        --glass-border-light: rgba(255, 255, 255, 0.9);
+        --glass-highlight: inset 0 1px 1px rgba(255, 255, 255, 0.85);
+        --card-glow: 0 12px 32px rgba(15, 23, 42, 0.06);
+
+        --text-main: #0f172a;
+        --text-sec: #475569;
 
         --accent: #007aff;
         --accent-gradient: linear-gradient(135deg, #005ce6 0%, #3399ff 100%);
@@ -31,44 +47,76 @@
         --warning: #f59e0b;
         --success: #10b981;
 
-        --shadow-soft: 0 4px 20px rgba(15, 23, 42, 0.05);
-        --shadow-strong: 0 4px 15px rgba(0, 122, 255, 0.2);
-        --shadow-sunken: inset 0 2px 4px rgba(15, 23, 42, 0.05);
+        --shadow-soft:
+          inset 0 1px 1px rgba(255, 255, 255, 0.8),
+          0 12px 32px rgba(15, 23, 42, 0.08);
+        --shadow-strong:
+          inset 0 1px 1px rgba(255, 255, 255, 0.5),
+          0 8px 24px rgba(0, 122, 255, 0.3);
+        --shadow-sunken: inset 0 2px 4px rgba(15, 23, 42, 0.08);
 
-        --nav-bg: #ffffff;
-        --input-bg: #f1f5f9;
-        --toast-bg: #1e293b;
+        --nav-bg: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.75),
+          rgba(255, 255, 255, 0.45)
+        );
+        --input-bg: rgba(255, 255, 255, 0.6);
+        --toast-bg: rgba(15, 23, 42, 0.9);
         --toast-text: #ffffff;
         --safe-top: env(safe-area-inset-top, 20px);
       }
-      [data-theme="dark"] {
-        --bg-gradient: linear-gradient(135deg, #1e1e1f 0%, #252527 100%);
-        --surface-glass: #2c2c2e;
-        --surface-solid: #3a3a3c;
-        --card-border: #3a3a3c;
-        --card-glow: none;
 
-        --text-main: #f5f5f7;
-        --text-sec: #86868b;
+      [data-theme="dark"] {
+        --bg-gradient:
+          radial-gradient(
+            circle at 15% 15%,
+            rgba(10, 132, 255, 0.22),
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 85% 85%,
+            rgba(168, 85, 247, 0.16),
+            transparent 50%
+          ),
+          linear-gradient(135deg, #121316 0%, #1c1e24 100%);
+
+        --surface-glass: rgba(255, 255, 255, 0.08);
+        --surface-solid: rgba(30, 32, 38, 0.92);
+        --card-border: rgba(255, 255, 255, 0.16);
+        --glass-border-light: rgba(255, 255, 255, 0.28);
+        --glass-highlight: inset 0 1px 1px rgba(255, 255, 255, 0.3);
+        --card-glow: 0 16px 40px rgba(0, 0, 0, 0.4);
+
+        --text-main: #f8fafc;
+        --text-sec: #94a3b8;
 
         --accent: #0a84ff;
         --accent-gradient: linear-gradient(135deg, #0a84ff 0%, #5ac8fa 100%);
 
-        --shadow-soft: 0 4px 25px rgba(0, 0, 0, 0.4);
-        --shadow-strong: 0 4px 15px rgba(10, 132, 255, 0.25);
-        --shadow-sunken: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        --shadow-soft:
+          inset 0 1px 1px rgba(255, 255, 255, 0.2),
+          0 16px 40px rgba(0, 0, 0, 0.45);
+        --shadow-strong:
+          inset 0 1px 1px rgba(255, 255, 255, 0.35),
+          0 8px 24px rgba(10, 132, 255, 0.35);
+        --shadow-sunken: inset 0 2px 5px rgba(0, 0, 0, 0.4);
 
-        --nav-bg: #1c1c1e;
-        --input-bg: #121212;
-        --toast-bg: #f5f5f7;
-        --toast-text: #1c1c1e;
+        --nav-bg: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.14),
+          rgba(255, 255, 255, 0.04)
+        );
+        --input-bg: rgba(0, 0, 0, 0.32);
+        --toast-bg: rgba(248, 250, 252, 0.94);
+        --toast-text: #0f172a;
       }
 
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         -webkit-tap-highlight-color: transparent;
       }
 
@@ -82,12 +130,14 @@
         background-attachment: fixed;
         color: var(--text-main);
         transition:
-          background 0.5s ease,
-          color 0.5s ease;
+          background 0.4s ease,
+          color 0.4s ease;
       }
+
       ::-webkit-scrollbar {
-        display: none;
+        display: none !important;
       }
+
       #app {
         height: 100%;
         display: flex;
@@ -96,7 +146,7 @@
       }
 
       /* =========================================
-         ВЕРХНЯ ПАНЕЛЬ
+         ВЕРХНЯ ПАНЕЛЬ (HEADER)
       ========================================= */
       header {
         padding: calc(var(--safe-top) + 15px) 24px 10px;
@@ -109,7 +159,7 @@
       }
       .header-title {
         font-size: 28px;
-        font-weight: 800;
+        font-weight: 900;
         display: flex;
         align-items: center;
         gap: 10px;
@@ -131,14 +181,30 @@
           transform: rotate(360deg);
         }
       }
+
       .settings-btn {
-        font-size: 24px;
-        color: var(--text-sec);
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        font-size: 18px;
+        color: var(--text-main);
+        background: var(--surface-glass);
+        border: 1px solid var(--card-border);
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
         cursor: pointer;
-        transition: 0.3s;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease;
+      }
+      .settings-btn:active {
+        transform: scale(0.92);
       }
 
-      /* ГОЛОВНИЙ КОНТЕЙНЕР (ОПТИМІЗОВАНИЙ) */
+      /* ГОЛОВНИЙ КОНТЕЙНЕР */
       main {
         flex: 1;
         overflow-y: auto;
@@ -146,8 +212,6 @@
         padding: 10px 20px calc(120px + env(safe-area-inset-bottom, 15px)) 20px;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior-y: contain;
-        transform: translate3d(0, 0, 0);
-        will-change: transform;
       }
 
       .section {
@@ -156,13 +220,13 @@
       }
       .section.active {
         display: block;
-        animation: smoothFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation: smoothFade 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
       .section.slide-left {
-        animation: slideLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation: slideLeft 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
       .section.slide-right {
-        animation: slideRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation: slideRight 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
 
       @keyframes smoothFade {
@@ -178,7 +242,7 @@
       @keyframes slideLeft {
         from {
           opacity: 0;
-          transform: translateX(50px);
+          transform: translateX(40px);
         }
         to {
           opacity: 1;
@@ -188,12 +252,28 @@
       @keyframes slideRight {
         from {
           opacity: 0;
-          transform: translateX(-50px);
+          transform: translateX(-40px);
         }
         to {
           opacity: 1;
           transform: translateX(0);
         }
+      }
+
+      /* =========================================
+         LIQUID GLASS КАРТКИ
+      ========================================= */
+      .glass-card,
+      .advanced-stats-card,
+      .home-progress-card {
+        padding: 20px;
+        border-radius: 28px;
+        background: var(--surface-glass);
+        border: 1px solid var(--card-border);
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+        margin-bottom: 16px;
       }
 
       .timer-container {
@@ -203,312 +283,16 @@
         gap: 6px;
         background: var(--surface-glass);
         border: 1px solid var(--card-border);
-        padding: 6px 14px;
-        border-radius: 20px;
+        padding: 8px 18px;
+        border-radius: 999px;
         font-size: 14px;
         font-weight: 800;
         color: var(--accent);
         width: fit-content;
         margin: 0 auto 15px;
         box-shadow: var(--shadow-soft);
-      }
-
-      .advanced-stats-card {
-        background: var(--surface-glass);
-        border: 1px solid var(--card-border);
-        border-radius: 24px;
-        padding: 20px;
-        margin-top: 15px;
-        box-shadow: var(--shadow-soft);
-      }
-
-      .adv-stat-row {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 0;
-        border-bottom: 1px dashed var(--card-border);
-        font-size: 15px;
-      }
-      .adv-stat-row:last-child {
-        border-bottom: none;
-      }
-      .adv-stat-lbl {
-        color: var(--text-sec);
-        font-weight: 600;
-      }
-      .adv-stat-val {
-        color: var(--text-main);
-        font-weight: 800;
-      }
-
-      /* Селектори вибору у меню налаштувань */
-      select {
-        width: 100%;
-        padding: 16px;
-        border-radius: 16px;
-        border: 1px solid var(--card-border);
-        background: var(--input-bg);
-        color: var(--text-main);
-        font-weight: 600;
-        font-size: 16px;
-        outline: none;
-        appearance: none;
-        background-image: url("data:image/svg+xml;utf8,<svg fill='%2364748b' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-        background-repeat: no-repeat;
-        background-position: right 15px center;
-      }
-
-      .grammar-card-new .gc-actions .grammar-delete-btn {
-        background: rgba(244, 63, 94, 0.88);
-        color: #fff;
-      }
-
-      .day-progress-btn {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        margin: 14px 0 20px;
-        padding: 14px 16px;
-        border-radius: 18px;
-        background: linear-gradient(
-          135deg,
-          rgba(14, 165, 233, 0.14),
-          rgba(34, 197, 94, 0.14)
-        );
-        border: 1px solid rgba(14, 165, 233, 0.22);
-        box-shadow: none;
-      }
-      .day-progress-btn span {
-        font-weight: 900;
-      }
-      .day-progress-btn strong {
-        color: var(--accent);
-        font-size: 18px;
-      }
-      .quest-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 12px 0;
-        border-bottom: 1px solid var(--card-border);
-      }
-      .quest-row:last-child {
-        border-bottom: 0;
-      }
-      .quest-row h4 {
-        font-size: 15px;
-        margin-bottom: 4px;
-      }
-      .quest-row p {
-        color: var(--text-sec);
-        font-size: 12px;
-        font-weight: 700;
-      }
-      .quest-badge {
-        min-width: 58px;
-        text-align: center;
-        padding: 7px 10px;
-        border-radius: 999px;
-        font-weight: 900;
-        background: var(--input-bg);
-        color: var(--text-main);
-      }
-      .quest-badge.done {
-        background: var(--success);
-        color: white;
-      }
-
-      /* =========================================
-         GLASS КАРТКИ
-      ========================================= */
-      .glass-card {
-        padding: 18px;
-        border-radius: 24px;
-        background: var(--surface-glass);
-        margin-bottom: 16px;
-        box-shadow: var(--shadow-soft);
-        border: 1px solid var(--card-border);
-        transform: translate3d(0, 0, 0);
-      }
-
-      .bento-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-        margin-bottom: 16px;
-      }
-      .bento-item {
-        background: var(--surface-glass);
-        border-radius: 28px;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        box-shadow: var(--shadow-soft), var(--card-glow);
-        border: 1px solid var(--card-border);
-        position: relative;
-        overflow: hidden;
-        cursor: pointer;
-        transition:
-          transform 0.2s,
-          box-shadow 0.2s;
-      }
-      .bento-item:active {
-        transform: scale(0.95);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      }
-      .bento-large {
-        grid-column: span 2;
-      }
-      .stat-val {
-        font-size: 36px;
-        font-weight: 800;
-        color: var(--text-main);
-        line-height: 1;
-        margin-bottom: 8px;
-        z-index: 2;
-        position: relative;
-        letter-spacing: -0.5px;
-      }
-      .stat-lbl {
-        font-size: 14px;
-        color: var(--text-sec);
-        font-weight: 600;
-        z-index: 2;
-        position: relative;
-      }
-
-      /* Vibrant Premium Gradients Overhaul */
-      .grad-main {
-        background: linear-gradient(
-          135deg,
-          #1e40af 0%,
-          #3b82f6 100%
-        ) !important;
-        color: #ffffff !important;
-        border: none !important;
-      }
-      .grad-main p,
-      .grad-main h2 {
-        color: #ffffff !important;
-      }
-      .grad-fire {
-        background: linear-gradient(
-          135deg,
-          #ea580c 0%,
-          #f43f5e 100%
-        ) !important;
-        color: #ffffff !important;
-        border: none !important;
-      }
-      .grad-ocean {
-        background: linear-gradient(
-          135deg,
-          #0369a1 0%,
-          #0ea5e9 100%
-        ) !important;
-        color: #ffffff !important;
-        border: none !important;
-      }
-      .grad-emerald {
-        background: linear-gradient(
-          135deg,
-          #047857 0%,
-          #10b981 100%
-        ) !important;
-        color: #ffffff !important;
-        border: none !important;
-      }
-      .grad-purple {
-        background: linear-gradient(
-          135deg,
-          #6d28d9 0%,
-          #a855f7 100%
-        ) !important;
-        color: #ffffff !important;
-        border: none !important;
-      }
-      .grad-sunrise {
-        background: linear-gradient(
-          135deg,
-          #f97316 0%,
-          #db2777 100%
-        ) !important;
-        color: #ffffff !important;
-        border: none !important;
-      }
-      .grad-mint {
-        background: linear-gradient(
-          135deg,
-          #0f766e 0%,
-          #14b8a6 100%
-        ) !important;
-        color: #ffffff !important;
-        border: none !important;
-      }
-      .grad-lagoon {
-        background: linear-gradient(
-          135deg,
-          #0284c7 0%,
-          #06b6d4 100%
-        ) !important;
-        color: #ffffff !important;
-        border: none !important;
-      }
-      .grad-violet {
-        background: linear-gradient(
-          135deg,
-          #5b21b6 0%,
-          #8b5cf6 100%
-        ) !important;
-        color: #ffffff !important;
-        border: none !important;
-      }
-      .grad-rose {
-        background: linear-gradient(
-          135deg,
-          #be123c 0%,
-          #fb7185 100%
-        ) !important;
-        color: #ffffff !important;
-        border: none !important;
-      }
-
-      /* Вимкнення тьмяності для темної теми на градієнтних картках */
-      [data-theme="dark"] .bento-item[class*="grad-"]:not(.grad-main) {
-        opacity: 1 !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
-      }
-      .bento-item[class*="grad-"]:not(.grad-main) .stat-val,
-      .bento-item[class*="grad-"]:not(.grad-main) .stat-lbl,
-      .bento-item[class*="grad-"]:not(.grad-main) h4 {
-        color: #0f172a !important;
-        font-weight: 800;
-      }
-      .bento-item[class*="grad-"]:not(.grad-main) p {
-        color: rgba(15, 23, 42, 0.7) !important;
-        font-weight: 600;
-      }
-
-      .bento-item[class*="grad-"] .stat-val,
-      .bento-item[class*="grad-"] .stat-lbl,
-      .bento-item[class*="grad-"] h4 {
-        color: #ffffff !important;
-        font-weight: 800;
-        text-shadow: 0 1px 2px rgba(15, 23, 42, 0.15);
-      }
-      .bento-item[class*="grad-"] p {
-        color: rgba(255, 255, 255, 0.9) !important;
-        font-weight: 600;
-      }
-
-      .bento-item {
-        border-radius: 24px;
-        border: 1px solid var(--card-border);
-        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
       }
 
       .home-hero-new {
@@ -518,15 +302,18 @@
         background:
           radial-gradient(
             circle at 18% 18%,
-            rgba(255, 255, 255, 0.28),
-            transparent 28%
+            rgba(255, 255, 255, 0.3),
+            transparent 30%
           ),
-          linear-gradient(135deg, #2563eb 0%, #06b6d4 48%, #22c55e 100%);
+          linear-gradient(135deg, #2563eb 0%, #06b6d4 50%, #10b981 100%);
         color: white;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        box-shadow: 0 18px 42px rgba(37, 99, 235, 0.28);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.5),
+          0 18px 42px rgba(37, 99, 235, 0.32);
         margin-bottom: 14px;
       }
       .home-kicker {
@@ -534,7 +321,7 @@
         font-weight: 900;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        opacity: 0.85;
+        opacity: 0.88;
         margin-bottom: 8px;
       }
       .home-hero-new h2 {
@@ -545,73 +332,179 @@
       .home-hero-new p {
         font-size: 15px;
         line-height: 1.45;
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(255, 255, 255, 0.92);
         max-width: 300px;
       }
       .home-hero-new button {
         width: auto;
         align-self: flex-start;
-        padding: 11px 18px;
+        padding: 11px 20px;
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.22);
-        border: 1px solid rgba(255, 255, 255, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(14px);
         color: white;
-        box-shadow: none;
+        font-weight: 800;
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
         margin: 18px 0 0;
       }
-      .home-progress-card {
-        background: var(--surface-glass);
-        border: 1px solid var(--card-border);
-        border-radius: 24px;
-        padding: 18px;
+
+      /* BENTO ГРІД */
+      .bento-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 12px;
+        gap: 14px;
+        margin-bottom: 16px;
+      }
+      .bento-item {
+        background: var(--surface-glass);
+        border-radius: 28px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         box-shadow: var(--shadow-soft);
-        margin-bottom: 14px;
-      }
-      .home-progress-card span {
-        display: block;
-        color: var(--text-sec);
-        font-size: 12px;
-        font-weight: 800;
-        margin-bottom: 4px;
-      }
-      .home-progress-card strong {
-        font-size: 28px;
-        color: var(--text-main);
-      }
-      .home-progress-track {
-        grid-column: 1 / -1;
-        height: 12px;
-        background: var(--input-bg);
-        border-radius: 999px;
+        border: 1px solid var(--card-border);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+        position: relative;
         overflow: hidden;
+        cursor: pointer;
+        transition:
+          transform 0.22s ease,
+          box-shadow 0.22s ease;
       }
-      .home-progress-track div {
-        height: 100%;
-        width: 0%;
-        background: linear-gradient(135deg, #22c55e, #06b6d4);
-        transition: width 0.8s ease;
+      .bento-item:hover {
+        transform: translateY(-2px);
       }
+      .bento-item:active {
+        transform: scale(0.96);
+      }
+      .bento-large {
+        grid-column: span 2;
+      }
+      .stat-val {
+        font-size: 36px;
+        font-weight: 900;
+        color: var(--text-main);
+        line-height: 1;
+        margin-bottom: 8px;
+        z-index: 2;
+        position: relative;
+        letter-spacing: -0.5px;
+      }
+      .stat-lbl {
+        font-size: 14px;
+        color: var(--text-sec);
+        font-weight: 700;
+        z-index: 2;
+        position: relative;
+      }
+
+      /* Градієнти Bento Карток */
+      .grad-main {
+        background: linear-gradient(
+          135deg,
+          #1e40af 0%,
+          #3b82f6 100%
+        ) !important;
+      }
+      .grad-fire {
+        background: linear-gradient(
+          135deg,
+          #ea580c 0%,
+          #f43f5e 100%
+        ) !important;
+      }
+      .grad-ocean {
+        background: linear-gradient(
+          135deg,
+          #0369a1 0%,
+          #0ea5e9 100%
+        ) !important;
+      }
+      .grad-emerald {
+        background: linear-gradient(
+          135deg,
+          #047857 0%,
+          #10b981 100%
+        ) !important;
+      }
+      .grad-purple {
+        background: linear-gradient(
+          135deg,
+          #6d28d9 0%,
+          #a855f7 100%
+        ) !important;
+      }
+      .grad-sunrise {
+        background: linear-gradient(
+          135deg,
+          #f97316 0%,
+          #db2777 100%
+        ) !important;
+      }
+      .grad-mint {
+        background: linear-gradient(
+          135deg,
+          #0f766e 0%,
+          #14b8a6 100%
+        ) !important;
+      }
+      .grad-lagoon {
+        background: linear-gradient(
+          135deg,
+          #0284c7 0%,
+          #06b6d4 100%
+        ) !important;
+      }
+
+      .bento-item[class*="grad-"] {
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.4),
+          0 12px 30px rgba(0, 0, 0, 0.18) !important;
+      }
+      .bento-item[class*="grad-"] .stat-val,
+      .bento-item[class*="grad-"] .stat-lbl,
+      .bento-item[class*="grad-"] h4,
+      .bento-item[class*="grad-"] p {
+        color: #ffffff !important;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+      }
+
+      /* Сітки та картки дій */
       .home-stat-grid,
-      .home-action-grid {
+      .home-action-grid,
+      .feature-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
       }
       .home-stat-card,
-      .home-action-card {
-        border-radius: 22px;
+      .home-action-card,
+      .feature-tile {
+        border-radius: 24px;
         padding: 16px;
         color: white;
         min-height: 126px;
-        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.35),
+          0 12px 28px rgba(15, 23, 42, 0.15);
+        backdrop-filter: blur(18px);
+        transition: transform 0.2s ease;
+      }
+      .home-stat-card:hover,
+      .home-action-card:hover,
+      .feature-tile:hover {
+        transform: translateY(-2px);
       }
       .home-stat-card i,
-      .home-action-card i {
+      .home-action-card i,
+      .feature-tile i {
         font-size: 24px;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
       }
       .home-stat-card strong {
         display: block;
@@ -619,15 +512,19 @@
         line-height: 1;
       }
       .home-stat-card span,
-      .home-action-card p {
+      .home-action-card p,
+      .feature-tile p {
         font-size: 12px;
-        opacity: 0.9;
+        opacity: 0.92;
         font-weight: 700;
       }
-      .home-action-card h4 {
+      .home-action-card h4,
+      .feature-tile h4 {
         font-size: 17px;
         margin-bottom: 6px;
+        font-weight: 800;
       }
+
       .stat-fire {
         background: linear-gradient(135deg, #ef4444, #f97316);
       }
@@ -646,9 +543,24 @@
       .action-read {
         background: linear-gradient(135deg, #0d9488, #84cc16);
       }
+
+      .feature-ai {
+        background: linear-gradient(135deg, #2563eb, #06b6d4);
+      }
+      .feature-read {
+        background: linear-gradient(135deg, #059669, #84cc16);
+      }
+      .feature-write {
+        background: linear-gradient(135deg, #7c3aed, #ec4899);
+      }
+      .feature-review {
+        background: linear-gradient(135deg, #f59e0b, #ef4444);
+      }
+
       .home-section-title {
         margin: 22px 0 12px;
         font-size: 18px;
+        font-weight: 800;
       }
       .home-tip-card {
         display: flex;
@@ -656,12 +568,10 @@
         margin-top: 14px;
         padding: 18px;
         border-radius: 24px;
-        background: linear-gradient(
-          135deg,
-          rgba(14, 165, 233, 0.12),
-          rgba(34, 197, 94, 0.12)
-        );
-        border: 1px solid rgba(14, 165, 233, 0.2);
+        background: var(--surface-glass);
+        border: 1px solid var(--card-border);
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(20px);
       }
       .home-tip-card i {
         color: var(--accent);
@@ -678,32 +588,8 @@
         font-weight: 600;
       }
 
-      .sheet-word-row .action-btns {
-        flex-shrink: 0;
-        padding: 6px;
-        border-radius: 18px;
-        background: linear-gradient(
-          135deg,
-          rgba(14, 165, 233, 0.14),
-          rgba(34, 197, 94, 0.14)
-        );
-        border: 1px solid rgba(14, 165, 233, 0.18);
-      }
-      .sheet-word-row .action-btns .icon-btn {
-        box-shadow: none !important;
-        background: rgba(255, 255, 255, 0.72);
-        border: 1px solid rgba(255, 255, 255, 0.55);
-      }
-      body[data-theme="dark"] .sheet-word-row .action-btns .icon-btn {
-        background: rgba(15, 23, 42, 0.72);
-        border-color: rgba(255, 255, 255, 0.1);
-      }
-      .sheet-word-row .action-btns .btn-del {
-        color: var(--danger);
-      }
-
       /* =========================================
-         ІНПУТИ (ЗАГЛИБЛЕНІ) ТА КНОПКИ
+         ІНПУТИ ТА КНОПКИ (ТОЧНІ РОЗМІРИ)
       ========================================= */
       .input-group {
         margin-bottom: 16px;
@@ -719,63 +605,73 @@
         font-size: 18px;
       }
 
-      /* ВИМКНЕННЯ ПІДКАЗОК: використовуємо autocomplete="off" в HTML */
-      input {
+      input[type="text"],
+      input[type="number"],
+      select,
+      textarea {
         width: 100%;
         background: var(--input-bg);
         border: 1px solid var(--card-border);
         color: var(--text-main);
-        padding: 20px 20px 20px 52px;
+        padding: 18px 20px;
         border-radius: 20px;
-        font-size: 16px;
+        font-size: 16px !important;
         font-weight: 600;
         outline: none;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: var(--shadow-sunken);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       }
-      input:focus {
+
+      /* Інпути з іконкою зліва у групі */
+      .input-group input[type="text"],
+      .input-group input[type="number"] {
+        padding-left: 52px;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
         border-color: var(--accent) !important;
         background: var(--surface-solid);
         box-shadow:
-          0 0 0 3px rgba(0, 122, 255, 0.12),
-          var(--shadow-soft) !important;
+          inset 0 1px 2px rgba(0, 0, 0, 0.08),
+          0 0 0 3px rgba(0, 122, 255, 0.18) !important;
       }
-      input:focus {
-        border-color: var(--accent);
-        background: var(--surface-solid);
-        box-shadow: 0 4px 15px rgba(0, 122, 255, 0.2);
-      }
-      input:focus + i {
-        color: var(--accent);
+
+      select {
+        appearance: none;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='%2364748b' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
       }
 
       button {
         background: var(--accent-gradient);
         color: #fff;
-        border: none;
-        padding: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        padding: 18px;
         border-radius: 20px;
         font-size: 16px;
-        font-weight: 700;
+        font-weight: 800;
         width: 100%;
         cursor: pointer;
         transition:
           transform 0.2s,
           box-shadow 0.2s;
-        box-shadow:
-          var(--shadow-strong),
-          inset 0 1px 1px rgba(255, 255, 255, 0.3);
-        letter-spacing: 0.5px;
+        box-shadow: var(--shadow-strong);
+        letter-spacing: 0.3px;
       }
       button:active {
         transform: scale(0.96);
-        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
       }
       button.secondary {
         background: var(--surface-glass);
         color: var(--text-main);
         border: 1px solid var(--card-border);
-        box-shadow: var(--shadow-soft), var(--card-glow);
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(20px);
       }
       button.outline {
         background: transparent;
@@ -784,27 +680,24 @@
         box-shadow: none;
       }
 
-      /* =========================================
-         СЛОВНИК (ВІРТУАЛЬНИЙ СКРОЛЛ - БЕЗ ЛАГІВ)
-      ========================================= */
-      .dict-header {
+      .day-progress-btn {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 10px 0;
-        font-size: 18px;
-        font-weight: 800;
-        cursor: pointer;
-      }
-      .dict-content {
-        display: none;
-      } /* Ми контролюємо це через JS */
-      .dict-content.open {
-        display: block;
-        animation: fadeIn 0.3s;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 14px 0 20px;
+        padding: 16px 20px;
+        border-radius: 20px;
+        background: var(--surface-glass) !important;
+        border: 1px solid var(--card-border) !important;
+        box-shadow: var(--shadow-soft) !important;
+        backdrop-filter: blur(20px) !important;
+        color: var(--text-main) !important;
       }
 
-      /* Контейнер віртуального скролу */
+      /* =========================================
+         СЛОВНИК ТА ВІРТУАЛЬНИЙ СКРОЛ
+      ========================================= */
       #virtual-scroll-viewport {
         height: 50vh;
         overflow-y: auto;
@@ -820,12 +713,11 @@
         padding-right: 5px;
       }
 
-      /* Слово */
       .word-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 12px 15px; /* Додав трохи відступів для краси */
+        padding: 12px 15px;
         border-bottom: 1px solid var(--card-border);
         width: 100%;
       }
@@ -875,50 +767,51 @@
       }
 
       /* =========================================
-         LIQUID GLASS НАВІГАЦІЯ
+         LIQUID GLASS НАВІГАЦІЯ (BOTTOM NAV)
       ========================================= */
       nav {
         position: fixed;
-        bottom: 25px;
-        left: 24px;
-        right: 24px;
+        bottom: 24px;
+        left: 20px;
+        right: 20px;
         background: var(--nav-bg);
-        border: 1px solid var(--card-border);
+        border: 1px solid var(--glass-border-light);
         border-radius: 35px;
         box-shadow:
-          0 20px 40px rgba(0, 0, 0, 0.1),
-          inset 0 2px 10px rgba(255, 255, 255, 0.5);
+          var(--shadow-soft),
+          0 20px 40px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(35px) saturate(200%);
+        -webkit-backdrop-filter: blur(35px) saturate(200%);
         display: flex;
         justify-content: space-around;
-        padding: 10px 8px;
+        padding: 8px;
         z-index: 100;
-        transform: translate3d(0, 0, 0);
       }
-      [data-theme="dark"] nav {
-        box-shadow:
-          0 20px 40px rgba(0, 0, 0, 0.6),
-          inset 0 1px 2px rgba(255, 255, 255, 0.1);
-      }
+
       .nav-item {
         padding: 12px;
         border-radius: 24px;
         color: var(--text-sec);
         font-size: 22px;
-        transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         cursor: pointer;
         width: 60px;
-        text-align: center;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: relative;
       }
+
       .nav-item.active {
         color: #fff;
         background: var(--accent-gradient);
         box-shadow: var(--shadow-strong);
-        transform: translateY(-5px);
+        transform: translateY(-4px);
       }
 
       /* =========================================
-         МОДАЛКИ ТА OVERLAYS
+         МОДАЛКИ, OVERLAYS ТА ШТОРКИ
       ========================================= */
       #toast-container {
         position: fixed;
@@ -942,7 +835,6 @@
         opacity: 0;
         transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        will-change: transform, opacity;
       }
       .toast.show {
         transform: translateY(0);
@@ -950,15 +842,15 @@
       }
 
       .confirm-overlay,
-      .full-overlay,
-      .bottom-sheet-overlay {
+      .full-overlay {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
         height: 100dvh;
-        background: rgba(15, 23, 42, 0.85); /* Елегантний темний фон */
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         z-index: 2000;
         opacity: 0;
         pointer-events: none;
@@ -968,29 +860,46 @@
         justify-content: center;
         align-items: center;
         padding: 24px;
-        will-change: opacity;
       }
+
       .bottom-sheet-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100dvh;
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         z-index: 2500;
-        display: block; /* Повертаємо стандартний display для шторки */
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        display: block;
       }
+
       .confirm-overlay.active,
-      .full-overlay.active {
+      .full-overlay.active,
+      .bottom-sheet-overlay.active {
         opacity: 1;
         pointer-events: auto;
       }
+
       .confirm-box {
-        background: var(--surface-glass);
+        background: var(--surface-solid);
         width: 100%;
         max-width: 340px;
         border-radius: 36px;
-        padding: 35px 24px;
+        padding: 32px 24px;
         text-align: center;
         transform: scale(0.9);
         transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-        border: 1px solid var(--card-border);
-        will-change: transform;
+        box-shadow:
+          var(--shadow-soft),
+          0 30px 60px rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--glass-border-light);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
       }
       .confirm-overlay.active .confirm-box {
         transform: scale(1);
@@ -1013,13 +922,12 @@
         gap: 12px;
       }
 
-      /* ПОВНОЕКРАННІ ВІКНА (ІГРИ ТА ДОДАТКИ) */
+      /* ПОВНОЕКРАННІ ВІКНА (ПРИХОВАНО ВІДПОВІДНО ДО JS LOGIC) */
       .full-modal {
         position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
-        height: 100%;
         height: 100dvh;
         background: var(--bg-gradient);
         z-index: 1500;
@@ -1048,6 +956,8 @@
         border-bottom: 1px solid var(--card-border);
         flex-shrink: 0;
         background: var(--nav-bg);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
       }
 
       .fm-body {
@@ -1062,7 +972,6 @@
         overscroll-behavior-y: contain;
       }
 
-      /* Спрощення та покращення відступів чату */
       .ai-chat-log {
         display: flex;
         flex-direction: column;
@@ -1071,7 +980,6 @@
         padding-bottom: 12px;
       }
 
-      /* МІНІ ІГРИ (КОНТЕНТ ПІДНЯТО ВГОРУ ЩОБ НЕ ЗАКРИВАЛА КЛАВІАТУРА) */
       .learn-body {
         flex: 1;
         overflow-y: auto;
@@ -1086,7 +994,7 @@
 
       .learn-block {
         display: none;
-        animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        animation: smoothFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         text-align: center;
         width: 100%;
         max-width: 400px;
@@ -1118,7 +1026,6 @@
         color: var(--text-sec);
       }
 
-      /* Підказка */
       .hint-btn {
         position: absolute;
         right: 8px;
@@ -1139,8 +1046,8 @@
         position: absolute;
         top: -55px;
         right: 0;
-        background: var(--accent); /* Яскравий акцентний фон */
-        color: #ffffff; /* Завжди білий чіткий текст */
+        background: var(--accent);
+        color: #ffffff;
         padding: 10px 20px;
         border-radius: 16px;
         font-size: 18px;
@@ -1149,9 +1056,9 @@
         pointer-events: none;
         transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         transform: translateY(10px);
-        z-index: 100; /* Підняв вище всіх слоїв */
+        z-index: 100;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        white-space: nowrap; /* Щоб довгі слова не переносились на новий рядок */
+        white-space: nowrap;
       }
       .hint-popup.show {
         opacity: 1;
@@ -1185,7 +1092,8 @@
         gap: 18px;
         transition: 0.3s;
         text-align: left;
-        box-shadow: var(--shadow-soft), var(--card-glow);
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(20px);
         pointer-events: auto;
         margin-bottom: 16px;
       }
@@ -1198,13 +1106,13 @@
       }
       .path-item.active {
         border-color: var(--accent);
-        box-shadow: var(--shadow-strong), var(--card-glow);
+        box-shadow: var(--shadow-strong);
         cursor: pointer;
         transform: translateY(-3px);
       }
       .path-item.completed {
         border-color: var(--success);
-        background: rgba(16, 185, 129, 0.05);
+        background: rgba(16, 185, 129, 0.08);
       }
       .path-icon {
         width: 58px;
@@ -1224,7 +1132,6 @@
         background: var(--accent-gradient);
         color: #fff;
         border: none;
-        box-shadow: none;
       }
       .path-item.completed .path-icon {
         background: var(--success);
@@ -1242,7 +1149,6 @@
         font-weight: 500;
       }
 
-      /* Алфавіт */
       .alpha-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -1276,60 +1182,14 @@
         font-weight: 600;
       }
 
-      /* ДОВІДНИК ГРАМАТИКИ (ШТОРКА ЗНИЗУ) */
-      .grammar-rule-btn {
-        background: var(--surface-glass);
-        border: 1px solid var(--card-border);
-        border-radius: 24px;
-        margin-bottom: 12px;
-        box-shadow: var(--shadow-soft), var(--card-glow);
-        padding: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-weight: 700;
-        font-size: 16px;
-        color: var(--text-main);
-        cursor: pointer;
-        transition: 0.2s;
-      }
-      .grammar-rule-btn:active {
-        transform: scale(0.97);
-      }
-      .grammar-rule-btn i.fa-book-open {
-        color: var(--accent);
-        margin-right: 14px;
-        font-size: 20px;
-      }
-      .grammar-rule-btn i.fa-chevron-right {
-        color: var(--text-sec);
-        font-size: 14px;
-      }
-
-      .bottom-sheet-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 2500;
-        opacity: 0;
-        pointer-events: none;
-        transition: 0.4s;
-      }
-      .bottom-sheet-overlay.active {
-        opacity: 1;
-        pointer-events: auto;
-      }
-
+      /* ШТОРКИ ТА НИЖНІ ПАНЕЛІ */
       .bottom-sheet {
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
         height: 75vh;
-        background: var(--bg-gradient);
+        background: var(--surface-solid);
         border-radius: 36px 36px 0 0;
         z-index: 2600;
         transform: translateY(100%);
@@ -1337,7 +1197,9 @@
         display: flex;
         flex-direction: column;
         box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3);
-        border-top: 1px solid var(--card-border);
+        border-top: 1px solid var(--glass-border-light);
+        backdrop-filter: blur(35px) saturate(180%);
+        -webkit-backdrop-filter: blur(35px) saturate(180%);
       }
       .bottom-sheet.active {
         transform: translateY(0);
@@ -1431,13 +1293,9 @@
         border: none;
         font-weight: 800;
       }
-      .bs-content b,
-      .bs-content strong {
-        color: var(--text-main);
-      }
 
       #ex-hint-box {
-        background: rgba(245, 158, 11, 0.1);
+        background: rgba(245, 158, 11, 0.12);
         border: 1px solid var(--warning);
         color: var(--warning);
         padding: 16px;
@@ -1449,7 +1307,7 @@
         font-weight: 600;
       }
 
-      /* Перемикачі */
+      /* Перемикачі (Switch) */
       .switch {
         position: relative;
         display: inline-block;
@@ -1464,13 +1322,10 @@
       .slider {
         position: absolute;
         cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        inset: 0;
         background-color: var(--input-bg);
         border: 1px solid var(--card-border);
-        transition: 0.4s;
+        transition: 0.3s;
         border-radius: 34px;
         box-shadow: var(--shadow-sunken);
       }
@@ -1482,20 +1337,17 @@
         left: 3px;
         bottom: 3px;
         background-color: var(--text-sec);
-        transition: 0.4s;
+        transition: 0.3s;
         border-radius: 50%;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       }
       input:checked + .slider {
         background: var(--accent-gradient);
         border: none;
-        box-shadow: none;
       }
       input:checked + .slider:before {
         transform: translateX(24px);
         background-color: #fff;
-        bottom: 4px;
-        left: 4px;
       }
       .setting-row {
         display: flex;
@@ -1510,7 +1362,7 @@
         width: 100%;
         margin-top: 10px;
       }
-      /* Фікси для Граматики та Таблиць від ШІ */
+
       .grammar-content-box {
         word-wrap: break-word;
         overflow-wrap: break-word;
@@ -1519,7 +1371,6 @@
       .grammar-content-box p {
         margin-bottom: 15px;
       }
-      /* Адаптивна таблиця - скролиться вбік якщо не влазить */
       .grammar-content-box table,
       .bs-content table {
         display: block;
@@ -1550,14 +1401,6 @@
       .grammar-content-box li {
         margin-bottom: 5px;
       }
-      /* ЗАПОБІГАННЯ АВТОМАТИЧНОГО ЗУМУ ТЕЛЕФОНУ НА ІНПУТАХ ТА ЧЕКБОКСАХ */
-      input[type="checkbox"],
-      input[type="text"],
-      select,
-      textarea {
-        font-size: 16px !important; /* Розмір 16px запобігає системному наближенню в iOS/Android */
-        touch-action: manipulation;
-      }
 
       .blitz-word-item-row {
         display: flex;
@@ -1568,7 +1411,7 @@
         align-items: center;
         touch-action: manipulation;
       }
-      /* === FEATURE PACK 7.3: AI modules, grammar cards, word sheet, sound settings === */
+
       .study-sticky-pill {
         position: sticky;
         top: 10px;
@@ -1582,27 +1425,17 @@
         padding: 8px 10px 8px 18px;
         margin: 0 0 14px;
         border-radius: 999px;
-        background: linear-gradient(
-          135deg,
-          #e0f2fe 0%,
-          #bfdbfe 48%,
-          #dbeafe 100%
-        );
-        color: #075985;
-        border: 1px solid rgba(14, 165, 233, 0.35);
-        box-shadow: 0 14px 34px rgba(2, 132, 199, 0.18);
+        background: var(--surface-glass);
+        color: var(--text-main);
+        border: 1px solid var(--card-border);
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(20px);
         opacity: 0;
         transform: translateY(-10px);
         pointer-events: none;
         transition:
           opacity 0.22s ease,
           transform 0.22s ease;
-      }
-
-      body[data-theme="dark"] .study-sticky-pill {
-        background: linear-gradient(135deg, #0c4a6e 0%, #1d4ed8 100%);
-        color: #e0f2fe;
-        border-color: rgba(125, 211, 252, 0.24);
       }
 
       .study-sticky-pill.visible {
@@ -1624,7 +1457,6 @@
         border-radius: 999px;
         margin: 0;
         font-size: 14px;
-        box-shadow: none;
       }
 
       .learning-hero-card.is-compressed {
@@ -1645,15 +1477,17 @@
         position: relative;
         aspect-ratio: 3 / 4;
         min-height: 0;
-        border-radius: 18px;
-        padding: 14px;
+        border-radius: 22px;
+        padding: 16px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         color: white;
-        border: 1px solid rgba(255, 255, 255, 0.24);
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.4),
+          var(--shadow-soft);
       }
 
       .grammar-card-new::after {
@@ -1673,8 +1507,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(255, 255, 255, 0.22);
-        backdrop-filter: blur(8px);
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
         font-size: 20px;
       }
 
@@ -1682,12 +1516,13 @@
         position: relative;
         z-index: 2;
         font-size: 15px;
-        line-height: 1.15;
+        line-height: 1.18;
         margin: 10px 0 8px;
         display: -webkit-box;
         -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        font-weight: 800;
       }
 
       .grammar-card-new .gc-actions {
@@ -1710,74 +1545,26 @@
       }
 
       .grammar-card-new .gc-actions button.secondary-light {
-        background: rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.22);
         color: white;
         border: 1px solid rgba(255, 255, 255, 0.35);
-      }
-
-      .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-        margin-top: 14px;
-      }
-
-      .feature-tile {
-        min-height: 148px;
-        border-radius: 18px;
-        padding: 16px;
-        position: relative;
-        overflow: hidden;
-        color: white;
-        text-align: left;
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
-      }
-
-      .feature-tile i {
-        font-size: 28px;
-        margin-bottom: 16px;
-      }
-
-      .feature-tile h4 {
-        font-size: 17px;
-        margin-bottom: 6px;
-      }
-
-      .feature-tile p {
-        font-size: 12px;
-        line-height: 1.35;
-        opacity: 0.92;
-      }
-
-      .feature-ai {
-        background: linear-gradient(135deg, #2563eb, #06b6d4);
-      }
-      .feature-read {
-        background: linear-gradient(135deg, #059669, #84cc16);
-      }
-      .feature-write {
-        background: linear-gradient(135deg, #7c3aed, #ec4899);
-      }
-      .feature-review {
-        background: linear-gradient(135deg, #f59e0b, #ef4444);
       }
 
       .floating-sheet-panel {
         position: fixed;
         left: 50%;
         bottom: 0;
-        width: min(100%, 430px);
+        width: min(100%, 440px);
         max-height: 75vh;
         transform: translate(-50%, 105%);
-        background: var(
-          --surface-solid
-        ); /* Виправлено прозорість на стабільний фоновий колір */
-        border-radius: 28px 28px 0 0;
-        border: 1px solid var(--card-border);
-        border-top: 3px solid var(--accent); /* Тонкий колірний акцент на межі шторки */
-        box-shadow: 0 -10px 40px rgba(15, 23, 42, 0.15);
+        background: var(--surface-solid);
+        border-radius: 32px 32px 0 0;
+        border: 1px solid var(--glass-border-light);
+        box-shadow: 0 -10px 40px rgba(15, 23, 42, 0.2);
+        backdrop-filter: blur(35px) saturate(180%);
+        -webkit-backdrop-filter: blur(35px) saturate(180%);
         z-index: 2700;
-        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
         display: flex;
         flex-direction: column;
         overflow: hidden;
@@ -1804,7 +1591,6 @@
       .sheet-word-row .word-cz {
         font-size: 17px;
       }
-
       .sheet-word-row .word-ua {
         font-size: 13px;
         color: var(--text-sec);
@@ -1813,8 +1599,8 @@
 
       .ai-msg {
         max-width: 86%;
-        padding: 12px 14px;
-        border-radius: 18px;
+        padding: 12px 16px;
+        border-radius: 20px;
         font-size: 15px;
         line-height: 1.45;
         font-weight: 600;
@@ -1840,8 +1626,8 @@
         text-align: left;
         background: var(--surface-solid);
         border: 1px solid var(--card-border);
-        border-radius: 22px;
-        padding: 18px;
+        border-radius: 24px;
+        padding: 20px;
         line-height: 1.6;
         font-size: 16px;
       }
@@ -1871,92 +1657,53 @@
       }
 
       .danger-soft {
-        background: rgba(244, 63, 94, 0.1) !important;
+        background: rgba(244, 63, 94, 0.12) !important;
         color: var(--danger) !important;
         border: 1px solid rgba(244, 63, 94, 0.25) !important;
       }
 
-      /* =========================================
-         UPGRADED PREMIUM UI & INTERACTIONS
-      ========================================= */
-
-      /* Преміальний дизайн картки Щоденного Навчання */
       #daily-learning-card {
         background:
           radial-gradient(
             circle at top left,
-            rgba(255, 255, 255, 0.15),
+            rgba(255, 255, 255, 0.18),
             transparent
           ),
           linear-gradient(135deg, #1e1b4b 0%, #311042 100%) !important;
-        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
         color: #ffffff !important;
-        box-shadow: 0 20px 40px rgba(49, 16, 66, 0.35) !important;
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.4),
+          0 20px 40px rgba(49, 16, 66, 0.35) !important;
       }
       #daily-learning-card h3 {
         color: #ffffff !important;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       }
       #daily-learning-card p {
-        color: rgba(255, 255, 255, 0.8) !important;
-      }
-      #daily-learning-card button {
-        background: linear-gradient(
-          135deg,
-          #a855f7 0%,
-          #6366f1 100%
-        ) !important;
-        box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3) !important;
+        color: rgba(255, 255, 255, 0.85) !important;
       }
 
-      /* Оновлена преміальна кнопка прогресу дня */
-      .day-progress-btn {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        margin: 14px 0 20px;
-        padding: 16px 20px;
-        border-radius: 20px;
-        background: linear-gradient(
-          135deg,
-          #0f172a 0%,
-          #1e293b 100%
-        ) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        box-shadow: var(--shadow-soft) !important;
-        color: #ffffff !important;
-      }
-      body[data-theme="light"] .day-progress-btn {
-        background: linear-gradient(
-          135deg,
-          #ffffff 0%,
-          #f1f5f9 100%
-        ) !important;
-        border: 1px solid rgba(15, 23, 42, 0.08) !important;
-        color: var(--text-main) !important;
-      }
-
-      /* Плаваючий модальний словник з фіксованими розмірами та розмиттям фону */
       #my-words-sheet {
         position: fixed;
         top: 50%;
         left: 50%;
-        width: min(92vw, 410px);
-        height: 72dvh;
-        transform: translate(-50%, -50%) scale(0.95);
+        width: min(92vw, 420px);
+        height: 74dvh;
+        transform: translate(-50%, -50%) scale(0.94);
         opacity: 0;
         pointer-events: none;
-        border-radius: 32px;
-        background: var(
-          --surface-solid
-        ) !important; /* Надійний непрозорий фон */
-        border: 1px solid var(--card-border);
-        box-shadow: 0 30px 70px rgba(15, 23, 42, 0.3);
+        border-radius: 36px;
+        background: var(--surface-solid) !important;
+        border: 1px solid var(--glass-border-light);
+        box-shadow:
+          var(--shadow-soft),
+          0 30px 80px rgba(0, 0, 0, 0.38);
+        backdrop-filter: blur(35px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(35px) saturate(180%) !important;
         z-index: 2700;
         transition:
-          transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.12),
-          opacity 0.22s ease;
+          transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15),
+          opacity 0.25s ease;
         display: flex;
         flex-direction: column;
         overflow: hidden;
@@ -1966,45 +1713,17 @@
         opacity: 1;
         pointer-events: auto;
       }
-      #my-words-sheet .bs-header {
-        padding: 20px 24px 14px 24px;
-        border-bottom: 1px solid var(--card-border);
-        background: var(--surface-solid);
-      }
-      #my-words-sheet .sheet-word-list {
-        flex: 1;
-        overflow-y: auto;
-        padding: 10px 20px 20px 20px;
-        min-height: 0;
-      }
-      #my-words-sheet-overlay {
-        backdrop-filter: blur(5px);
-        background: rgba(15, 23, 42, 0.6) !important;
-        transition: opacity 0.25s ease;
-      }
 
-      /* Стильний преміум профіль студента */
       .premium-profile-hero {
-        background:
-          radial-gradient(
-            circle at 10% 20%,
-            rgba(99, 102, 241, 0.12) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 90% 80%,
-            rgba(236, 72, 153, 0.08) 0%,
-            transparent 50%
-          ),
-          var(--surface-glass);
+        background: var(--surface-glass);
         border: 1px solid var(--card-border);
-        border-radius: 30px;
+        border-radius: 32px;
         padding: 32px 24px;
         text-align: center;
         margin-bottom: 20px;
         box-shadow: var(--shadow-soft);
-        position: relative;
-        overflow: hidden;
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
       }
       .premium-avatar {
         width: 86px;
@@ -2017,11 +1736,12 @@
         justify-content: center;
         font-size: 34px;
         margin: 0 auto 16px;
-        box-shadow: 0 10px 25px rgba(0, 122, 255, 0.25);
+        box-shadow:
+          inset 0 1px 2px rgba(255, 255, 255, 0.5),
+          0 10px 25px rgba(0, 122, 255, 0.3);
         border: 4px solid var(--surface-solid);
       }
 
-      /* Тінізація та стилізація карток у списку Прогресу Дня */
       .quest-row {
         background: var(--surface-solid);
         border: 1px solid var(--card-border);
@@ -2029,16 +1749,12 @@
         padding: 16px;
         margin-bottom: 12px;
         box-shadow: var(--shadow-soft);
-        transition: 0.2s ease;
       }
       .quest-badge {
         padding: 8px 14px;
         border-radius: 14px;
         font-size: 13px;
         border: 1px solid var(--card-border);
-      }
-      .quest-badge.done {
-        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
       }
     </style>
   </head>
