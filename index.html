@@ -6,6 +6,11 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
     />
+    <meta name="theme-color" content="#cbd5e1" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <title>Czech Master Premium</title>
     <link
       rel="stylesheet"
@@ -1759,96 +1764,1723 @@
 
       /* ===== Mobile-first product refresh ===== */
       body[data-theme="dark"] {
-        --bg-gradient: radial-gradient(circle at 15% 0%, rgba(63, 110, 255, .34), transparent 34%), radial-gradient(circle at 85% 62%, rgba(160, 65, 255, .2), transparent 40%), linear-gradient(155deg, #06112d 0%, #0a1640 48%, #07112c 100%);
+        --bg-gradient:
+          radial-gradient(
+            circle at 15% 0%,
+            rgba(63, 110, 255, 0.34),
+            transparent 34%
+          ),
+          radial-gradient(
+            circle at 85% 62%,
+            rgba(160, 65, 255, 0.2),
+            transparent 40%
+          ),
+          linear-gradient(155deg, #06112d 0%, #0a1640 48%, #07112c 100%);
       }
-      body { background: var(--bg-gradient); }
-      header { background: transparent !important; border: 0 !important; box-shadow: none !important; padding: calc(var(--safe-top) + 10px) 22px 6px !important; }
-      .header-title { font-size: 25px !important; letter-spacing: -.7px; }
-      main { padding: 8px 16px calc(112px + env(safe-area-inset-bottom, 15px)) !important; }
-      .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .09em; font-size: 11px; font-weight: 900; }
-      .section-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; margin: 24px 2px 12px; }
-      .section-heading h3 { font-size: 19px; margin:0; letter-spacing:-.3px; }
-      .section-heading button { width:auto; margin:0; padding:7px 10px; border-radius:12px; background:transparent; box-shadow:none; color:var(--accent); font-size:12px; }
-      .glass-card, .home-progress-card { border-radius:24px; padding:18px; }
-      .home-hero-new { min-height: 248px; border-radius:28px; padding:22px; background: linear-gradient(130deg, rgba(22, 52, 138, .95), rgba(71, 76, 192, .76)), url('https://images.unsplash.com/photo-1541849546-216549ae216d?auto=format&fit=crop&w=900&q=80') center/cover; }
-      .home-hero-new h2 { font-size:32px; max-width:230px; }
-      .home-progress-card { display:grid; grid-template-columns: 1fr auto; gap:8px; background:linear-gradient(135deg, rgba(32,65,140,.5), var(--surface-glass)); }
-      .home-progress-card .home-progress-track { grid-column: 1/-1; }
-      .home-stat-grid { grid-template-columns:repeat(3,1fr); }
-      .home-stat-card { min-height:96px; padding:13px; border-radius:20px; }
-      .home-stat-card i { font-size:17px; margin-bottom:7px; }.home-stat-card strong{font-size:25px}.home-stat-card span{font-size:10px}
-      .home-stat-card.stat-words { background:linear-gradient(135deg,#1266c9,#2158d6); }
-      .home-action-grid { grid-template-columns:repeat(2,1fr); }.home-action-card { min-height:112px; padding:14px; border-radius:20px; }.home-action-card i { font-size:20px; margin-bottom:8px; }
-      .daily-focus-card { border-radius:26px; padding:20px; color:#fff; background: linear-gradient(135deg, #7a3ef2, #247cf2 58%, #21b7d8); box-shadow:0 16px 34px rgba(74,72,230,.32); position:relative; overflow:hidden; }
-      .daily-focus-card:after { content:'✦'; position:absolute; right:18px; top:-15px; font-size:94px; opacity:.14; }.daily-focus-card p{color:rgba(255,255,255,.84); margin:8px 0 16px; font-weight:600}.daily-focus-card button{background:rgba(255,255,255,.2); box-shadow:none; width:auto; padding:11px 17px; border-radius:14px;}
-      .progress-compact { display:flex; align-items:center; gap:14px; }.progress-ring-mini { width:52px; height:52px; flex:0 0 52px; border-radius:50%; display:grid; place-items:center; font-weight:900; background:conic-gradient(#56c7ff 0 var(--progress, 0%), rgba(255,255,255,.14) var(--progress,0%) 100%); }.progress-ring-mini:after{content:'';width:40px;height:40px;border-radius:50%;background:#14255a;position:absolute}.progress-ring-mini span{z-index:1;font-size:12px}
-      .primary-practice { display:grid; gap:10px; }.practice-priority { padding:17px; border-radius:21px; color:#fff; display:flex; gap:14px; align-items:center; cursor:pointer; background:linear-gradient(135deg,#ff8d25,#ee3d62); box-shadow:0 12px 28px rgba(238,61,98,.23); }.practice-priority.review{background:linear-gradient(135deg,#1f8e91,#1676e4)} .practice-priority i { font-size:22px; width:30px; text-align:center; }.practice-priority h4{font-size:16px;margin:0 0 3px}.practice-priority p{font-size:12px;margin:0;color:rgba(255,255,255,.86);font-weight:600}.practice-priority .chev{margin-left:auto;font-size:15px}
-      .learning-hero-card { padding:22px !important; text-align:left !important; border:0 !important; background:linear-gradient(135deg,#244bb7,#3159eb 58%,#6b50dc) !important; color:#fff; }.learning-hero-card h3,.learning-hero-card p,#learning-status-text{color:#fff!important}.learning-hero-card button{width:auto;background:rgba(255,255,255,.18);box-shadow:none;padding:12px 17px;border-radius:14px}.study-sticky-pill{border-radius:16px}
-      .tool-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }.tool-card { min-height:100px; padding:14px; border-radius:19px; background:var(--surface-glass); border:1px solid var(--card-border); box-shadow:var(--shadow-soft); cursor:pointer; }.tool-card i{color:var(--accent);font-size:19px;margin-bottom:14px}.tool-card h4{font-size:14px;margin:0 0 4px}.tool-card p{font-size:11px;line-height:1.3;color:var(--text-sec);margin:0;font-weight:600}.tool-link{width:auto;margin:8px 0 0;padding:5px 8px;border-radius:9px;background:rgba(50,119,255,.14);color:var(--accent);box-shadow:none;border:0;font-size:10px}#study>.bento-grid{display:none}
-      .dictionary-search { padding:14px; }.dictionary-search .input-group{margin:0 0 10px}.dictionary-search .input-group input{padding-top:15px;padding-bottom:15px}.dictionary-search button{padding:14px;border-radius:16px}.filter-chips{display:flex;gap:8px;overflow:auto;padding:1px 1px 8px;scrollbar-width:none}.filter-chip{white-space:nowrap;width:auto;padding:9px 13px;border-radius:14px;font-size:12px;background:var(--surface-glass);color:var(--text-sec);border:1px solid var(--card-border);box-shadow:none}.filter-chip.active{background:var(--accent-gradient);color:#fff}.dictionary-library{padding:0;overflow:hidden}.dictionary-library-head{display:flex;align-items:center;justify-content:space-between;padding:17px 17px 12px}.dictionary-library-head h3{font-size:17px;margin:0}.dictionary-library-head button{width:auto;padding:0;background:transparent;box-shadow:none;color:var(--accent);font-size:13px}.dictionary-preview{min-height:130px;padding:0 17px 15px;color:var(--text-sec);font-size:13px;font-weight:600}.dict-count-pill{background:rgba(52,121,255,.16);color:var(--accent);padding:4px 9px;border-radius:10px;font-size:12px;font-weight:800}
-      .stats-hero { padding:19px; border-radius:24px; background:linear-gradient(135deg,rgba(45,88,204,.7),rgba(43,58,123,.66)); }.stats-hero-top{display:flex;align-items:center;gap:15px}.stats-ring{width:74px;height:74px;border-radius:50%;background:conic-gradient(#6cd3ff 0 var(--stats-progress,0%),rgba(255,255,255,.15) var(--stats-progress,0%) 100%);display:grid;place-items:center}.stats-ring:after{content:'';width:58px;height:58px;border-radius:50%;background:#17275c;position:absolute}.stats-ring span{z-index:1;font-weight:900}.stats-hero h3{font-size:16px;margin:0 0 4px}.stats-hero p{font-size:13px;margin:0;color:var(--text-sec);font-weight:600}.stat-kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0}.stat-kpi{padding:13px 9px;border-radius:17px;color:#fff}.stat-kpi strong{display:block;font-size:21px}.stat-kpi span{font-size:10px;font-weight:700;opacity:.9}.stat-kpi.one{background:linear-gradient(135deg,#9a45e8,#6e43d3)}.stat-kpi.two{background:linear-gradient(135deg,#168ce2,#3064ea)}.stat-kpi.three{background:linear-gradient(135deg,#f09b2a,#e75a43)}
-      .settings-profile { display:flex;align-items:center;gap:14px;padding:18px;border-radius:24px;background:linear-gradient(135deg,rgba(42,96,208,.7),rgba(110,74,194,.45)); }.settings-profile .premium-avatar{margin:0;width:52px;height:52px;font-size:22px}.settings-profile h3{font-size:18px!important;margin:0 0 3px!important}.settings-profile p{margin:0!important}.settings-group{overflow:hidden;padding:0}.settings-group-title{padding:16px 17px 8px;font-size:12px;color:var(--text-sec);font-weight:900;text-transform:uppercase;letter-spacing:.07em}.settings-action{display:flex;align-items:center;gap:12px;padding:15px 17px;border-top:1px solid var(--card-border);cursor:pointer}.settings-action>i{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:rgba(51,123,255,.15);color:var(--accent)}.settings-action div{flex:1}.settings-action strong{font-size:14px;display:block}.settings-action small{color:var(--text-sec);font-weight:600}.settings-action .switch{margin-left:auto}
-      .ai-fab{position:fixed;right:24px;bottom:112px;width:58px;height:58px;border-radius:50%;z-index:120;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,rgba(119,88,255,.92),rgba(40,150,255,.92));border:1px solid rgba(255,255,255,.5);box-shadow:inset 0 1px 2px rgba(255,255,255,.6),0 12px 30px rgba(57,105,255,.48);backdrop-filter:blur(18px);font-size:23px;cursor:pointer}.ai-fab:after{content:'';position:absolute;inset:5px;border-radius:50%;border:1px solid rgba(255,255,255,.2)}
-      #bottom-nav { bottom:16px; left:12px; right:12px; border-radius:25px; padding:7px 4px; }.nav-item{width:52px;height:50px;font-size:18px;padding:8px}.nav-item:after{font-size:8px;position:absolute;bottom:2px;font-weight:800}.nav-item:nth-child(1):after{content:'Слова'}.nav-item:nth-child(2):after{content:'Навчання'}.nav-item:nth-child(3):after{content:'Головна'}.nav-item:nth-child(4):after{content:'Статистика'}.nav-item:nth-child(5):after{content:'Профіль'}.nav-item i{margin-top:-8px}.nav-item.active{transform:translateY(-5px)}
-      @media (min-width:600px){ #app{max-width:480px;margin:auto;border-left:1px solid var(--card-border);border-right:1px solid var(--card-border)} nav,.ai-fab{left:50%;right:auto}.ai-fab{margin-left:164px}nav{width:456px;transform:translateX(-50%)} }
+      body {
+        background: var(--bg-gradient);
+      }
+      header {
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        padding: calc(var(--safe-top) + 10px) 22px 6px !important;
+      }
+      .header-title {
+        font-size: 25px !important;
+        letter-spacing: -0.7px;
+      }
+      main {
+        padding: 8px 16px calc(112px + env(safe-area-inset-bottom, 15px)) !important;
+      }
+      .eyebrow {
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        font-size: 11px;
+        font-weight: 900;
+      }
+      .section-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 24px 2px 12px;
+      }
+      .section-heading h3 {
+        font-size: 19px;
+        margin: 0;
+        letter-spacing: -0.3px;
+      }
+      .section-heading button {
+        width: auto;
+        margin: 0;
+        padding: 7px 10px;
+        border-radius: 12px;
+        background: transparent;
+        box-shadow: none;
+        color: var(--accent);
+        font-size: 12px;
+      }
+      .glass-card,
+      .home-progress-card {
+        border-radius: 24px;
+        padding: 18px;
+      }
+      .home-hero-new {
+        min-height: 248px;
+        border-radius: 28px;
+        padding: 22px;
+        background:
+          linear-gradient(
+            130deg,
+            rgba(22, 52, 138, 0.95),
+            rgba(71, 76, 192, 0.76)
+          ),
+          url("https://images.unsplash.com/photo-1541849546-216549ae216d?auto=format&fit=crop&w=900&q=80")
+            center/cover;
+      }
+      .home-hero-new h2 {
+        font-size: 32px;
+        max-width: 230px;
+      }
+      .home-progress-card {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        background: linear-gradient(
+          135deg,
+          rgba(32, 65, 140, 0.5),
+          var(--surface-glass)
+        );
+      }
+      .home-progress-card .home-progress-track {
+        grid-column: 1/-1;
+      }
+      .home-stat-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .home-stat-card {
+        min-height: 96px;
+        padding: 13px;
+        border-radius: 20px;
+      }
+      .home-stat-card i {
+        font-size: 17px;
+        margin-bottom: 7px;
+      }
+      .home-stat-card strong {
+        font-size: 25px;
+      }
+      .home-stat-card span {
+        font-size: 10px;
+      }
+      .home-stat-card.stat-words {
+        background: linear-gradient(135deg, #1266c9, #2158d6);
+      }
+      .home-action-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .home-action-card {
+        min-height: 112px;
+        padding: 14px;
+        border-radius: 20px;
+      }
+      .home-action-card i {
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+      .daily-focus-card {
+        border-radius: 26px;
+        padding: 20px;
+        color: #fff;
+        background: linear-gradient(135deg, #7a3ef2, #247cf2 58%, #21b7d8);
+        box-shadow: 0 16px 34px rgba(74, 72, 230, 0.32);
+        position: relative;
+        overflow: hidden;
+      }
+      .daily-focus-card:after {
+        content: "✦";
+        position: absolute;
+        right: 18px;
+        top: -15px;
+        font-size: 94px;
+        opacity: 0.14;
+      }
+      .daily-focus-card p {
+        color: rgba(255, 255, 255, 0.84);
+        margin: 8px 0 16px;
+        font-weight: 600;
+      }
+      .daily-focus-card button {
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: none;
+        width: auto;
+        padding: 11px 17px;
+        border-radius: 14px;
+      }
+      .progress-compact {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .progress-ring-mini {
+        width: 52px;
+        height: 52px;
+        flex: 0 0 52px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+        background: conic-gradient(
+          #56c7ff 0 var(--progress, 0%),
+          rgba(255, 255, 255, 0.14) var(--progress, 0%) 100%
+        );
+      }
+      .progress-ring-mini:after {
+        content: "";
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #14255a;
+        position: absolute;
+      }
+      .progress-ring-mini span {
+        z-index: 1;
+        font-size: 12px;
+      }
+      .primary-practice {
+        display: grid;
+        gap: 10px;
+      }
+      .practice-priority {
+        padding: 17px;
+        border-radius: 21px;
+        color: #fff;
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        cursor: pointer;
+        background: linear-gradient(135deg, #ff8d25, #ee3d62);
+        box-shadow: 0 12px 28px rgba(238, 61, 98, 0.23);
+      }
+      .practice-priority.review {
+        background: linear-gradient(135deg, #1f8e91, #1676e4);
+      }
+      .practice-priority i {
+        font-size: 22px;
+        width: 30px;
+        text-align: center;
+      }
+      .practice-priority h4 {
+        font-size: 16px;
+        margin: 0 0 3px;
+      }
+      .practice-priority p {
+        font-size: 12px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.86);
+        font-weight: 600;
+      }
+      .practice-priority .chev {
+        margin-left: auto;
+        font-size: 15px;
+      }
+      .learning-hero-card {
+        padding: 22px !important;
+        text-align: left !important;
+        border: 0 !important;
+        background: linear-gradient(
+          135deg,
+          #244bb7,
+          #3159eb 58%,
+          #6b50dc
+        ) !important;
+        color: #fff;
+      }
+      .learning-hero-card h3,
+      .learning-hero-card p,
+      #learning-status-text {
+        color: #fff !important;
+      }
+      .learning-hero-card button {
+        width: auto;
+        background: rgba(255, 255, 255, 0.18);
+        box-shadow: none;
+        padding: 12px 17px;
+        border-radius: 14px;
+      }
+      .study-sticky-pill {
+        border-radius: 16px;
+      }
+      .tool-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .tool-card {
+        min-height: 100px;
+        padding: 14px;
+        border-radius: 19px;
+        background: var(--surface-glass);
+        border: 1px solid var(--card-border);
+        box-shadow: var(--shadow-soft);
+        cursor: pointer;
+      }
+      .tool-card i {
+        color: var(--accent);
+        font-size: 19px;
+        margin-bottom: 14px;
+      }
+      .tool-card h4 {
+        font-size: 14px;
+        margin: 0 0 4px;
+      }
+      .tool-card p {
+        font-size: 11px;
+        line-height: 1.3;
+        color: var(--text-sec);
+        margin: 0;
+        font-weight: 600;
+      }
+      .tool-link {
+        width: auto;
+        margin: 8px 0 0;
+        padding: 5px 8px;
+        border-radius: 9px;
+        background: rgba(50, 119, 255, 0.14);
+        color: var(--accent);
+        box-shadow: none;
+        border: 0;
+        font-size: 10px;
+      }
+      #study > .bento-grid {
+        display: none;
+      }
+      .dictionary-search {
+        padding: 14px;
+      }
+      .dictionary-search .input-group {
+        margin: 0 0 10px;
+      }
+      .dictionary-search .input-group input {
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+      .dictionary-search button {
+        padding: 14px;
+        border-radius: 16px;
+      }
+      .filter-chips {
+        display: flex;
+        gap: 8px;
+        overflow: auto;
+        padding: 1px 1px 8px;
+        scrollbar-width: none;
+      }
+      .filter-chip {
+        white-space: nowrap;
+        width: auto;
+        padding: 9px 13px;
+        border-radius: 14px;
+        font-size: 12px;
+        background: var(--surface-glass);
+        color: var(--text-sec);
+        border: 1px solid var(--card-border);
+        box-shadow: none;
+      }
+      .filter-chip.active {
+        background: var(--accent-gradient);
+        color: #fff;
+      }
+      .dictionary-library {
+        padding: 0;
+        overflow: hidden;
+      }
+      .dictionary-library-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 17px 17px 12px;
+      }
+      .dictionary-library-head h3 {
+        font-size: 17px;
+        margin: 0;
+      }
+      .dictionary-library-head button {
+        width: auto;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+        color: var(--accent);
+        font-size: 13px;
+      }
+      .dictionary-preview {
+        min-height: 130px;
+        padding: 0 17px 15px;
+        color: var(--text-sec);
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .dict-count-pill {
+        background: rgba(52, 121, 255, 0.16);
+        color: var(--accent);
+        padding: 4px 9px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .stats-hero {
+        padding: 19px;
+        border-radius: 24px;
+        background: linear-gradient(
+          135deg,
+          rgba(45, 88, 204, 0.7),
+          rgba(43, 58, 123, 0.66)
+        );
+      }
+      .stats-hero-top {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .stats-ring {
+        width: 74px;
+        height: 74px;
+        border-radius: 50%;
+        background: conic-gradient(
+          #6cd3ff 0 var(--stats-progress, 0%),
+          rgba(255, 255, 255, 0.15) var(--stats-progress, 0%) 100%
+        );
+        display: grid;
+        place-items: center;
+      }
+      .stats-ring:after {
+        content: "";
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        background: #17275c;
+        position: absolute;
+      }
+      .stats-ring span {
+        z-index: 1;
+        font-weight: 900;
+      }
+      .stats-hero h3 {
+        font-size: 16px;
+        margin: 0 0 4px;
+      }
+      .stats-hero p {
+        font-size: 13px;
+        margin: 0;
+        color: var(--text-sec);
+        font-weight: 600;
+      }
+      .stat-kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 9px;
+        margin: 12px 0;
+      }
+      .stat-kpi {
+        padding: 13px 9px;
+        border-radius: 17px;
+        color: #fff;
+      }
+      .stat-kpi strong {
+        display: block;
+        font-size: 21px;
+      }
+      .stat-kpi span {
+        font-size: 10px;
+        font-weight: 700;
+        opacity: 0.9;
+      }
+      .stat-kpi.one {
+        background: linear-gradient(135deg, #9a45e8, #6e43d3);
+      }
+      .stat-kpi.two {
+        background: linear-gradient(135deg, #168ce2, #3064ea);
+      }
+      .stat-kpi.three {
+        background: linear-gradient(135deg, #f09b2a, #e75a43);
+      }
+      .settings-profile {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 18px;
+        border-radius: 24px;
+        background: linear-gradient(
+          135deg,
+          rgba(42, 96, 208, 0.7),
+          rgba(110, 74, 194, 0.45)
+        );
+      }
+      .settings-profile .premium-avatar {
+        margin: 0;
+        width: 52px;
+        height: 52px;
+        font-size: 22px;
+      }
+      .settings-profile h3 {
+        font-size: 18px !important;
+        margin: 0 0 3px !important;
+      }
+      .settings-profile p {
+        margin: 0 !important;
+      }
+      .settings-group {
+        overflow: hidden;
+        padding: 0;
+      }
+      .settings-group-title {
+        padding: 16px 17px 8px;
+        font-size: 12px;
+        color: var(--text-sec);
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+      }
+      .settings-action {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 15px 17px;
+        border-top: 1px solid var(--card-border);
+        cursor: pointer;
+      }
+      .settings-action > i {
+        width: 30px;
+        height: 30px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        background: rgba(51, 123, 255, 0.15);
+        color: var(--accent);
+      }
+      .settings-action div {
+        flex: 1;
+      }
+      .settings-action strong {
+        font-size: 14px;
+        display: block;
+      }
+      .settings-action small {
+        color: var(--text-sec);
+        font-weight: 600;
+      }
+      .settings-action .switch {
+        margin-left: auto;
+      }
+      .ai-fab {
+        position: fixed;
+        right: 24px;
+        bottom: 112px;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        z-index: 120;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        background: linear-gradient(
+          135deg,
+          rgba(119, 88, 255, 0.92),
+          rgba(40, 150, 255, 0.92)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow:
+          inset 0 1px 2px rgba(255, 255, 255, 0.6),
+          0 12px 30px rgba(57, 105, 255, 0.48);
+        backdrop-filter: blur(18px);
+        font-size: 23px;
+        cursor: pointer;
+      }
+      .ai-fab:after {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      #bottom-nav {
+        bottom: 16px;
+        left: 12px;
+        right: 12px;
+        border-radius: 25px;
+        padding: 7px 4px;
+      }
+      .nav-item {
+        width: 52px;
+        height: 50px;
+        font-size: 18px;
+        padding: 8px;
+      }
+      .nav-item:after {
+        font-size: 8px;
+        position: absolute;
+        bottom: 2px;
+        font-weight: 800;
+      }
+      .nav-item:nth-child(1):after {
+        content: "Слова";
+      }
+      .nav-item:nth-child(2):after {
+        content: "Навчання";
+      }
+      .nav-item:nth-child(3):after {
+        content: "Головна";
+      }
+      .nav-item:nth-child(4):after {
+        content: "Статистика";
+      }
+      .nav-item:nth-child(5):after {
+        content: "Профіль";
+      }
+      .nav-item i {
+        margin-top: -8px;
+      }
+      .nav-item.active {
+        transform: translateY(-5px);
+      }
+      @media (min-width: 600px) {
+        #app {
+          max-width: 480px;
+          margin: auto;
+          border-left: 1px solid var(--card-border);
+          border-right: 1px solid var(--card-border);
+        }
+        nav,
+        .ai-fab {
+          left: 50%;
+          right: auto;
+        }
+        .ai-fab {
+          margin-left: 164px;
+        }
+        nav {
+          width: 456px;
+          transform: translateX(-50%);
+        }
+      }
       /* Second refinement: quieter Apple-like glass and clearer information hierarchy */
-      .home-overview{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:1px;overflow:hidden;margin:14px 0;border:1px solid var(--card-border);border-radius:25px;background:var(--card-border);box-shadow:var(--shadow-soft)}.overview-cell{min-height:104px;padding:15px 12px;background:var(--surface-glass)}.overview-cell i{color:var(--accent);font-size:16px;margin-bottom:11px}.overview-cell strong{font-size:22px;display:block;line-height:1.1}.overview-cell span{font-size:10px;color:var(--text-sec);font-weight:800}.overview-progress{grid-column:span 1}.overview-progress strong{font-size:18px}.overview-progress .home-progress-track{margin-top:11px}.home-useful-card{display:flex;gap:13px;align-items:center;padding:17px;border-radius:22px;background:linear-gradient(135deg,rgba(39,103,222,.54),rgba(60,39,150,.38));border:1px solid rgba(255,255,255,.25);box-shadow:var(--shadow-soft)}.home-useful-card .useful-icon{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;border-radius:15px;background:rgba(255,255,255,.17);color:#8eeaff}.home-useful-card h4{font-size:15px;margin:0 0 4px}.home-useful-card p{font-size:12px;color:var(--text-sec);margin:0;font-weight:600}.home-useful-card button{width:auto;margin-left:auto;padding:9px 11px;border-radius:12px;box-shadow:none;font-size:12px}
-      #home .home-section-title,#home .home-action-grid{display:none}
-      #bottom-nav{background:linear-gradient(135deg,rgba(255,255,255,.22),rgba(168,194,255,.08));border:1px solid rgba(255,255,255,.38);box-shadow:inset 0 1px 1px rgba(255,255,255,.44),0 18px 45px rgba(3,10,38,.28);backdrop-filter:blur(34px) saturate(180%);-webkit-backdrop-filter:blur(34px) saturate(180%);padding:7px 10px;bottom:18px}.nav-item{width:48px;height:48px;border-radius:16px;color:var(--text-sec);font-size:19px}.nav-item:after{display:none}.nav-item i{margin:0}.nav-item.active{transform:none;color:var(--text-main);background:linear-gradient(135deg,rgba(255,255,255,.43),rgba(125,175,255,.18));border:1px solid rgba(255,255,255,.48);box-shadow:inset 0 1px 1px rgba(255,255,255,.62),0 5px 18px rgba(0,67,194,.18)}.ai-fab{display:grid!important;background:linear-gradient(135deg,rgba(128,103,255,.96),rgba(30,142,255,.96));padding:0}.ai-fab i{display:block!important;position:relative;z-index:2;font-family:'Font Awesome 6 Free'!important;font-weight:900!important;color:#fff!important;font-size:20px!important;line-height:1!important}
-      #dictionary>.filter-chips{display:none}.tool-grid{grid-template-columns:1.2fr .8fr;grid-auto-rows:122px}.tool-card{position:relative;overflow:hidden;min-height:0;background:linear-gradient(145deg,rgba(30,70,145,.58),rgba(12,27,76,.64));border-color:rgba(137,184,255,.22)}.tool-card:nth-child(1){grid-row:span 2;background:linear-gradient(145deg,#296ad8,#3a4fc0 58%,#693db1)}.tool-card:nth-child(1):after{content:'A';position:absolute;right:-10px;bottom:-24px;font-weight:900;font-size:140px;opacity:.12}.tool-card:nth-child(2){background:linear-gradient(145deg,#7b43bf,#3b4da2)}.tool-card:nth-child(3){background:linear-gradient(145deg,#126b88,#236bbf)}.tool-card:nth-child(4){background:linear-gradient(145deg,#245e78,#2b8b84)}.tool-card i,.tool-card h4{color:#fff}.tool-card p{color:rgba(255,255,255,.76)}.tool-link{position:relative;z-index:2;background:rgba(255,255,255,.17);color:#fff}.learning-hero-card{background:linear-gradient(125deg,rgba(26,67,177,.96),rgba(67,58,199,.92)),url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=900&q=80') center/cover!important}.day-progress-btn{background:linear-gradient(135deg,rgba(31,101,157,.5),rgba(24,50,116,.52))!important}.progress-ring-mini:after{background:#173c73}
-      .stats-legacy{display:none}.analytics-dashboard{display:grid;gap:12px}.analytics-command{padding:20px;border-radius:26px;background:linear-gradient(140deg,#263e98,#1d6ec1 57%,#314ea8);color:#fff;position:relative;overflow:hidden}.analytics-command:after{content:'◌';font-size:190px;position:absolute;right:-39px;top:-58px;opacity:.15}.analytics-command h3{font-size:22px;margin:5px 0}.analytics-command p{color:rgba(255,255,255,.76);font-weight:600;font-size:13px;margin:0}.analytics-level{display:flex;align-items:center;gap:14px;margin-top:18px}.analytics-donut{width:68px;height:68px;border-radius:50%;background:conic-gradient(#74e8ff 0 var(--analytics-progress,0%),rgba(255,255,255,.2) var(--analytics-progress,0%) 100%);display:grid;place-items:center}.analytics-donut:after{content:'';width:52px;height:52px;background:#234ca5;border-radius:50%;position:absolute}.analytics-donut b{z-index:1;font-size:12px}.analytics-level strong{display:block;font-size:17px}.analytics-level span{font-size:12px;color:rgba(255,255,255,.75);font-weight:600}.analytics-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.analytics-metric{padding:14px 10px;border-radius:18px;background:var(--surface-glass);border:1px solid var(--card-border)}.analytics-metric i{font-size:15px;color:var(--accent);margin-bottom:9px}.analytics-metric strong{display:block;font-size:20px}.analytics-metric span{font-size:10px;color:var(--text-sec);font-weight:800}.analytics-card{padding:17px;border-radius:22px;background:var(--surface-glass);border:1px solid var(--card-border);box-shadow:var(--shadow-soft)}.analytics-card h4{font-size:15px;margin:0 0 13px}.mastery-row{display:grid;grid-template-columns:38px 1fr auto;align-items:center;gap:10px;margin:9px 0;font-size:12px;font-weight:800}.mastery-line{height:8px;background:var(--input-bg);border-radius:8px;overflow:hidden}.mastery-line i{height:100%;display:block;border-radius:inherit}.analytics-next{display:flex;align-items:center;gap:12px}.analytics-next>i{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;background:rgba(58,133,255,.16);color:var(--accent)}.analytics-next p{margin:3px 0 0;color:var(--text-sec);font-size:12px;font-weight:600}
-      .settings-profile{padding:21px;background:linear-gradient(135deg,rgba(44,97,197,.86),rgba(81,48,144,.72));position:relative;overflow:hidden}.settings-profile:after{content:'';width:120px;height:120px;border-radius:50%;position:absolute;right:-36px;top:-38px;background:rgba(123,212,255,.16);filter:blur(2px)}.settings-profile .premium-avatar{width:62px;height:62px;flex:0 0 62px;background:linear-gradient(135deg,#79d7ff,#5f65ff);border:2px solid rgba(255,255,255,.6)}.settings-profile h3,.settings-profile p{color:#fff!important;position:relative;z-index:1}.settings-profile p{opacity:.78}.settings-group{background:rgba(15,34,80,.36)}.settings-group .secondary{margin:0!important;border-radius:0;padding:16px 18px;text-align:left;box-shadow:none;border:0;border-bottom:1px solid var(--card-border)}.settings-group .setting-row{padding:16px 17px;margin:0!important;border-top:1px solid var(--card-border)}.settings-group .input-group input{border-radius:16px;padding-top:14px;padding-bottom:14px}.settings-group .danger{margin:14px 16px 16px!important;width:calc(100% - 32px);padding:14px;border-radius:16px}
-      .profile-chip{padding:6px 9px;border-radius:11px;background:rgba(6,15,55,.24);border:1px solid rgba(255,255,255,.18);font-size:11px;color:#fff}.profile-chip i{color:#aeeeff}
+      .home-overview {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr 1fr;
+        gap: 1px;
+        overflow: hidden;
+        margin: 14px 0;
+        border: 1px solid var(--card-border);
+        border-radius: 25px;
+        background: var(--card-border);
+        box-shadow: var(--shadow-soft);
+      }
+      .overview-cell {
+        min-height: 104px;
+        padding: 15px 12px;
+        background: var(--surface-glass);
+      }
+      .overview-cell i {
+        color: var(--accent);
+        font-size: 16px;
+        margin-bottom: 11px;
+      }
+      .overview-cell strong {
+        font-size: 22px;
+        display: block;
+        line-height: 1.1;
+      }
+      .overview-cell span {
+        font-size: 10px;
+        color: var(--text-sec);
+        font-weight: 800;
+      }
+      .overview-progress {
+        grid-column: span 1;
+      }
+      .overview-progress strong {
+        font-size: 18px;
+      }
+      .overview-progress .home-progress-track {
+        margin-top: 11px;
+      }
+      .home-useful-card {
+        display: flex;
+        gap: 13px;
+        align-items: center;
+        padding: 17px;
+        border-radius: 22px;
+        background: linear-gradient(
+          135deg,
+          rgba(39, 103, 222, 0.54),
+          rgba(60, 39, 150, 0.38)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: var(--shadow-soft);
+      }
+      .home-useful-card .useful-icon {
+        width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.17);
+        color: #8eeaff;
+      }
+      .home-useful-card h4 {
+        font-size: 15px;
+        margin: 0 0 4px;
+      }
+      .home-useful-card p {
+        font-size: 12px;
+        color: var(--text-sec);
+        margin: 0;
+        font-weight: 600;
+      }
+      .home-useful-card button {
+        width: auto;
+        margin-left: auto;
+        padding: 9px 11px;
+        border-radius: 12px;
+        box-shadow: none;
+        font-size: 12px;
+      }
+      #home .home-section-title,
+      #home .home-action-grid {
+        display: none;
+      }
+      #bottom-nav {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.22),
+          rgba(168, 194, 255, 0.08)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.38);
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.44),
+          0 18px 45px rgba(3, 10, 38, 0.28);
+        backdrop-filter: blur(34px) saturate(180%);
+        -webkit-backdrop-filter: blur(34px) saturate(180%);
+        padding: 7px 10px;
+        bottom: 18px;
+      }
+      .nav-item {
+        width: 48px;
+        height: 48px;
+        border-radius: 16px;
+        color: var(--text-sec);
+        font-size: 19px;
+      }
+      .nav-item:after {
+        display: none;
+      }
+      .nav-item i {
+        margin: 0;
+      }
+      .nav-item.active {
+        transform: none;
+        color: var(--text-main);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.43),
+          rgba(125, 175, 255, 0.18)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.48);
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.62),
+          0 5px 18px rgba(0, 67, 194, 0.18);
+      }
+      .ai-fab {
+        display: grid !important;
+        background: linear-gradient(
+          135deg,
+          rgba(128, 103, 255, 0.96),
+          rgba(30, 142, 255, 0.96)
+        );
+        padding: 0;
+      }
+      .ai-fab i {
+        display: block !important;
+        position: relative;
+        z-index: 2;
+        font-family: "Font Awesome 6 Free" !important;
+        font-weight: 900 !important;
+        color: #fff !important;
+        font-size: 20px !important;
+        line-height: 1 !important;
+      }
+      #dictionary > .filter-chips {
+        display: none;
+      }
+      .tool-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+        grid-auto-rows: 122px;
+      }
+      .tool-card {
+        position: relative;
+        overflow: hidden;
+        min-height: 0;
+        background: linear-gradient(
+          145deg,
+          rgba(30, 70, 145, 0.58),
+          rgba(12, 27, 76, 0.64)
+        );
+        border-color: rgba(137, 184, 255, 0.22);
+      }
+      .tool-card:nth-child(1) {
+        grid-row: span 2;
+        background: linear-gradient(145deg, #296ad8, #3a4fc0 58%, #693db1);
+      }
+      .tool-card:nth-child(1):after {
+        content: "A";
+        position: absolute;
+        right: -10px;
+        bottom: -24px;
+        font-weight: 900;
+        font-size: 140px;
+        opacity: 0.12;
+      }
+      .tool-card:nth-child(2) {
+        background: linear-gradient(145deg, #7b43bf, #3b4da2);
+      }
+      .tool-card:nth-child(3) {
+        background: linear-gradient(145deg, #126b88, #236bbf);
+      }
+      .tool-card:nth-child(4) {
+        background: linear-gradient(145deg, #245e78, #2b8b84);
+      }
+      .tool-card i,
+      .tool-card h4 {
+        color: #fff;
+      }
+      .tool-card p {
+        color: rgba(255, 255, 255, 0.76);
+      }
+      .tool-link {
+        position: relative;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.17);
+        color: #fff;
+      }
+      .learning-hero-card {
+        background:
+          linear-gradient(
+            125deg,
+            rgba(26, 67, 177, 0.96),
+            rgba(67, 58, 199, 0.92)
+          ),
+          url("https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=900&q=80")
+            center/cover !important;
+      }
+      .day-progress-btn {
+        background: linear-gradient(
+          135deg,
+          rgba(31, 101, 157, 0.5),
+          rgba(24, 50, 116, 0.52)
+        ) !important;
+      }
+      .progress-ring-mini:after {
+        background: #173c73;
+      }
+      .stats-legacy {
+        display: none;
+      }
+      .analytics-dashboard {
+        display: grid;
+        gap: 12px;
+      }
+      .analytics-command {
+        padding: 20px;
+        border-radius: 26px;
+        background: linear-gradient(140deg, #263e98, #1d6ec1 57%, #314ea8);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .analytics-command:after {
+        content: "◌";
+        font-size: 190px;
+        position: absolute;
+        right: -39px;
+        top: -58px;
+        opacity: 0.15;
+      }
+      .analytics-command h3 {
+        font-size: 22px;
+        margin: 5px 0;
+      }
+      .analytics-command p {
+        color: rgba(255, 255, 255, 0.76);
+        font-weight: 600;
+        font-size: 13px;
+        margin: 0;
+      }
+      .analytics-level {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 18px;
+      }
+      .analytics-donut {
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        background: conic-gradient(
+          #74e8ff 0 var(--analytics-progress, 0%),
+          rgba(255, 255, 255, 0.2) var(--analytics-progress, 0%) 100%
+        );
+        display: grid;
+        place-items: center;
+      }
+      .analytics-donut:after {
+        content: "";
+        width: 52px;
+        height: 52px;
+        background: #234ca5;
+        border-radius: 50%;
+        position: absolute;
+      }
+      .analytics-donut b {
+        z-index: 1;
+        font-size: 12px;
+      }
+      .analytics-level strong {
+        display: block;
+        font-size: 17px;
+      }
+      .analytics-level span {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 600;
+      }
+      .analytics-metrics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 9px;
+      }
+      .analytics-metric {
+        padding: 14px 10px;
+        border-radius: 18px;
+        background: var(--surface-glass);
+        border: 1px solid var(--card-border);
+      }
+      .analytics-metric i {
+        font-size: 15px;
+        color: var(--accent);
+        margin-bottom: 9px;
+      }
+      .analytics-metric strong {
+        display: block;
+        font-size: 20px;
+      }
+      .analytics-metric span {
+        font-size: 10px;
+        color: var(--text-sec);
+        font-weight: 800;
+      }
+      .analytics-card {
+        padding: 17px;
+        border-radius: 22px;
+        background: var(--surface-glass);
+        border: 1px solid var(--card-border);
+        box-shadow: var(--shadow-soft);
+      }
+      .analytics-card h4 {
+        font-size: 15px;
+        margin: 0 0 13px;
+      }
+      .mastery-row {
+        display: grid;
+        grid-template-columns: 38px 1fr auto;
+        align-items: center;
+        gap: 10px;
+        margin: 9px 0;
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .mastery-line {
+        height: 8px;
+        background: var(--input-bg);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .mastery-line i {
+        height: 100%;
+        display: block;
+        border-radius: inherit;
+      }
+      .analytics-next {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .analytics-next > i {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border-radius: 13px;
+        background: rgba(58, 133, 255, 0.16);
+        color: var(--accent);
+      }
+      .analytics-next p {
+        margin: 3px 0 0;
+        color: var(--text-sec);
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .settings-profile {
+        padding: 21px;
+        background: linear-gradient(
+          135deg,
+          rgba(44, 97, 197, 0.86),
+          rgba(81, 48, 144, 0.72)
+        );
+        position: relative;
+        overflow: hidden;
+      }
+      .settings-profile:after {
+        content: "";
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        position: absolute;
+        right: -36px;
+        top: -38px;
+        background: rgba(123, 212, 255, 0.16);
+        filter: blur(2px);
+      }
+      .settings-profile .premium-avatar {
+        width: 62px;
+        height: 62px;
+        flex: 0 0 62px;
+        background: linear-gradient(135deg, #79d7ff, #5f65ff);
+        border: 2px solid rgba(255, 255, 255, 0.6);
+      }
+      .settings-profile h3,
+      .settings-profile p {
+        color: #fff !important;
+        position: relative;
+        z-index: 1;
+      }
+      .settings-profile p {
+        opacity: 0.78;
+      }
+      .settings-group {
+        background: rgba(15, 34, 80, 0.36);
+      }
+      .settings-group .secondary {
+        margin: 0 !important;
+        border-radius: 0;
+        padding: 16px 18px;
+        text-align: left;
+        box-shadow: none;
+        border: 0;
+        border-bottom: 1px solid var(--card-border);
+      }
+      .settings-group .setting-row {
+        padding: 16px 17px;
+        margin: 0 !important;
+        border-top: 1px solid var(--card-border);
+      }
+      .settings-group .input-group input {
+        border-radius: 16px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+      }
+      .settings-group .danger {
+        margin: 14px 16px 16px !important;
+        width: calc(100% - 32px);
+        padding: 14px;
+        border-radius: 16px;
+      }
+      .profile-chip {
+        padding: 6px 9px;
+        border-radius: 11px;
+        background: rgba(6, 15, 55, 0.24);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        font-size: 11px;
+        color: #fff;
+      }
+      .profile-chip i {
+        color: #aeeeff;
+      }
+
+      /* Finishing pass: predictable spacing and coloured liquid-glass surfaces. */
+      :root {
+        --page-gap: 16px;
+        --block-gap: 14px;
+        --card-pad: 17px;
+      }
+      main {
+        padding-left: var(--page-gap) !important;
+        padding-right: var(--page-gap) !important;
+      }
+      .section > * + * {
+        margin-top: var(--block-gap);
+      }
+      .section .section-heading {
+        margin: 24px 2px 10px !important;
+      }
+      .glass-card,
+      .home-overview,
+      .home-useful-card,
+      .analytics-card {
+        margin-bottom: 0 !important;
+      }
+      .tool-grid,
+      .primary-practice,
+      .bento-grid,
+      .feature-grid,
+      .analytics-dashboard {
+        gap: 12px;
+      }
+
+      /* My Words sheet */
+      #my-words-sheet {
+        max-height: 82vh;
+        background:
+          linear-gradient(
+            145deg,
+            rgba(111, 158, 255, 0.24),
+            rgba(255, 255, 255, 0.14)
+          ),
+          var(--surface-glass);
+        border-color: rgba(255, 255, 255, 0.48);
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.24),
+          0 -16px 42px rgba(3, 14, 48, 0.36);
+        backdrop-filter: blur(42px) saturate(170%);
+        -webkit-backdrop-filter: blur(42px) saturate(170%);
+      }
+      #my-words-sheet .bs-header {
+        padding: 18px 20px 14px;
+      }
+      #my-words-sheet .input-group {
+        margin: 0 20px 12px !important;
+      }
+      .word-longpress-note {
+        padding: 0 20px 12px;
+        color: rgba(213, 232, 255, 0.72);
+        font-size: 11px;
+        font-weight: 700;
+      }
+      #my-words-sheet .sheet-word-list {
+        padding: 4px 14px 24px;
+        display: grid;
+        gap: 10px;
+      }
+      #my-words-sheet .sheet-word-row {
+        padding: 14px;
+        border: 1px solid rgba(179, 216, 255, 0.2);
+        border-radius: 18px;
+        background: linear-gradient(135deg, rgba(255,255,255,.30), rgba(110,156,255,.16));
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.14);
+        touch-action: manipulation;
+      }
+      #my-words-sheet .sheet-word-row:active {
+        transform: scale(0.985);
+        background: rgba(110, 152, 255, 0.16);
+      }
+      #my-words-sheet .sheet-word-row .icon-btn {
+        width: 38px;
+        height: 38px;
+        background: rgba(8, 29, 79, 0.3);
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+      #edit-word-sheet {
+        max-height: 72vh;
+        background:
+          linear-gradient(
+            145deg,
+            rgba(23, 56, 120, 0.96),
+            rgba(47, 42, 108, 0.92)
+          ),
+          var(--surface-solid);
+        border-color: rgba(178, 215, 255, 0.34);
+      }
+      #edit-word-sheet .bs-content {
+        padding: 8px 20px 24px;
+      }
+      #edit-word-sheet .input-group {
+        margin-bottom: 13px;
+      }
+      #edit-word-sheet button {
+        padding: 15px;
+        border-radius: 16px;
+      }
+
+      /* Shared colour depth for the interactive learning cards. */
+      #study .practice-priority,
+      #study .tool-card,
+      #study .bento-item,
+      #study .feature-tile {
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.3),
+          0 12px 26px rgba(5, 22, 75, 0.18);
+        backdrop-filter: blur(20px) saturate(150%);
+        -webkit-backdrop-filter: blur(20px) saturate(150%);
+      }
+      #study .tool-card:nth-child(1) {
+        background: linear-gradient(
+          145deg,
+          rgba(38, 108, 220, 0.92),
+          rgba(72, 63, 179, 0.82)
+        );
+      }
+      #study .tool-card:nth-child(2) {
+        background: linear-gradient(
+          145deg,
+          rgba(130, 65, 194, 0.88),
+          rgba(55, 73, 165, 0.82)
+        );
+      }
+      #study .tool-card:nth-child(3) {
+        background: linear-gradient(
+          145deg,
+          rgba(17, 122, 150, 0.88),
+          rgba(35, 95, 184, 0.82)
+        );
+      }
+      #study .tool-card:nth-child(4) {
+        background: linear-gradient(
+          145deg,
+          rgba(31, 112, 114, 0.88),
+          rgba(35, 94, 151, 0.82)
+        );
+      }
+      #study .tool-card i,
+      #study .tool-card h4 {
+        color: #fff;
+      }
+      #study .tool-card p {
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      /* Smaller, higher navigation capsule. */
+      #bottom-nav {
+        width: 75%;
+        left: 50%;
+        right: auto;
+        bottom: 32px;
+        transform: translateX(-50%);
+        padding: 7px 9px !important;
+      }
+      #bottom-nav .nav-item {
+        width: 44px;
+        height: 44px;
+      }
+
+      /* Keep the original app gradient visible behind every transparent surface. */
+      html { background: var(--bg-gradient); }
+      body { background: var(--bg-gradient) !important; }
+      #app { background: transparent !important; }
+      header,
+      header::before,
+      header::after {
+        background: transparent !important;
+        background-image: none !important;
+        box-shadow: none !important;
+        border-color: transparent !important;
+      }
       /* Spacing audit: a single mobile rhythm for pages, cards, controls and sheets. */
-      :root{--space-1:6px;--space-2:10px;--space-3:14px;--space-4:18px;--space-5:24px;--page-x:16px;--card-radius:22px}
-      header{padding:calc(var(--safe-top) + var(--space-2)) var(--page-x) var(--space-1)!important}
-      main{padding:var(--space-2) var(--page-x) calc(116px + env(safe-area-inset-bottom,15px))!important}
-      .section>*+*{margin-top:var(--space-3)}
-      .section>.section-heading+.tool-grid,.section>.section-heading+.primary-practice{margin-top:0}
-      .glass-card,.home-overview,.home-useful-card,.analytics-command,.analytics-card,.settings-profile{margin-bottom:0!important;border-radius:var(--card-radius)}
-      .section-heading{margin:var(--space-5) 2px var(--space-2)!important}
-      .home-hero-new{margin-bottom:0!important}.home-overview{margin:0!important}.home-useful-card{margin-top:0!important}
-      .input-group{margin-bottom:var(--space-3)}
-      .feature-grid,.bento-grid,.home-action-grid,.home-stat-grid,.primary-practice,.tool-grid,.analytics-dashboard{gap:var(--space-2)}
-      .setting-row{padding:var(--space-3) var(--space-4)!important}.settings-group-title{padding:var(--space-4) var(--space-4) var(--space-1)}
-      .full-modal .fm-header{padding:calc(var(--safe-top) + var(--space-2)) var(--space-4) var(--space-2)}.fm-body,.learn-body{padding:var(--space-4)!important}.bottom-sheet,.floating-sheet-panel{border-radius:28px 28px 0 0}
+      :root {
+        --space-1: 6px;
+        --space-2: 10px;
+        --space-3: 14px;
+        --space-4: 18px;
+        --space-5: 24px;
+        --page-x: 16px;
+        --card-radius: 22px;
+      }
+      header {
+        padding: calc(var(--safe-top) + var(--space-2)) var(--page-x)
+          var(--space-1) !important;
+      }
+      main {
+        padding: var(--space-2) var(--page-x)
+          calc(116px + env(safe-area-inset-bottom, 15px)) !important;
+      }
+      .section > * + * {
+        margin-top: var(--space-3);
+      }
+      .section > .section-heading + .tool-grid,
+      .section > .section-heading + .primary-practice {
+        margin-top: 0;
+      }
+      .glass-card,
+      .home-overview,
+      .home-useful-card,
+      .analytics-command,
+      .analytics-card,
+      .settings-profile {
+        margin-bottom: 0 !important;
+        border-radius: var(--card-radius);
+      }
+      .section-heading {
+        margin: var(--space-5) 2px var(--space-2) !important;
+      }
+      .home-hero-new {
+        margin-bottom: 0 !important;
+      }
+      .home-overview {
+        margin: 0 !important;
+      }
+      .home-useful-card {
+        margin-top: 0 !important;
+      }
+      .input-group {
+        margin-bottom: var(--space-3);
+      }
+      .feature-grid,
+      .bento-grid,
+      .home-action-grid,
+      .home-stat-grid,
+      .primary-practice,
+      .tool-grid,
+      .analytics-dashboard {
+        gap: var(--space-2);
+      }
+      .setting-row {
+        padding: var(--space-3) var(--space-4) !important;
+      }
+      .settings-group-title {
+        padding: var(--space-4) var(--space-4) var(--space-1);
+      }
+      .full-modal .fm-header {
+        padding: calc(var(--safe-top) + var(--space-2)) var(--space-4)
+          var(--space-2);
+      }
+      .fm-body,
+      .learn-body {
+        padding: var(--space-4) !important;
+      }
+      .bottom-sheet,
+      .floating-sheet-panel {
+        border-radius: 28px 28px 0 0;
+      }
       /* Calmer, depth-based color treatment for the settings and daily cards. */
-      #settings .settings-profile{background:linear-gradient(145deg,rgba(19,52,104,.94),rgba(42,64,116,.86) 58%,rgba(71,62,128,.76))!important;box-shadow:inset 0 1px 1px rgba(255,255,255,.28),0 14px 34px rgba(8,18,55,.24)}
-      #settings .settings-group{background:linear-gradient(150deg,rgba(23,43,83,.5),rgba(31,38,78,.34))!important;border-color:rgba(165,197,255,.18)}
-      .learning-hero-card{background:linear-gradient(125deg,rgba(29,62,133,.96),rgba(55,73,158,.92) 54%,rgba(82,62,150,.86)),url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=900&q=80') center/cover!important;box-shadow:inset 0 1px 1px rgba(255,255,255,.34),0 16px 34px rgba(24,40,120,.25)}
-      .day-progress-btn{background:linear-gradient(135deg,rgba(25,75,105,.72),rgba(31,61,121,.68) 55%,rgba(53,53,117,.62))!important;border-color:rgba(159,214,255,.22)!important;box-shadow:inset 0 1px 1px rgba(255,255,255,.24),0 12px 26px rgba(8,32,78,.18)!important}
+      #settings .settings-profile {
+        background: linear-gradient(
+          145deg,
+          rgba(19, 52, 104, 0.94),
+          rgba(42, 64, 116, 0.86) 58%,
+          rgba(71, 62, 128, 0.76)
+        ) !important;
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.28),
+          0 14px 34px rgba(8, 18, 55, 0.24);
+      }
+      #settings .settings-group {
+        background: linear-gradient(
+          150deg,
+          rgba(23, 43, 83, 0.5),
+          rgba(31, 38, 78, 0.34)
+        ) !important;
+        border-color: rgba(165, 197, 255, 0.18);
+      }
+      .learning-hero-card {
+        background:
+          linear-gradient(
+            125deg,
+            rgba(29, 62, 133, 0.96),
+            rgba(55, 73, 158, 0.92) 54%,
+            rgba(82, 62, 150, 0.86)
+          ),
+          url("https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=900&q=80")
+            center/cover !important;
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.34),
+          0 16px 34px rgba(24, 40, 120, 0.25);
+      }
+      .day-progress-btn {
+        background: linear-gradient(
+          135deg,
+          rgba(25, 75, 105, 0.72),
+          rgba(31, 61, 121, 0.68) 55%,
+          rgba(53, 53, 117, 0.62)
+        ) !important;
+        border-color: rgba(159, 214, 255, 0.22) !important;
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.24),
+          0 12px 26px rgba(8, 32, 78, 0.18) !important;
+      }
       /* One floating liquid-glass control for assistant and profile. */
-      header>.settings-btn{display:none!important}
-      .quick-glass-dock{position:fixed;right:var(--space-4);bottom:108px;z-index:130;display:flex;align-items:center;gap:var(--space-1);padding:var(--space-1);border:1px solid rgba(255,255,255,.42);border-radius:999px;background:linear-gradient(135deg,rgba(255,255,255,.29),rgba(135,174,255,.13));box-shadow:inset 0 1px 1px rgba(255,255,255,.62),0 16px 34px rgba(5,21,67,.28);backdrop-filter:blur(28px) saturate(185%);-webkit-backdrop-filter:blur(28px) saturate(185%)}
-      .quick-glass-dock button{width:46px;height:46px;margin:0;padding:0;display:grid;place-items:center;border-radius:50%;background:transparent;color:var(--text-main);border:1px solid transparent;box-shadow:none;font-size:18px}.quick-glass-dock button:active{transform:scale(.91)}.quick-glass-dock .dock-ai{background:linear-gradient(135deg,rgba(123,107,255,.9),rgba(34,146,255,.88));color:#fff;border-color:rgba(255,255,255,.38);box-shadow:inset 0 1px 1px rgba(255,255,255,.55),0 6px 16px rgba(40,102,232,.28)}.quick-glass-dock .dock-settings{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.23)}
-      .ai-fab{display:none!important}
-      @media(min-width:600px){.quick-glass-dock{right:auto;left:calc(50% + 164px)} }
+      header > .settings-btn {
+        display: none !important;
+      }
+      .quick-glass-dock {
+        position: fixed;
+        right: var(--space-4);
+        bottom: 108px;
+        z-index: 130;
+        display: flex;
+        align-items: center;
+        gap: var(--space-1);
+        padding: var(--space-1);
+        border: 1px solid rgba(255, 255, 255, 0.42);
+        border-radius: 999px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.29),
+          rgba(135, 174, 255, 0.13)
+        );
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.62),
+          0 16px 34px rgba(5, 21, 67, 0.28);
+        backdrop-filter: blur(28px) saturate(185%);
+        -webkit-backdrop-filter: blur(28px) saturate(185%);
+      }
+      .quick-glass-dock button {
+        width: 46px;
+        height: 46px;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: transparent;
+        color: var(--text-main);
+        border: 1px solid transparent;
+        box-shadow: none;
+        font-size: 18px;
+      }
+      .quick-glass-dock button:active {
+        transform: scale(0.91);
+      }
+      .quick-glass-dock .dock-ai {
+        background: linear-gradient(
+          135deg,
+          rgba(123, 107, 255, 0.9),
+          rgba(34, 146, 255, 0.88)
+        );
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.38);
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.55),
+          0 6px 16px rgba(40, 102, 232, 0.28);
+      }
+      .quick-glass-dock .dock-settings {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.23);
+      }
+      .ai-fab {
+        display: none !important;
+      }
+      @media (min-width: 600px) {
+        .quick-glass-dock {
+          right: auto;
+          left: calc(50% + 164px);
+        }
+      }
       /* Regression fix: each home component owns a predictable vertical gap. */
-      #home>.home-hero-new{margin:0 0 var(--space-3)!important}
-      #home>.home-overview{margin:0 0 var(--space-3)!important}
-      #home>.home-useful-card{margin:0 0 var(--space-3)!important}
-      #home .home-action-grid,#home .home-section-title{margin:0!important}
+      #home > .home-hero-new {
+        margin: 0 0 var(--space-3) !important;
+      }
+      #home > .home-overview {
+        margin: 0 0 var(--space-3) !important;
+      }
+      #home > .home-useful-card {
+        margin: 0 0 var(--space-3) !important;
+      }
+      #home .home-action-grid,
+      #home .home-section-title {
+        margin: 0 !important;
+      }
       /* Header action dock: three compact actions beside the current page title. */
-      .quick-glass-dock{top:calc(var(--safe-top) + 8px);bottom:auto;right:var(--page-x);gap:4px;padding:4px;background:linear-gradient(135deg,rgba(255,255,255,.34),rgba(153,185,255,.14));box-shadow:inset 0 1px 1px rgba(255,255,255,.68),0 10px 26px rgba(5,21,67,.18)}
-      .quick-glass-dock button{width:40px;height:40px;font-size:16px}.quick-glass-dock .dock-plan{position:relative;background:conic-gradient(#75dcff 0 var(--dock-progress,0%),rgba(255,255,255,.18) var(--dock-progress,0%) 100%);border-color:rgba(255,255,255,.35)}.quick-glass-dock .dock-plan:after{content:'';position:absolute;inset:4px;background:rgba(20,48,104,.78);border-radius:50%;z-index:0}.quick-glass-dock .dock-plan span{position:relative;z-index:1;font-size:10px;font-weight:900;color:#fff}.quick-glass-dock .dock-plan i{display:none}
-      header .header-title{max-width:calc(100% - 145px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-      @media(min-width:600px){.quick-glass-dock{top:calc(var(--safe-top) + 8px);left:calc(50% + 85px);right:auto}}
+      .quick-glass-dock {
+        top: calc(var(--safe-top) + 8px);
+        bottom: auto;
+        right: var(--page-x);
+        gap: 4px;
+        padding: 4px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.34),
+          rgba(153, 185, 255, 0.14)
+        );
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.68),
+          0 10px 26px rgba(5, 21, 67, 0.18);
+      }
+      .quick-glass-dock button {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+      .quick-glass-dock .dock-plan {
+        position: relative;
+        background: conic-gradient(
+          #75dcff 0 var(--dock-progress, 0%),
+          rgba(255, 255, 255, 0.18) var(--dock-progress, 0%) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+      .quick-glass-dock .dock-plan:after {
+        content: "";
+        position: absolute;
+        inset: 4px;
+        background: rgba(20, 48, 104, 0.78);
+        border-radius: 50%;
+        z-index: 0;
+      }
+      .quick-glass-dock .dock-plan span {
+        position: relative;
+        z-index: 1;
+        font-size: 10px;
+        font-weight: 900;
+        color: #fff;
+      }
+      .quick-glass-dock .dock-plan i {
+        display: none;
+      }
+      header .header-title {
+        max-width: calc(100% - 145px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      @media (min-width: 600px) {
+        .quick-glass-dock {
+          top: calc(var(--safe-top) + 8px);
+          left: calc(50% + 85px);
+          right: auto;
+        }
+      }
       /* Settings inherits the app's blue glass, without the detached gray panel. */
-      #settings .settings-group{background:linear-gradient(135deg,rgba(50,108,204,.16),rgba(113,78,192,.12)),var(--surface-glass)!important;box-shadow:inset 0 1px 1px rgba(255,255,255,.22),0 12px 28px rgba(8,23,65,.12)}
+      #settings .settings-group {
+        background:
+          linear-gradient(
+            135deg,
+            rgba(50, 108, 204, 0.16),
+            rgba(113, 78, 192, 0.12)
+          ),
+          var(--surface-glass) !important;
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.22),
+          0 12px 28px rgba(8, 23, 65, 0.12);
+      }
       /* Compact daily lesson: content first, no oversized solid color block. */
-      #study .learning-hero-card{min-height:0!important;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:14px;align-items:center;padding:17px 18px!important;background:linear-gradient(135deg,rgba(21,101,142,.78),rgba(34,87,166,.74) 57%,rgba(74,72,159,.66))!important;border:1px solid rgba(164,223,255,.24)!important}
-      #study .learning-hero-card h3{font-size:19px!important;margin:0 0 5px!important;line-height:1.15}
-      #study .learning-hero-card>p:not(#learning-status-text){font-size:12px!important;line-height:1.35;margin:0!important;max-width:235px}
-      #study .learning-hero-card button{grid-column:2;grid-row:1 / span 2;padding:11px 13px!important;font-size:12px;white-space:nowrap;background:rgba(255,255,255,.16)!important;border-color:rgba(255,255,255,.3)}
-      #study #learning-status-text{grid-column:1/-1;margin:10px 0 0!important;padding-top:9px;border-top:1px solid rgba(255,255,255,.16);font-size:11px!important;line-height:1.2}
-      #study .day-progress-btn{display:none!important}
+      #study .learning-hero-card {
+        min-height: 0 !important;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        column-gap: 14px;
+        align-items: center;
+        padding: 17px 18px !important;
+        background: linear-gradient(
+          135deg,
+          rgba(21, 101, 142, 0.78),
+          rgba(34, 87, 166, 0.74) 57%,
+          rgba(74, 72, 159, 0.66)
+        ) !important;
+        border: 1px solid rgba(164, 223, 255, 0.24) !important;
+      }
+      #study .learning-hero-card h3 {
+        font-size: 19px !important;
+        margin: 0 0 5px !important;
+        line-height: 1.15;
+      }
+      #study .learning-hero-card > p:not(#learning-status-text) {
+        font-size: 12px !important;
+        line-height: 1.35;
+        margin: 0 !important;
+        max-width: 235px;
+      }
+      #study .learning-hero-card button {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        padding: 11px 13px !important;
+        font-size: 12px;
+        white-space: nowrap;
+        background: rgba(255, 255, 255, 0.16) !important;
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      #study #learning-status-text {
+        grid-column: 1/-1;
+        margin: 10px 0 0 !important;
+        padding-top: 9px;
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+        font-size: 11px !important;
+        line-height: 1.2;
+      }
+      #study .day-progress-btn {
+        display: none !important;
+      }
       /* The page header must remain visually open; no surface behind its title. */
-      header,header::before,header::after,#app>header{background:transparent!important;background-image:none!important;box-shadow:none!important;border-color:transparent!important}
+      header,
+      header::before,
+      header::after,
+      #app > header {
+        background: transparent !important;
+        background-image: none !important;
+        box-shadow: none !important;
+        border-color: transparent !important;
+      }
       /* Keep standalone settings actions tactile, instead of merging into the list. */
-      #settings button[onclick="window.forcePullSync()"],#settings button[onclick="window.forcePushAllSync()"]{margin:8px var(--space-3)!important;width:calc(100% - 28px)!important;border-radius:16px!important;border:1px solid var(--card-border)!important;background:rgba(90,140,235,.14)!important}
-      #settings button[onclick="window.openSoundSettings()"]{border-radius:14px!important;border:1px solid rgba(145,196,255,.24)!important;background:rgba(75,125,222,.16)!important}
+      #settings button[onclick="window.forcePullSync()"],
+      #settings button[onclick="window.forcePushAllSync()"] {
+        margin: 8px var(--space-3) !important;
+        width: calc(100% - 28px) !important;
+        border-radius: 16px !important;
+        border: 1px solid var(--card-border) !important;
+        background: rgba(90, 140, 235, 0.14) !important;
+      }
+      #settings button[onclick="window.openSoundSettings()"] {
+        border-radius: 14px !important;
+        border: 1px solid rgba(145, 196, 255, 0.24) !important;
+        background: rgba(75, 125, 222, 0.16) !important;
+      }
       /* Practical analytics: today's goal, 7-day pattern, and the latest vocabulary. */
-      .analytics-daily{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}.analytics-daily>i{width:40px;height:40px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,#7b55e9,#2e8df2);color:#fff}.analytics-daily h4{margin:0 0 3px}.analytics-daily p{margin:0;color:var(--text-sec);font-size:12px;font-weight:600}.analytics-daily b{font-size:13px;color:var(--accent)}.analytics-progress{grid-column:2/-1;height:8px;border-radius:8px;background:var(--input-bg);overflow:hidden}.analytics-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#58d4ff,#4278ff);border-radius:inherit}.analytics-week-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.analytics-week-head h4{margin:0}.analytics-week-head span{font-size:11px;font-weight:800;color:var(--success);background:rgba(16,185,129,.12);padding:5px 8px;border-radius:9px}.analytics-bars{height:90px;display:flex;align-items:end;justify-content:space-between;gap:8px}.analytics-bar{flex:1;min-width:0;height:100%;display:flex;align-items:center;justify-content:end;flex-direction:column;gap:6px}.analytics-bar i{display:block;width:100%;max-width:20px;min-height:5px;border-radius:9px 9px 5px 5px;background:linear-gradient(180deg,#74dcff,#5164f4)}.analytics-bar span{font-size:10px;font-weight:800;color:var(--text-sec)}.analytics-recent{padding:0;overflow:hidden}.analytics-recent-head{display:flex;align-items:center;justify-content:space-between;padding:16px 17px 10px}.analytics-recent-head h4{margin:0}.analytics-recent-head button{width:auto;padding:0;background:transparent;color:var(--accent);box-shadow:none;border:0;font-size:12px}.analytics-word{display:flex;align-items:center;gap:10px;padding:11px 17px;border-top:1px solid var(--card-border)}.analytics-word i{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:rgba(62,129,255,.14);color:var(--accent)}.analytics-word div{flex:1;min-width:0}.analytics-word strong{display:block;font-size:13px}.analytics-word span{font-size:11px;color:var(--text-sec);font-weight:600}.analytics-word small{font-size:10px;color:var(--success);font-weight:800}
+      .analytics-daily {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 12px;
+        align-items: center;
+      }
+      .analytics-daily > i {
+        width: 40px;
+        height: 40px;
+        display: grid;
+        place-items: center;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #7b55e9, #2e8df2);
+        color: #fff;
+      }
+      .analytics-daily h4 {
+        margin: 0 0 3px;
+      }
+      .analytics-daily p {
+        margin: 0;
+        color: var(--text-sec);
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .analytics-daily b {
+        font-size: 13px;
+        color: var(--accent);
+      }
+      .analytics-progress {
+        grid-column: 2/-1;
+        height: 8px;
+        border-radius: 8px;
+        background: var(--input-bg);
+        overflow: hidden;
+      }
+      .analytics-progress i {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, #58d4ff, #4278ff);
+        border-radius: inherit;
+      }
+      .analytics-week-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .analytics-week-head h4 {
+        margin: 0;
+      }
+      .analytics-week-head span {
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--success);
+        background: rgba(16, 185, 129, 0.12);
+        padding: 5px 8px;
+        border-radius: 9px;
+      }
+      .analytics-bars {
+        height: 90px;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .analytics-bar {
+        flex: 1;
+        min-width: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .analytics-bar i {
+        display: block;
+        width: 100%;
+        max-width: 20px;
+        min-height: 5px;
+        border-radius: 9px 9px 5px 5px;
+        background: linear-gradient(180deg, #74dcff, #5164f4);
+      }
+      .analytics-bar span {
+        font-size: 10px;
+        font-weight: 800;
+        color: var(--text-sec);
+      }
+      .analytics-recent {
+        padding: 0;
+        overflow: hidden;
+      }
+      .analytics-recent-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 17px 10px;
+      }
+      .analytics-recent-head h4 {
+        margin: 0;
+      }
+      .analytics-recent-head button {
+        width: auto;
+        padding: 0;
+        background: transparent;
+        color: var(--accent);
+        box-shadow: none;
+        border: 0;
+        font-size: 12px;
+      }
+      .analytics-word {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 17px;
+        border-top: 1px solid var(--card-border);
+      }
+      .analytics-word i {
+        width: 30px;
+        height: 30px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        background: rgba(62, 129, 255, 0.14);
+        color: var(--accent);
+      }
+      .analytics-word div {
+        flex: 1;
+        min-width: 0;
+      }
+      .analytics-word strong {
+        display: block;
+        font-size: 13px;
+      }
+      .analytics-word span {
+        font-size: 11px;
+        color: var(--text-sec);
+        font-weight: 600;
+      }
+      .analytics-word small {
+        font-size: 10px;
+        color: var(--success);
+        font-weight: 800;
+      }
     </style>
   </head>
   <body>
@@ -1879,9 +3511,23 @@
           </div>
 
           <div class="home-overview">
-            <div class="overview-cell overview-progress"><i class="fas fa-compass"></i><span>До цілі <b id="ui-goal">0</b> слів</span><strong id="ui-progress-text">0%</strong><div class="home-progress-track"><div id="ui-progress-bar"></div></div></div>
-            <div class="overview-cell"><i class="fas fa-fire"></i><strong id="ui-streak">0</strong><span>днів серії</span></div>
-            <div class="overview-cell"><i class="fas fa-layer-group"></i><strong id="ui-total-words">0</strong><span>слів у словнику</span><span id="ui-level" style="display:none">A0</span></div>
+            <div class="overview-cell overview-progress">
+              <i class="fas fa-compass"></i
+              ><span>До цілі <b id="ui-goal">0</b> слів</span
+              ><strong id="ui-progress-text">0%</strong>
+              <div class="home-progress-track">
+                <div id="ui-progress-bar"></div>
+              </div>
+            </div>
+            <div class="overview-cell">
+              <i class="fas fa-fire"></i><strong id="ui-streak">0</strong
+              ><span>днів серії</span>
+            </div>
+            <div class="overview-cell">
+              <i class="fas fa-layer-group"></i
+              ><strong id="ui-total-words">0</strong><span>слів у словнику</span
+              ><span id="ui-level" style="display: none">A0</span>
+            </div>
           </div>
 
           <h4 class="home-section-title">Швидкий старт</h4>
@@ -1951,7 +3597,10 @@
             <div class="useful-icon"><i class="fas fa-calendar-check"></i></div>
             <div>
               <h4>Твій план на сьогодні</h4>
-              <p>Переглянь прогрес і обери наступну дію, що наблизить тебе до цілі.</p>
+              <p>
+                Переглянь прогрес і обери наступну дію, що наблизить тебе до
+                цілі.
+              </p>
             </div>
             <button onclick="window.openDayProgressSheet()">План</button>
           </div>
@@ -1959,7 +3608,15 @@
 
         <!-- ================= СЛОВНИК ================= -->
         <section id="dictionary" class="section">
-          <div class="section-heading" style="margin-top:4px"><div><div class="eyebrow">Твій персональний запас</div><h3>Знайди або додай слово</h3></div><span class="dict-count-pill"><span id="dict-count-top">0</span> слів</span></div>
+          <div class="section-heading" style="margin-top: 4px">
+            <div>
+              <div class="eyebrow">Твій персональний запас</div>
+              <h3>Знайди або додай слово</h3>
+            </div>
+            <span class="dict-count-pill"
+              ><span id="dict-count-top">0</span> слів</span
+            >
+          </div>
           <div class="glass-card dictionary-search">
             <div class="input-group">
               <i class="fas fa-language"></i>
@@ -1981,10 +3638,27 @@
           </div>
 
           <div class="filter-chips" aria-label="Фільтри словника">
-            <button class="filter-chip active" onclick="window.openWordLibrary('all')">Усі</button>
-            <button class="filter-chip" onclick="window.openWordLibrary('new')">Нові</button>
-            <button class="filter-chip" onclick="window.openWordLibrary('learned')">Вивчені</button>
-            <button class="filter-chip" onclick="window.openWordLibrary('difficult')">Складні</button>
+            <button
+              class="filter-chip active"
+              onclick="window.openWordLibrary('all')"
+            >
+              Усі
+            </button>
+            <button class="filter-chip" onclick="window.openWordLibrary('new')">
+              Нові
+            </button>
+            <button
+              class="filter-chip"
+              onclick="window.openWordLibrary('learned')"
+            >
+              Вивчені
+            </button>
+            <button
+              class="filter-chip"
+              onclick="window.openWordLibrary('difficult')"
+            >
+              Складні
+            </button>
           </div>
 
           <div
@@ -2022,8 +3696,25 @@
 
           <!-- Преміальна безшовна кнопка переходу до власного словника -->
           <div class="glass-card dictionary-library">
-            <div class="dictionary-library-head"><h3><i class="fas fa-layer-group" style="color:var(--accent);margin-right:7px"></i>Мої слова</h3><button onclick="window.openMyWordsSheet()">Відкрити <i class="fas fa-chevron-right"></i></button></div>
-            <div class="dictionary-preview"><span id="dict-count" class="dict-count-pill">0</span><p style="margin:12px 0 0">Тут зібрана вся твоя лексика: слухай, шукай, редагуй і повертайся до складних слів.</p></div>
+            <div class="dictionary-library-head">
+              <h3>
+                <i
+                  class="fas fa-layer-group"
+                  style="color: var(--accent); margin-right: 7px"
+                ></i
+                >Мої слова
+              </h3>
+              <button onclick="window.openMyWordsSheet()">
+                Відкрити <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+            <div class="dictionary-preview">
+              <span id="dict-count" class="dict-count-pill">0</span>
+              <p style="margin: 12px 0 0">
+                Тут зібрана вся твоя лексика: слухай, шукай, редагуй і
+                повертайся до складних слів.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -2070,177 +3761,255 @@
             ></p>
           </div>
 
-          <button class="secondary day-progress-btn progress-compact" onclick="window.openDayProgressSheet()"><div class="progress-ring-mini"><span id="day-progress-percent">0%</span></div><span style="text-align:left"><b style="display:block">План на сьогодні</b><small style="color:var(--text-sec);font-weight:600">Подивись наступний корисний крок</small></span><i class="fas fa-chevron-right" style="margin-left:auto;color:var(--accent)"></i></button>
+          <button
+            class="secondary day-progress-btn progress-compact"
+            onclick="window.openDayProgressSheet()"
+          >
+            <div class="progress-ring-mini">
+              <span id="day-progress-percent">0%</span>
+            </div>
+            <span style="text-align: left"
+              ><b style="display: block">План на сьогодні</b
+              ><small style="color: var(--text-sec); font-weight: 600"
+                >Подивись наступний корисний крок</small
+              ></span
+            ><i
+              class="fas fa-chevron-right"
+              style="margin-left: auto; color: var(--accent)"
+            ></i>
+          </button>
 
-          <div class="section-heading"><div><div class="eyebrow">Найважливіше</div><h3>Практика зараз</h3></div></div>
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">Найважливіше</div>
+              <h3>Практика зараз</h3>
+            </div>
+          </div>
           <div class="primary-practice">
-            <div class="practice-priority" onclick="window.startBlitzQuiz()"><i class="fas fa-bolt"></i><div><h4>Бліц-тренування</h4><p>Швидко перевір свої слова за 2 хвилини</p></div><i class="fas fa-chevron-right chev"></i></div>
-            <div class="practice-priority review" onclick="window.openReviewWordSelector()"><i class="fas fa-rotate"></i><div><h4>Повторити матеріал</h4><p>Поверни слова, які хочеш закріпити</p></div><i class="fas fa-chevron-right chev"></i></div>
-          </div>
-
-          <div class="section-heading"><div><div class="eyebrow">Інструменти</div><h3>Вчи у своєму темпі</h3></div></div>
-          <div class="tool-grid">
-            <div class="tool-card" onclick="window.openReadingLab()"><i class="fas fa-book-reader"></i><h4>Читання</h4><p>Текст під твій рівень</p></div>
-            <div class="tool-card" onclick="window.openWritingCoach()"><i class="fas fa-pen-nib"></i><h4>Письмо й речення</h4><p>Тексти, переклад і контекст</p><button class="tool-link" onclick="event.stopPropagation();window.startSentenceGameSetup()">Скласти речення</button></div>
-            <div class="tool-card" onclick="window.openFullModal('alphabet-modal')"><i class="fas fa-font"></i><h4>Алфавіт</h4><p>Літери та вимова</p></div>
-            <div class="tool-card" onclick="window.openFullModal('grammar-modal')"><i class="fas fa-book"></i><h4>Довідник</h4><p>Правила й нотатки</p></div>
-          </div>
-
-          <div class="feature-grid" style="display:none">
-          <div class="feature-grid">
-            <div class="feature-tile feature-ai" onclick="window.openAIChat()">
-              <i class="fas fa-comments"></i>
-              <h4>Чат з ШІ</h4>
-              <p>Питай про граматику, слова, вимову або навчальний план.</p>
+            <div class="practice-priority" onclick="window.startBlitzQuiz()">
+              <i class="fas fa-bolt"></i>
+              <div>
+                <h4>Бліц-тренування</h4>
+                <p>Швидко перевір свої слова за 2 хвилини</p>
+              </div>
+              <i class="fas fa-chevron-right chev"></i>
             </div>
             <div
-              class="feature-tile feature-read"
-              onclick="window.openReadingLab()"
-            >
-              <i class="fas fa-book-reader"></i>
-              <h4>Читання</h4>
-              <p>ШІ створить текст під твій рівень і словник.</p>
-            </div>
-            <div
-              class="feature-tile feature-write"
-              onclick="window.openWritingCoach()"
-            >
-              <i class="fas fa-pen-nib"></i>
-              <h4>Письмо</h4>
-              <p>Отримай тему, напиши текст і отримай детальний розбір.</p>
-            </div>
-            <div
-              class="feature-tile feature-review"
+              class="practice-priority review"
               onclick="window.openReviewWordSelector()"
             >
               <i class="fas fa-rotate"></i>
-              <h4>Повторення матеріалу</h4>
-              <p>
-                Обери слова сам, а ШІ створить повноцінний урок за системою
-                щоденного навчання.
-              </p>
+              <div>
+                <h4>Повторити матеріал</h4>
+                <p>Поверни слова, які хочеш закріпити</p>
+              </div>
+              <i class="fas fa-chevron-right chev"></i>
             </div>
           </div>
 
-          <h3 style="margin: 30px 0 15px; font-size: 22px">
-            Матеріали та Тренування
-          </h3>
-          <div class="bento-grid">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">Інструменти</div>
+              <h3>Вчи у своєму темпі</h3>
+            </div>
+          </div>
+          <div class="tool-grid">
+            <div class="tool-card" onclick="window.openReadingLab()">
+              <i class="fas fa-book-reader"></i>
+              <h4>Читання</h4>
+              <p>Текст під твій рівень</p>
+            </div>
+            <div class="tool-card" onclick="window.openWritingCoach()">
+              <i class="fas fa-pen-nib"></i>
+              <h4>Письмо й речення</h4>
+              <p>Тексти, переклад і контекст</p>
+              <button
+                class="tool-link"
+                onclick="
+                  event.stopPropagation();
+                  window.startSentenceGameSetup();
+                "
+              >
+                Скласти речення
+              </button>
+            </div>
             <div
-              class="bento-item grad-purple"
+              class="tool-card"
               onclick="window.openFullModal('alphabet-modal')"
             >
-              <i
-                class="fas fa-font"
-                style="
-                  position: absolute;
-                  right: -10px;
-                  bottom: -10px;
-                  font-size: 80px;
-                  opacity: 0.15;
-                "
-              ></i>
-              <h4 style="z-index: 2; position: relative; font-size: 22px">
-                Алфавіт
-              </h4>
-              <p
-                style="
-                  z-index: 2;
-                  position: relative;
-                  font-size: 14px;
-                  margin-top: 6px;
-                "
-              >
-                Вимова літер
-              </p>
+              <i class="fas fa-font"></i>
+              <h4>Алфавіт</h4>
+              <p>Літери та вимова</p>
             </div>
             <div
-              class="bento-item grad-emerald"
+              class="tool-card"
               onclick="window.openFullModal('grammar-modal')"
             >
-              <i
-                class="fas fa-book"
-                style="
-                  position: absolute;
-                  right: -10px;
-                  bottom: -10px;
-                  font-size: 80px;
-                  opacity: 0.15;
-                "
-              ></i>
-              <h4 style="z-index: 2; position: relative; font-size: 22px">
-                Довідник
-              </h4>
-              <p
-                style="
-                  z-index: 2;
-                  position: relative;
-                  font-size: 14px;
-                  margin-top: 6px;
-                "
-              >
-                Збережені правила
-              </p>
+              <i class="fas fa-book"></i>
+              <h4>Довідник</h4>
+              <p>Правила й нотатки</p>
             </div>
-            <div
-              class="bento-item bento-large grad-ocean"
-              onclick="window.startBlitzQuiz()"
-            >
-              <i
-                class="fas fa-bolt"
-                style="
-                  position: absolute;
-                  right: 15px;
-                  top: 50%;
-                  transform: translateY(-50%);
-                  font-size: 80px;
-                  opacity: 0.15;
-                "
-              ></i>
-              <h4 style="z-index: 2; position: relative; font-size: 26px">
-                Бліц-тренування
-              </h4>
-              <p
-                style="
-                  z-index: 2;
-                  position: relative;
-                  font-size: 15px;
-                  margin-top: 8px;
-                  max-width: 70%;
-                "
+          </div>
+
+          <div class="feature-grid" style="display: none">
+            <div class="feature-grid">
+              <div
+                class="feature-tile feature-ai"
+                onclick="window.openAIChat()"
               >
-                Швидка перевірка 10 випадкових слів із словника. Без лімітів!
-              </p>
+                <i class="fas fa-comments"></i>
+                <h4>Чат з ШІ</h4>
+                <p>Питай про граматику, слова, вимову або навчальний план.</p>
+              </div>
+              <div
+                class="feature-tile feature-read"
+                onclick="window.openReadingLab()"
+              >
+                <i class="fas fa-book-reader"></i>
+                <h4>Читання</h4>
+                <p>ШІ створить текст під твій рівень і словник.</p>
+              </div>
+              <div
+                class="feature-tile feature-write"
+                onclick="window.openWritingCoach()"
+              >
+                <i class="fas fa-pen-nib"></i>
+                <h4>Письмо</h4>
+                <p>Отримай тему, напиши текст і отримай детальний розбір.</p>
+              </div>
+              <div
+                class="feature-tile feature-review"
+                onclick="window.openReviewWordSelector()"
+              >
+                <i class="fas fa-rotate"></i>
+                <h4>Повторення матеріалу</h4>
+                <p>
+                  Обери слова сам, а ШІ створить повноцінний урок за системою
+                  щоденного навчання.
+                </p>
+              </div>
             </div>
-            <div
-              class="bento-item bento-large grad-fire"
-              onclick="window.startSentenceGameSetup()"
-            >
-              <i
-                class="fas fa-keyboard"
-                style="
-                  position: absolute;
-                  right: 15px;
-                  top: 50%;
-                  transform: translateY(-50%);
-                  font-size: 80px;
-                  opacity: 0.15;
-                "
-              ></i>
-              <h4 style="z-index: 2; position: relative; font-size: 26px">
-                Складання речень
-              </h4>
-              <p
-                style="
-                  z-index: 2;
-                  position: relative;
-                  font-size: 15px;
-                  margin-top: 8px;
-                  max-width: 70%;
-                "
+
+            <h3 style="margin: 30px 0 15px; font-size: 22px">
+              Матеріали та Тренування
+            </h3>
+            <div class="bento-grid">
+              <div
+                class="bento-item grad-purple"
+                onclick="window.openFullModal('alphabet-modal')"
               >
-                ШІ складе речення з твоїх слів. Перекладай та тренуй контекст!
-              </p>
+                <i
+                  class="fas fa-font"
+                  style="
+                    position: absolute;
+                    right: -10px;
+                    bottom: -10px;
+                    font-size: 80px;
+                    opacity: 0.15;
+                  "
+                ></i>
+                <h4 style="z-index: 2; position: relative; font-size: 22px">
+                  Алфавіт
+                </h4>
+                <p
+                  style="
+                    z-index: 2;
+                    position: relative;
+                    font-size: 14px;
+                    margin-top: 6px;
+                  "
+                >
+                  Вимова літер
+                </p>
+              </div>
+              <div
+                class="bento-item grad-emerald"
+                onclick="window.openFullModal('grammar-modal')"
+              >
+                <i
+                  class="fas fa-book"
+                  style="
+                    position: absolute;
+                    right: -10px;
+                    bottom: -10px;
+                    font-size: 80px;
+                    opacity: 0.15;
+                  "
+                ></i>
+                <h4 style="z-index: 2; position: relative; font-size: 22px">
+                  Довідник
+                </h4>
+                <p
+                  style="
+                    z-index: 2;
+                    position: relative;
+                    font-size: 14px;
+                    margin-top: 6px;
+                  "
+                >
+                  Збережені правила
+                </p>
+              </div>
+              <div
+                class="bento-item bento-large grad-ocean"
+                onclick="window.startBlitzQuiz()"
+              >
+                <i
+                  class="fas fa-bolt"
+                  style="
+                    position: absolute;
+                    right: 15px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-size: 80px;
+                    opacity: 0.15;
+                  "
+                ></i>
+                <h4 style="z-index: 2; position: relative; font-size: 26px">
+                  Бліц-тренування
+                </h4>
+                <p
+                  style="
+                    z-index: 2;
+                    position: relative;
+                    font-size: 15px;
+                    margin-top: 8px;
+                    max-width: 70%;
+                  "
+                >
+                  Швидка перевірка 10 випадкових слів із словника. Без лімітів!
+                </p>
+              </div>
+              <div
+                class="bento-item bento-large grad-fire"
+                onclick="window.startSentenceGameSetup()"
+              >
+                <i
+                  class="fas fa-keyboard"
+                  style="
+                    position: absolute;
+                    right: 15px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-size: 80px;
+                    opacity: 0.15;
+                  "
+                ></i>
+                <h4 style="z-index: 2; position: relative; font-size: 26px">
+                  Складання речень
+                </h4>
+                <p
+                  style="
+                    z-index: 2;
+                    position: relative;
+                    font-size: 15px;
+                    margin-top: 8px;
+                    max-width: 70%;
+                  "
+                >
+                  ШІ складе речення з твоїх слів. Перекладай та тренуй контекст!
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -2248,309 +4017,412 @@
         <!-- ================= АНАЛІТИКА ================= -->
         <section id="stats" class="section">
           <div class="analytics-dashboard">
-            <div class="analytics-command"><div class="eyebrow" style="color:#a7ecff">Твоя траєкторія</div><h3>Чеська — щодня, без зайвого</h3><p id="analytics-summary">Збираємо перші дані про твій темп навчання.</p><div class="analytics-level"><div class="analytics-donut"><b id="analytics-percent">0%</b></div><div><strong id="analytics-level">A0 · Початок</strong><span id="analytics-goal">0 з 0 слів до цілі</span></div></div></div>
-            <div class="analytics-metrics"><div class="analytics-metric"><i class="fas fa-fire"></i><strong id="analytics-streak">0</strong><span>днів поспіль</span></div><div class="analytics-metric"><i class="fas fa-book-open"></i><strong id="analytics-words">0</strong><span>слів додано</span></div><div class="analytics-metric"><i class="fas fa-check-circle"></i><strong id="analytics-accuracy">—</strong><span>точність</span></div></div>
-            <div class="analytics-card analytics-daily"><i class="fas fa-bullseye"></i><div><h4>План на сьогодні</h4><p id="analytics-daily-copy">Збираємо дані дня</p></div><b id="analytics-daily-value">0 / 0</b><div class="analytics-progress"><i id="analytics-daily-bar"></i></div></div>
-            <div class="analytics-card"><div class="analytics-week-head"><h4>Активність за 7 днів</h4><span id="analytics-week-total">0 слів</span></div><div class="analytics-bars" id="analytics-week-bars"></div></div>
-            <div class="analytics-card"><h4>Стан словника</h4><div class="mastery-row"><span>Знаю</span><div class="mastery-line"><i id="analytics-green" style="background:var(--success);width:0%"></i></div><b id="analytics-green-count">0</b></div><div class="mastery-row"><span>Вчу</span><div class="mastery-line"><i id="analytics-yellow" style="background:var(--warning);width:0%"></i></div><b id="analytics-yellow-count">0</b></div><div class="mastery-row"><span>Повторити</span><div class="mastery-line"><i id="analytics-red" style="background:var(--danger);width:0%"></i></div><b id="analytics-red-count">0</b></div></div>
-            <div class="analytics-card analytics-recent"><div class="analytics-recent-head"><h4>Останні додані слова</h4><button onclick="window.switchTab('dictionary', document.querySelectorAll('#bottom-nav .nav-item')[0])">Словник <i class="fas fa-chevron-right"></i></button></div><div id="analytics-recent-words"></div></div>
-            <div class="analytics-card analytics-next"><i class="fas fa-arrow-trend-up"></i><div><h4 id="analytics-next-title">Наступний крок</h4><p id="analytics-next-copy">Додай слова або пройди коротке тренування, щоб з’явився персональний прогноз.</p></div></div>
+            <div class="analytics-command">
+              <div class="eyebrow" style="color: #a7ecff">Твоя траєкторія</div>
+              <h3>Чеська — щодня, без зайвого</h3>
+              <p id="analytics-summary">
+                Збираємо перші дані про твій темп навчання.
+              </p>
+              <div class="analytics-level">
+                <div class="analytics-donut">
+                  <b id="analytics-percent">0%</b>
+                </div>
+                <div>
+                  <strong id="analytics-level">A0 · Початок</strong
+                  ><span id="analytics-goal">0 з 0 слів до цілі</span>
+                </div>
+              </div>
+            </div>
+            <div class="analytics-metrics">
+              <div class="analytics-metric">
+                <i class="fas fa-fire"></i
+                ><strong id="analytics-streak">0</strong
+                ><span>днів поспіль</span>
+              </div>
+              <div class="analytics-metric">
+                <i class="fas fa-book-open"></i
+                ><strong id="analytics-words">0</strong><span>слів додано</span>
+              </div>
+              <div class="analytics-metric">
+                <i class="fas fa-check-circle"></i
+                ><strong id="analytics-accuracy">—</strong><span>точність</span>
+              </div>
+            </div>
+            <div class="analytics-card analytics-daily">
+              <i class="fas fa-bullseye"></i>
+              <div>
+                <h4>План на сьогодні</h4>
+                <p id="analytics-daily-copy">Збираємо дані дня</p>
+              </div>
+              <b id="analytics-daily-value">0 / 0</b>
+              <div class="analytics-progress">
+                <i id="analytics-daily-bar"></i>
+              </div>
+            </div>
+            <div class="analytics-card">
+              <div class="analytics-week-head">
+                <h4>Активність за 7 днів</h4>
+                <span id="analytics-week-total">0 слів</span>
+              </div>
+              <div class="analytics-bars" id="analytics-week-bars"></div>
+            </div>
+            <div class="analytics-card">
+              <h4>Стан словника</h4>
+              <div class="mastery-row">
+                <span>Знаю</span>
+                <div class="mastery-line">
+                  <i
+                    id="analytics-green"
+                    style="background: var(--success); width: 0%"
+                  ></i>
+                </div>
+                <b id="analytics-green-count">0</b>
+              </div>
+              <div class="mastery-row">
+                <span>Вчу</span>
+                <div class="mastery-line">
+                  <i
+                    id="analytics-yellow"
+                    style="background: var(--warning); width: 0%"
+                  ></i>
+                </div>
+                <b id="analytics-yellow-count">0</b>
+              </div>
+              <div class="mastery-row">
+                <span>Повторити</span>
+                <div class="mastery-line">
+                  <i
+                    id="analytics-red"
+                    style="background: var(--danger); width: 0%"
+                  ></i>
+                </div>
+                <b id="analytics-red-count">0</b>
+              </div>
+            </div>
+            <div class="analytics-card analytics-recent">
+              <div class="analytics-recent-head">
+                <h4>Останні додані слова</h4>
+                <button
+                  onclick="
+                    window.switchTab(
+                      'dictionary',
+                      document.querySelectorAll('#bottom-nav .nav-item')[0],
+                    )
+                  "
+                >
+                  Словник <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              <div id="analytics-recent-words"></div>
+            </div>
+            <div class="analytics-card analytics-next">
+              <i class="fas fa-arrow-trend-up"></i>
+              <div>
+                <h4 id="analytics-next-title">Наступний крок</h4>
+                <p id="analytics-next-copy">
+                  Додай слова або пройди коротке тренування, щоб з’явився
+                  персональний прогноз.
+                </p>
+              </div>
+            </div>
           </div>
           <div class="stats-legacy">
-          <!-- Графік активності -->
-          <div class="glass-card" style="padding-bottom: 15px">
-            <h3 style="margin-bottom: 15px; font-size: 20px; font-weight: 800">
-              Активність (Останні 7 днів)
-            </h3>
-            <canvas id="activityChart"></canvas>
-          </div>
-
-          <!-- Прогрес до CEFR рівня на основі словникового запасу -->
-          <div class="glass-card">
-            <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 12px;
-              "
-            >
-              <span class="stat-lbl" style="font-size: 15px"
-                >Твій рівень мови</span
+            <!-- Графік активності -->
+            <div class="glass-card" style="padding-bottom: 15px">
+              <h3
+                style="margin-bottom: 15px; font-size: 20px; font-weight: 800"
               >
-              <span
-                class="legacy-stats-cefr-badge"
+                Активність (Останні 7 днів)
+              </h3>
+              <canvas id="activityChart"></canvas>
+            </div>
+
+            <!-- Прогрес до CEFR рівня на основі словникового запасу -->
+            <div class="glass-card">
+              <div
                 style="
-                  background: var(--accent-gradient);
-                  color: #fff;
-                  padding: 4px 12px;
-                  border-radius: 12px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 12px;
+                "
+              >
+                <span class="stat-lbl" style="font-size: 15px"
+                  >Твій рівень мови</span
+                >
+                <span
+                  class="legacy-stats-cefr-badge"
+                  style="
+                    background: var(--accent-gradient);
+                    color: #fff;
+                    padding: 4px 12px;
+                    border-radius: 12px;
+                    font-weight: 800;
+                    font-size: 13px;
+                  "
+                  >A0</span
+                >
+              </div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 8px;
+                  font-size: 14px;
+                  font-weight: 700;
+                  color: var(--text-sec);
+                "
+              >
+                <span>Прогрес до цілі</span>
+                <span class="legacy-stats-target-progress">0 / 0 слів</span>
+              </div>
+              <div
+                style="
+                  width: 100%;
+                  height: 10px;
+                  background: var(--input-bg);
+                  border-radius: 5px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  id="stats-progress-bar"
+                  style="
+                    height: 100%;
+                    background: var(--accent-gradient);
+                    width: 0%;
+                    border-radius: 4px;
+                    transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+                  "
+                ></div>
+              </div>
+            </div>
+
+            <!-- Складність вивчених слів -->
+            <div class="glass-card" style="margin-bottom: 16px">
+              <h4
+                style="
+                  margin-bottom: 15px;
+                  font-size: 17px;
                   font-weight: 800;
-                  font-size: 13px;
+                  color: var(--text-main);
                 "
-                >A0</span
               >
-            </div>
-            <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 8px;
-                font-size: 14px;
-                font-weight: 700;
-                color: var(--text-sec);
-              "
-            >
-              <span>Прогрес до цілі</span>
-              <span class="legacy-stats-target-progress">0 / 0 слів</span>
-            </div>
-            <div
-              style="
-                width: 100%;
-                height: 10px;
-                background: var(--input-bg);
-                border-radius: 5px;
-                overflow: hidden;
-              "
-            >
-              <div
-                id="stats-progress-bar"
-                style="
-                  height: 100%;
-                  background: var(--accent-gradient);
-                  width: 0%;
-                  border-radius: 4px;
-                  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
-                "
-              ></div>
-            </div>
-          </div>
-
-          <!-- Складність вивчених слів -->
-          <div class="glass-card" style="margin-bottom: 16px">
-            <h4
-              style="
-                margin-bottom: 15px;
-                font-size: 17px;
-                font-weight: 800;
-                color: var(--text-main);
-              "
-            >
-              Стан вивчених слів
-            </h4>
-            <div
-              style="
-                display: flex;
-                justify-content: space-around;
-                text-align: center;
-                gap: 10px;
-              "
-            >
-              <div>
-                <div
-                  style="
-                    font-size: 24px;
-                    font-weight: 800;
-                    color: var(--success);
-                  "
-                  id="stats-green-count"
-                >
-                  0
-                </div>
-                <div
-                  style="
-                    font-size: 11px;
-                    color: var(--text-sec);
-                    font-weight: 700;
-                  "
-                >
-                  Засвоєно (Зелені)
-                </div>
-              </div>
-              <div>
-                <div
-                  style="
-                    font-size: 24px;
-                    font-weight: 800;
-                    color: var(--warning);
-                  "
-                  id="stats-yellow-count"
-                >
-                  0
-                </div>
-                <div
-                  style="
-                    font-size: 11px;
-                    color: var(--text-sec);
-                    font-weight: 700;
-                  "
-                >
-                  Важкі (Жовті)
-                </div>
-              </div>
-              <div>
-                <div
-                  style="
-                    font-size: 24px;
-                    font-weight: 800;
-                    color: var(--danger);
-                  "
-                  id="stats-red-count"
-                >
-                  0
-                </div>
-                <div
-                  style="
-                    font-size: 11px;
-                    color: var(--text-sec);
-                    font-weight: 700;
-                  "
-                >
-                  Забуті (Червоні)
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Картки активності -->
-          <div class="bento-grid">
-            <div class="bento-item grad-emerald">
-              <i
-                class="fas fa-graduation-cap"
-                style="
-                  position: absolute;
-                  right: -10px;
-                  bottom: -10px;
-                  font-size: 70px;
-                  opacity: 0.12;
-                "
-              ></i>
-              <div class="stat-val legacy-ui-total-words-stats">0</div>
-              <div class="stat-lbl">Слів у базі 📚</div>
-            </div>
-            <div class="bento-item grad-fire">
-              <i
-                class="fas fa-fire"
-                style="
-                  position: absolute;
-                  right: -10px;
-                  bottom: -10px;
-                  font-size: 70px;
-                  opacity: 0.12;
-                "
-              ></i>
-              <div class="stat-val legacy-stats-bento-streak">0</div>
-              <div class="stat-lbl">Макс. стрік 🔥</div>
-            </div>
-            <div class="bento-item grad-ocean">
-              <i
-                class="fas fa-calendar-check"
-                style="
-                  position: absolute;
-                  right: -10px;
-                  bottom: -10px;
-                  font-size: 70px;
-                  opacity: 0.12;
-                "
-              ></i>
-              <div class="stat-val legacy-stats-bento-lessons">0</div>
-              <div class="stat-lbl">Уроків пройдено</div>
-              <div
-                style="font-size: 12px; font-weight: 700; margin-top: 4px"
-                id="stats-lessons-accuracy"
-              >
-                Точність: 100%
-              </div>
-            </div>
-            <div class="bento-item grad-purple">
-              <i
-                class="fas fa-bolt"
-                style="
-                  position: absolute;
-                  right: -10px;
-                  bottom: -10px;
-                  font-size: 70px;
-                  opacity: 0.12;
-                "
-              ></i>
-              <div class="stat-val" id="stats-bento-blitz">0</div>
-              <div class="stat-lbl">Бліців зіграно</div>
-              <div
-                style="font-size: 12px; font-weight: 700; margin-top: 4px"
-                id="stats-blitz-accuracy"
-              >
-                Точність: 100%
-              </div>
-            </div>
-          </div>
-
-          <!-- Прогнозування та темп вивчення -->
-          <div class="glass-card" style="margin-bottom: 30px">
-            <h4
-              style="
-                margin-bottom: 15px;
-                font-size: 17px;
-                font-weight: 800;
-                color: var(--text-main);
-              "
-            >
-              Темп та прогноз досягнення цілі
-            </h4>
-            <div style="display: flex; flex-direction: column; gap: 12px">
+                Стан вивчених слів
+              </h4>
               <div
                 style="
                   display: flex;
-                  justify-content: space-between;
-                  align-items: center;
+                  justify-content: space-around;
+                  text-align: center;
+                  gap: 10px;
                 "
               >
-                <span
-                  style="
-                    font-size: 14px;
-                    font-weight: 600;
-                    color: var(--text-sec);
-                  "
-                  >Поточний середній темп:</span
-                >
-                <span
-                  id="stats-pace-value"
-                  style="
-                    font-size: 16px;
-                    font-weight: 800;
-                    color: var(--accent);
-                  "
-                  >0 слів / день</span
-                >
-              </div>
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  border-top: 1px dashed var(--card-border);
-                  padding-top: 12px;
-                "
-              >
-                <span
-                  style="
-                    font-size: 14px;
-                    font-weight: 600;
-                    color: var(--text-sec);
-                  "
-                  >Очікувана дата досягнення мети:</span
-                >
-                <span
-                  id="stats-prediction-date"
-                  style="
-                    font-size: 15px;
-                    font-weight: 800;
-                    color: var(--success);
-                  "
-                  >Розрахунок...</span
-                >
+                <div>
+                  <div
+                    style="
+                      font-size: 24px;
+                      font-weight: 800;
+                      color: var(--success);
+                    "
+                    id="stats-green-count"
+                  >
+                    0
+                  </div>
+                  <div
+                    style="
+                      font-size: 11px;
+                      color: var(--text-sec);
+                      font-weight: 700;
+                    "
+                  >
+                    Засвоєно (Зелені)
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      font-size: 24px;
+                      font-weight: 800;
+                      color: var(--warning);
+                    "
+                    id="stats-yellow-count"
+                  >
+                    0
+                  </div>
+                  <div
+                    style="
+                      font-size: 11px;
+                      color: var(--text-sec);
+                      font-weight: 700;
+                    "
+                  >
+                    Важкі (Жовті)
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      font-size: 24px;
+                      font-weight: 800;
+                      color: var(--danger);
+                    "
+                    id="stats-red-count"
+                  >
+                    0
+                  </div>
+                  <div
+                    style="
+                      font-size: 11px;
+                      color: var(--text-sec);
+                      font-weight: 700;
+                    "
+                  >
+                    Забуті (Червоні)
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+
+            <!-- Картки активності -->
+            <div class="bento-grid">
+              <div class="bento-item grad-emerald">
+                <i
+                  class="fas fa-graduation-cap"
+                  style="
+                    position: absolute;
+                    right: -10px;
+                    bottom: -10px;
+                    font-size: 70px;
+                    opacity: 0.12;
+                  "
+                ></i>
+                <div class="stat-val legacy-ui-total-words-stats">0</div>
+                <div class="stat-lbl">Слів у базі 📚</div>
+              </div>
+              <div class="bento-item grad-fire">
+                <i
+                  class="fas fa-fire"
+                  style="
+                    position: absolute;
+                    right: -10px;
+                    bottom: -10px;
+                    font-size: 70px;
+                    opacity: 0.12;
+                  "
+                ></i>
+                <div class="stat-val legacy-stats-bento-streak">0</div>
+                <div class="stat-lbl">Макс. стрік 🔥</div>
+              </div>
+              <div class="bento-item grad-ocean">
+                <i
+                  class="fas fa-calendar-check"
+                  style="
+                    position: absolute;
+                    right: -10px;
+                    bottom: -10px;
+                    font-size: 70px;
+                    opacity: 0.12;
+                  "
+                ></i>
+                <div class="stat-val legacy-stats-bento-lessons">0</div>
+                <div class="stat-lbl">Уроків пройдено</div>
+                <div
+                  style="font-size: 12px; font-weight: 700; margin-top: 4px"
+                  id="stats-lessons-accuracy"
+                >
+                  Точність: 100%
+                </div>
+              </div>
+              <div class="bento-item grad-purple">
+                <i
+                  class="fas fa-bolt"
+                  style="
+                    position: absolute;
+                    right: -10px;
+                    bottom: -10px;
+                    font-size: 70px;
+                    opacity: 0.12;
+                  "
+                ></i>
+                <div class="stat-val" id="stats-bento-blitz">0</div>
+                <div class="stat-lbl">Бліців зіграно</div>
+                <div
+                  style="font-size: 12px; font-weight: 700; margin-top: 4px"
+                  id="stats-blitz-accuracy"
+                >
+                  Точність: 100%
+                </div>
+              </div>
+            </div>
+
+            <!-- Прогнозування та темп вивчення -->
+            <div class="glass-card" style="margin-bottom: 30px">
+              <h4
+                style="
+                  margin-bottom: 15px;
+                  font-size: 17px;
+                  font-weight: 800;
+                  color: var(--text-main);
+                "
+              >
+                Темп та прогноз досягнення цілі
+              </h4>
+              <div style="display: flex; flex-direction: column; gap: 12px">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <span
+                    style="
+                      font-size: 14px;
+                      font-weight: 600;
+                      color: var(--text-sec);
+                    "
+                    >Поточний середній темп:</span
+                  >
+                  <span
+                    id="stats-pace-value"
+                    style="
+                      font-size: 16px;
+                      font-weight: 800;
+                      color: var(--accent);
+                    "
+                    >0 слів / день</span
+                  >
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-top: 1px dashed var(--card-border);
+                    padding-top: 12px;
+                  "
+                >
+                  <span
+                    style="
+                      font-size: 14px;
+                      font-weight: 600;
+                      color: var(--text-sec);
+                    "
+                    >Очікувана дата досягнення мети:</span
+                  >
+                  <span
+                    id="stats-prediction-date"
+                    style="
+                      font-size: 15px;
+                      font-weight: 800;
+                      color: var(--success);
+                    "
+                    >Розрахунок...</span
+                  >
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -2571,7 +4443,23 @@
             >
               Твій навчальний профіль
             </p>
-            <div style="display:flex;gap:8px;position:absolute;right:18px;bottom:14px;z-index:2"><span class="profile-chip"><i class="fas fa-layer-group"></i> <b id="profile-word-count">0</b></span><span class="profile-chip"><i class="fas fa-fire"></i> <b id="profile-streak">0</b></span></div>
+            <div
+              style="
+                display: flex;
+                gap: 8px;
+                position: absolute;
+                right: 18px;
+                bottom: 14px;
+                z-index: 2;
+              "
+            >
+              <span class="profile-chip"
+                ><i class="fas fa-layer-group"></i>
+                <b id="profile-word-count">0</b></span
+              ><span class="profile-chip"
+                ><i class="fas fa-fire"></i> <b id="profile-streak">0</b></span
+              >
+            </div>
           </div>
 
           <div class="glass-card settings-group">
@@ -2606,7 +4494,7 @@
             </button>
 
             <div class="settings-group-title">Навчальний профіль</div>
-            <div class="input-group" style="margin:0 16px 12px">
+            <div class="input-group" style="margin: 0 16px 12px">
               <i class="fas fa-user"></i
               ><input
                 type="text"
@@ -2618,7 +4506,7 @@
                 onchange="window.updateSettings()"
               />
             </div>
-            <div class="input-group" style="margin:0 16px 12px">
+            <div class="input-group" style="margin: 0 16px 12px">
               <i class="fas fa-bullseye"></i
               ><input
                 type="number"
@@ -2628,7 +4516,7 @@
                 onchange="window.updateSettings()"
               />
             </div>
-            <div class="input-group" style="margin:0 16px 12px">
+            <div class="input-group" style="margin: 0 16px 12px">
               <i class="fas fa-calendar-day"></i
               ><input
                 type="number"
@@ -2639,7 +4527,7 @@
               />
             </div>
             <div class="settings-group-title">Підключення</div>
-            <div class="input-group" style="margin:0 16px 12px">
+            <div class="input-group" style="margin: 0 16px 12px">
               <i class="fas fa-key"></i
               ><input
                 type="text"
@@ -2653,7 +4541,7 @@
               />
             </div>
 
-            <div class="input-group" style="margin:0 16px 12px">
+            <div class="input-group" style="margin: 0 16px 12px">
               <i class="fas fa-cloud"></i>
               <input
                 type="text"
@@ -2668,7 +4556,7 @@
             </div>
 
             <div class="settings-group-title">Додаток</div>
-            <div class="setting-row" style="margin-top:0; padding:15px 17px">
+            <div class="setting-row" style="margin-top: 0; padding: 15px 17px">
               <span style="font-weight: 800; font-size: 16px">Темна тема</span>
               <label class="switch"
                 ><input
@@ -2806,9 +4694,31 @@
         </div>
       </nav>
       <div class="quick-glass-dock" aria-label="Швидкі дії">
-        <button class="dock-plan" onclick="window.openDayProgressSheet()" aria-label="Відкрити план на сьогодні" title="План на сьогодні"><i class="fas fa-calendar-check"></i><span id="dock-day-progress">0%</span></button>
-        <button class="dock-ai" onclick="window.openAIChat()" aria-label="Відкрити чат з ШІ" title="Чат з ШІ"><i class="fas fa-comment-dots"></i></button>
-        <button class="dock-settings" onclick="window.goToSettings()" aria-label="Відкрити налаштування" title="Налаштування"><i class="fas fa-sliders"></i></button>
+        <button
+          class="dock-plan"
+          onclick="window.openDayProgressSheet()"
+          aria-label="Відкрити план на сьогодні"
+          title="План на сьогодні"
+        >
+          <i class="fas fa-calendar-check"></i
+          ><span id="dock-day-progress">0%</span>
+        </button>
+        <button
+          class="dock-ai"
+          onclick="window.openAIChat()"
+          aria-label="Відкрити чат з ШІ"
+          title="Чат з ШІ"
+        >
+          <i class="fas fa-comment-dots"></i>
+        </button>
+        <button
+          class="dock-settings"
+          onclick="window.goToSettings()"
+          aria-label="Відкрити налаштування"
+          title="Налаштування"
+        >
+          <i class="fas fa-sliders"></i>
+        </button>
       </div>
     </div>
 
@@ -3872,7 +5782,26 @@
           height: calc(100vh - 82px);
         "
       >
-        <div class="filter-chips" style="margin:0 0 10px"><button class="filter-chip" onclick="window.prefillAIQuestion('Поясни мені це правило просто')">Поясни правило</button><button class="filter-chip" onclick="window.prefillAIQuestion('Дай приклад речення з моїми словами')">Приклад речення</button><button class="filter-chip" onclick="window.prefillAIQuestion('Перевір моє речення: ')">Перевір речення</button></div>
+        <div class="filter-chips" style="margin: 0 0 10px">
+          <button
+            class="filter-chip"
+            onclick="window.prefillAIQuestion('Поясни мені це правило просто')"
+          >
+            Поясни правило</button
+          ><button
+            class="filter-chip"
+            onclick="
+              window.prefillAIQuestion('Дай приклад речення з моїми словами')
+            "
+          >
+            Приклад речення</button
+          ><button
+            class="filter-chip"
+            onclick="window.prefillAIQuestion('Перевір моє речення: ')"
+          >
+            Перевір речення
+          </button>
+        </div>
         <div class="ai-chat-log" id="ai-chat-log"></div>
         <div class="input-group" style="margin-top: auto">
           <i class="fas fa-message"></i>
@@ -4208,7 +6137,63 @@
           oninput="window.filterMyWordsSheet()"
         />
       </div>
+      <div class="word-longpress-note">
+        <i class="fas fa-hand-pointer"></i> Утримай картку слова, щоб
+        відредагувати
+      </div>
       <div class="sheet-word-list" id="myWordsList"></div>
+    </div>
+
+    <!-- РЕДАГУВАННЯ СЛОВА -->
+    <div
+      class="bottom-sheet-overlay"
+      id="edit-word-sheet-overlay"
+      onclick="window.closeEditWordSheet()"
+    ></div>
+    <div class="floating-sheet-panel" id="edit-word-sheet">
+      <div class="bs-handle"></div>
+      <div class="bs-header">
+        <h3 class="bs-title">
+          <i class="fas fa-pen" style="color: var(--accent)"></i> Редагувати
+          слово
+        </h3>
+        <div class="bs-close" onclick="window.closeEditWordSheet()">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="bs-content">
+        <input type="hidden" id="edit-word-id" />
+        <div class="input-group">
+          <i class="fas fa-language"></i
+          ><input
+            type="text"
+            id="edit-word-cz"
+            placeholder="Чеське слово"
+            autocomplete="off"
+          />
+        </div>
+        <div class="input-group">
+          <i class="fas fa-comment"></i
+          ><input
+            type="text"
+            id="edit-word-ua"
+            placeholder="Переклад українською"
+            autocomplete="off"
+          />
+        </div>
+        <div class="input-group">
+          <i class="fas fa-volume-up"></i
+          ><input
+            type="text"
+            id="edit-word-tr"
+            placeholder="Транскрипція"
+            autocomplete="off"
+          />
+        </div>
+        <button onclick="window.saveEditedWord()">
+          <i class="fas fa-check"></i> Зберегти зміни
+        </button>
+      </div>
     </div>
 
     <!-- BOTTOM SHEET ДЛЯ РУЧНОГО ВИБОРУ СЛІВ БЛІЦУ -->
@@ -5571,7 +7556,10 @@
             progressPercent.innerText = `${Math.min(percent, 100)}%`;
           const statsRing = document.querySelector(".stats-ring");
           if (statsRing)
-            statsRing.style.setProperty("--stats-progress", `${Math.min(percent, 100)}%`);
+            statsRing.style.setProperty(
+              "--stats-progress",
+              `${Math.min(percent, 100)}%`,
+            );
 
           // Виправлено ID прогрес-бару на правильне значення stats-progress-bar
           const progressBar = document.getElementById("stats-progress-bar");
@@ -5678,10 +7666,16 @@
           const compactPercent = Math.min(Number(percent) || 0, 100);
           setText("analytics-percent", `${compactPercent}%`);
           setText("analytics-level", `${dashboardLevel} · твій рівень`);
-          setText("analytics-goal", `${vocabSize} з ${targetGoal} слів до цілі`);
+          setText(
+            "analytics-goal",
+            `${vocabSize} з ${targetGoal} слів до цілі`,
+          );
           setText("analytics-streak", appData.stats.streak || 0);
           setText("analytics-words", vocabSize);
-          setText("analytics-accuracy", totalAttempts ? `${generalAccuracy}%` : "—");
+          setText(
+            "analytics-accuracy",
+            totalAttempts ? `${generalAccuracy}%` : "—",
+          );
           setText("analytics-green-count", greenCount);
           setText("analytics-yellow-count", yellowCount);
           setText("analytics-red-count", redCount);
@@ -5690,7 +7684,11 @@
           setWidth("analytics-yellow", Math.round((yellowCount / base) * 100));
           setWidth("analytics-red", Math.round((redCount / base) * 100));
           const donut = document.querySelector(".analytics-donut");
-          if (donut) donut.style.setProperty("--analytics-progress", `${compactPercent}%`);
+          if (donut)
+            donut.style.setProperty(
+              "--analytics-progress",
+              `${compactPercent}%`,
+            );
           const nextTitle = document.getElementById("analytics-next-title");
           const nextCopy = document.getElementById("analytics-next-copy");
           if (nextTitle && nextCopy) {
@@ -5702,15 +7700,26 @@
               nextCopy.innerText = `До цілі залишилось ${Math.max(0, targetGoal - vocabSize)} слів. Додай кілька слів або пройди урок.`;
             } else {
               nextTitle.innerText = "Ціль досягнуто — підтримуй темп";
-              nextCopy.innerText = "Повторення допоможе зберегти слова в активному словнику.";
+              nextCopy.innerText =
+                "Повторення допоможе зберегти слова в активному словнику.";
             }
           }
           const todayKey = new Date().toISOString().split("T")[0];
           const todayTarget = Number(appData.user.dailyWords) || 10;
-          const todayWords = appData.words.filter((word) => word.date === todayKey).length;
-          const todayPercent = Math.min(100, Math.round((todayWords / todayTarget) * 100));
+          const todayWords = appData.words.filter(
+            (word) => word.date === todayKey,
+          ).length;
+          const todayPercent = Math.min(
+            100,
+            Math.round((todayWords / todayTarget) * 100),
+          );
           setText("analytics-daily-value", `${todayWords} / ${todayTarget}`);
-          setText("analytics-daily-copy", todayWords >= todayTarget ? "Денну ціль виконано — можна переходити до повторення." : "Нові слова сьогодні");
+          setText(
+            "analytics-daily-copy",
+            todayWords >= todayTarget
+              ? "Денну ціль виконано — можна переходити до повторення."
+              : "Нові слова сьогодні",
+          );
           setWidth("analytics-daily-bar", todayPercent);
 
           const dayLabels = ["Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
@@ -5718,7 +7727,11 @@
             const date = new Date();
             date.setDate(date.getDate() - (6 - index));
             const key = date.toISOString().split("T")[0];
-            return { key, label: dayLabels[date.getDay()], value: Number((appData.stats.history || {})[key]) || 0 };
+            return {
+              key,
+              label: dayLabels[date.getDay()],
+              value: Number((appData.stats.history || {})[key]) || 0,
+            };
           });
           const weekTotal = week.reduce((sum, day) => sum + day.value, 0);
           setText("analytics-week-total", `${weekTotal} слів`);
@@ -5743,7 +7756,8 @@
             recentWords.innerHTML = "";
             const latest = appData.words.slice(0, 3);
             if (!latest.length) {
-              recentWords.innerHTML = '<div class="analytics-word"><i class="fas fa-book-open"></i><div><strong>Словник поки порожній</strong><span>Додай перше слово на вкладці «Словник»</span></div></div>';
+              recentWords.innerHTML =
+                '<div class="analytics-word"><i class="fas fa-book-open"></i><div><strong>Словник поки порожній</strong><span>Додай перше слово на вкладці «Словник»</span></div></div>';
             } else {
               latest.forEach((word) => {
                 const row = document.createElement("div");
@@ -5757,13 +7771,23 @@
                 translation.innerText = word.ua || "";
                 text.append(wordName, translation);
                 const state = document.createElement("small");
-                state.innerText = word.difficulty === "red" ? "Повторити" : word.difficulty === "yellow" ? "Вчу" : "Нове";
+                state.innerText =
+                  word.difficulty === "red"
+                    ? "Повторити"
+                    : word.difficulty === "yellow"
+                      ? "Вчу"
+                      : "Нове";
                 row.append(icon, text, state);
                 recentWords.appendChild(row);
               });
             }
           }
-          setText("analytics-summary", vocabSize ? `У тебе ${vocabSize} слів у словнику. Рухайся маленькими, але регулярними кроками.` : "Додай перше слово — і тут з’явиться персональна картина прогресу.");
+          setText(
+            "analytics-summary",
+            vocabSize
+              ? `У тебе ${vocabSize} слів у словнику. Рухайся маленькими, але регулярними кроками.`
+              : "Додай перше слово — і тут з’явиться персональна картина прогресу.",
+          );
         } catch (error) {
           console.warn("Помилка розрахунку аналітики: ", error);
         }
@@ -5856,7 +7880,8 @@
         const dockBadge = document.getElementById("dock-day-progress");
         if (dockBadge) dockBadge.innerText = `${percent}%`;
         const dockPlan = document.querySelector(".dock-plan");
-        if (dockPlan) dockPlan.style.setProperty("--dock-progress", `${percent}%`);
+        if (dockPlan)
+          dockPlan.style.setProperty("--dock-progress", `${percent}%`);
       }
 
       window.openDayProgressSheet = function () {
@@ -6148,10 +8173,18 @@
         document.querySelectorAll(".filter-chip").forEach((chip) => {
           if (chip.closest("#dictionary")) chip.classList.remove("active");
         });
-        const labels = { all: "Усі", new: "Нові", learned: "Вивчені", difficult: "Складні" };
-        document.querySelectorAll("#dictionary .filter-chip").forEach((chip) => {
-          if (chip.innerText.trim() === labels[filter]) chip.classList.add("active");
-        });
+        const labels = {
+          all: "Усі",
+          new: "Нові",
+          learned: "Вивчені",
+          difficult: "Складні",
+        };
+        document
+          .querySelectorAll("#dictionary .filter-chip")
+          .forEach((chip) => {
+            if (chip.innerText.trim() === labels[filter])
+              chip.classList.add("active");
+          });
         window.openMyWordsSheet();
       };
 
@@ -6173,6 +8206,64 @@
         document.getElementById("my-words-sheet").classList.remove("active");
       };
 
+      let wordLongPressTimer = null;
+      window.beginWordLongPress = function (event, id) {
+        if (event.target.closest("button")) return;
+        window.cancelWordLongPress();
+        wordLongPressTimer = setTimeout(() => {
+          wordLongPressTimer = null;
+          if (navigator.vibrate) navigator.vibrate(18);
+          window.openEditWord(id);
+        }, 550);
+      };
+      window.cancelWordLongPress = function () {
+        if (wordLongPressTimer) clearTimeout(wordLongPressTimer);
+        wordLongPressTimer = null;
+      };
+      window.openEditWord = function (id) {
+        const word = appData.words.find(
+          (item) => String(item.id) === String(id),
+        );
+        if (!word) return;
+        document.getElementById("edit-word-id").value = word.id;
+        document.getElementById("edit-word-cz").value = word.cz || "";
+        document.getElementById("edit-word-ua").value = word.ua || "";
+        document.getElementById("edit-word-tr").value = word.tr || "";
+        document
+          .getElementById("edit-word-sheet-overlay")
+          .classList.add("active");
+        document.getElementById("edit-word-sheet").classList.add("active");
+      };
+      window.closeEditWordSheet = function () {
+        document
+          .getElementById("edit-word-sheet-overlay")
+          .classList.remove("active");
+        document.getElementById("edit-word-sheet").classList.remove("active");
+      };
+      window.saveEditedWord = function () {
+        const id = document.getElementById("edit-word-id").value;
+        const cz = document.getElementById("edit-word-cz").value.trim();
+        const ua = document.getElementById("edit-word-ua").value.trim();
+        const tr = document.getElementById("edit-word-tr").value.trim();
+        if (!cz || !ua) {
+          window.showToast("Заповни чеське слово та переклад.");
+          return;
+        }
+        const word = appData.words.find(
+          (item) => String(item.id) === String(id),
+        );
+        if (!word) return;
+        word.cz = cz.toLowerCase();
+        word.ua = ua.toLowerCase();
+        word.tr = tr || generateTranscription(cz);
+        appData.unsyncedWords = appData.unsyncedWords || [];
+        appData.unsyncedWords.push({ ...word });
+        saveData();
+        window.closeEditWordSheet();
+        window.filterMyWordsSheet();
+        window.showToast("Слово оновлено.");
+      };
+
       window.filterMyWordsSheet = function () {
         const q = normalizeAnswerText(
           document.getElementById("myWordsSearch")?.value || "",
@@ -6181,15 +8272,17 @@
         if (!list) return;
 
         const words = appData.words.filter((w) => {
-          const matchesSearch = (
+          const matchesSearch =
             normalizeAnswerText(w.cz).includes(q) ||
             normalizeAnswerText(w.ua).includes(q) ||
-            normalizeAnswerText(w.tr).includes(q)
-          );
+            normalizeAnswerText(w.tr).includes(q);
           if (!matchesSearch) return false;
-          if (wordLibraryFilter === "difficult") return w.difficulty === "yellow" || w.difficulty === "red";
-          if (wordLibraryFilter === "learned") return !w.difficulty || w.difficulty === "green";
-          if (wordLibraryFilter === "new") return w.date === new Date().toISOString().split("T")[0];
+          if (wordLibraryFilter === "difficult")
+            return w.difficulty === "yellow" || w.difficulty === "red";
+          if (wordLibraryFilter === "learned")
+            return !w.difficulty || w.difficulty === "green";
+          if (wordLibraryFilter === "new")
+            return w.date === new Date().toISOString().split("T")[0];
           return true;
         });
 
@@ -6205,7 +8298,7 @@
             else if (w.difficulty === "red") diffColor = "var(--danger)";
 
             return `
-              <div class="sheet-word-row">
+              <div class="sheet-word-row" onpointerdown="window.beginWordLongPress(event, '${w.id}')" onpointerup="window.cancelWordLongPress()" onpointercancel="window.cancelWordLongPress()" onpointerleave="window.cancelWordLongPress()">
                 <div>
                   <div class="word-cz">
                     <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:${diffColor}; margin-right:8px;"></span>
