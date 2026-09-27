@@ -964,6 +964,40 @@
         backdrop-filter: blur(25px);
         -webkit-backdrop-filter: blur(25px);
       }
+      /* Modal actions always occupy one horizontal liquid-glass rail. */
+      .fm-header > div,
+      .fm-actions {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 8px !important;
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+      .fm-header .settings-btn {
+        width: 42px;
+        height: 42px;
+        margin: 0 !important;
+        border-radius: 50%;
+        color: var(--text-main);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.42),
+          rgba(137, 179, 255, 0.15)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.48);
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.68),
+          0 7px 18px rgba(10, 48, 120, 0.14);
+        backdrop-filter: blur(18px) saturate(170%);
+        -webkit-backdrop-filter: blur(18px) saturate(170%);
+      }
+      .fm-header .settings-btn.fa-redo {
+        color: var(--warning);
+      }
+      .fm-header .settings-btn.fa-times {
+        color: var(--danger);
+      }
 
       .fm-body {
         flex: 1;
@@ -2877,7 +2911,11 @@
         padding: 14px;
         border: 1px solid rgba(179, 216, 255, 0.2);
         border-radius: 18px;
-        background: linear-gradient(135deg, rgba(255,255,255,.30), rgba(110,156,255,.16));
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.3),
+          rgba(110, 156, 255, 0.16)
+        );
         box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.14);
         touch-action: manipulation;
       }
@@ -2976,9 +3014,15 @@
       }
 
       /* Keep the original app gradient visible behind every transparent surface. */
-      html { background: var(--bg-gradient); }
-      body { background: var(--bg-gradient) !important; }
-      #app { background: transparent !important; }
+      html {
+        background: var(--bg-gradient);
+      }
+      body {
+        background: var(--bg-gradient) !important;
+      }
+      #app {
+        background: transparent !important;
+      }
       header,
       header::before,
       header::after {
@@ -3481,6 +3525,184 @@
         color: var(--success);
         font-weight: 800;
       }
+      /* Unified liquid-glass system, matched to Film-library: translucent gradient,
+         fine white edge, inset highlight, and deep soft shadow. */
+      :root {
+        --film-glass: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.055));
+        --film-line: rgba(255,255,255,.22);
+        --film-shadow: inset 0 1px 1px rgba(255,255,255,.30), 0 1px 2px rgba(15,23,42,.10), 0 12px 34px rgba(15,23,42,.18);
+        --film-blur: blur(30px) saturate(180%);
+      }
+      .glass-card, .home-overview, .home-useful-card, .analytics-card,
+      .settings-profile, .settings-group, .tool-card, .feature-tile,
+      .bento-item:not([class*="grad-"]), .practice-priority, .day-progress-btn,
+      .dictionary-library, .dictionary-bulk-import, .floating-sheet-panel,
+      .bottom-sheet, .confirm-box, .fm-header, #bottom-nav, .quick-glass-dock {
+        background: var(--film-glass) !important;
+        border: 1px solid var(--film-line) !important;
+        box-shadow: var(--film-shadow) !important;
+        backdrop-filter: var(--film-blur) !important;
+        -webkit-backdrop-filter: var(--film-blur) !important;
+      }
+      .glass-card, .home-overview, .home-useful-card, .analytics-card,
+      .settings-profile, .settings-group, .tool-card, .feature-tile,
+      .bento-item, .practice-priority, .day-progress-btn, .dictionary-library,
+      .dictionary-bulk-import, .floating-sheet-panel, .bottom-sheet,
+      .confirm-box { border-radius: 24px !important; }
+      .floating-sheet-panel, .bottom-sheet { border-radius: 28px 28px 0 0 !important; }
+      #bottom-nav, .quick-glass-dock { border-radius: 999px !important; }
+      .icon-btn, .settings-btn, .bs-close, .switch .slider { 
+        background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.06)) !important;
+        border-color: var(--film-line) !important;
+        box-shadow: inset 0 1px 1px rgba(255,255,255,.30), 0 6px 16px rgba(15,23,42,.12) !important;
+        backdrop-filter: blur(20px) saturate(160%);
+        -webkit-backdrop-filter: blur(20px) saturate(160%);
+      }
+      .dictionary-bulk-import {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-align: left;
+        padding: 15px 16px;
+        margin: 14px 0 4px;
+        width: 100%;
+        border-radius: 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(120, 99, 255, 0.78),
+          rgba(31, 137, 238, 0.72)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.38);
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.38),
+          0 12px 26px rgba(44, 90, 211, 0.18);
+      }
+      .dictionary-bulk-import > i:first-child {
+        width: 38px;
+        height: 38px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.16);
+        font-size: 17px;
+      }
+      .dictionary-bulk-import span {
+        flex: 1;
+      }
+      .dictionary-bulk-import b,
+      .dictionary-bulk-import small {
+        display: block;
+      }
+      .dictionary-bulk-import small {
+        margin-top: 3px;
+        font-size: 11px;
+        font-weight: 600;
+        opacity: 0.84;
+      }
+      .dictionary-bulk-import > i:last-child {
+        font-size: 13px;
+      }
+      #bulk-import-sheet,
+      #edit-word-sheet {
+        max-height: 78vh;
+        background:
+          linear-gradient(
+            145deg,
+            rgba(122, 169, 255, 0.2),
+            rgba(255, 255, 255, 0.18)
+          ),
+          var(--surface-glass) !important;
+        border-color: rgba(255, 255, 255, 0.52) !important;
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.45),
+          0 -16px 42px rgba(15, 50, 110, 0.18) !important;
+        backdrop-filter: blur(42px) saturate(170%);
+        -webkit-backdrop-filter: blur(42px) saturate(170%);
+      }
+      .bulk-import-content {
+        padding: 8px 20px 24px;
+      }
+      .bulk-import-content > p {
+        font-size: 13px;
+        line-height: 1.45;
+        color: var(--text-sec);
+        margin: 0 0 12px;
+      }
+      .bulk-import-content textarea {
+        min-height: 190px;
+        padding: 15px;
+        border-radius: 18px;
+        line-height: 1.45;
+        font-family: inherit;
+      }
+      .bulk-import-note {
+        display: flex;
+        gap: 8px;
+        margin: 11px 0 14px;
+        font-size: 12px;
+        line-height: 1.35;
+        color: var(--text-sec);
+        font-weight: 600;
+      }
+      .bulk-import-note i {
+        color: var(--accent);
+        margin-top: 1px;
+      }
+      #customConfirmModal {
+        z-index: 4000 !important;
+      }
+      .confirm-overlay.active {
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+      .blitz-settings-card {
+        padding: 16px;
+        border: 1px solid var(--card-border);
+        border-radius: 20px;
+        background: var(--surface-glass);
+        box-shadow: var(--shadow-soft);
+        margin-bottom: 12px;
+      }
+      .blitz-settings-card h4 {
+        font-size: 15px;
+        margin: 0 0 10px;
+      }
+      .blitz-choice-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+      .blitz-choice-grid button {
+        margin: 0;
+        padding: 12px 10px;
+        border-radius: 14px;
+        font-size: 12px;
+      }
+      .blitz-number-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .blitz-number-row label {
+        font-size: 12px;
+        font-weight: 800;
+        color: var(--text-sec);
+      }
+      .blitz-number-row input {
+        margin-top: 6px;
+        padding: 12px;
+        border-radius: 13px;
+      }
+      .blitz-mode-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .blitz-mode-row select {
+        padding: 12px;
+        border-radius: 13px;
+        font-size: 13px;
+      }
     </style>
   </head>
   <body>
@@ -3716,6 +3938,16 @@
               </p>
             </div>
           </div>
+          <button
+            class="dictionary-bulk-import"
+            onclick="window.openBulkImportSheet()"
+          >
+            <i class="fas fa-file-import"></i
+            ><span
+              ><b>Додати список слів</b
+              ><small>Імпорт або оновлення словника</small></span
+            ><i class="fas fa-chevron-right"></i>
+          </button>
         </section>
 
         <!-- ================= НАВЧАННЯ ================= -->
@@ -4728,10 +4960,9 @@
     <div id="learning-overlay" class="full-modal">
       <div class="fm-header">
         <h3 id="learn-title" style="font-size: 22px">Меню Уроку</h3>
-        <div>
+        <div class="fm-actions">
           <i
             class="fas fa-redo settings-btn"
-            style="margin-right: 15px; color: var(--warning)"
             onclick="window.regenerateLesson()"
             title="Згенерувати заново"
           ></i>
@@ -5266,12 +5497,41 @@
       <div class="fm-body">
         <!-- БЛОК НАЛАШТУВАННЯ БЛІЦУ -->
         <div id="blitz-setup-area" class="learn-block" style="max-width: 100%">
-          <h4 style="margin-bottom: 15px; font-size: 20px">
-            Вибери слова та режим
-          </h4>
+          <h4 style="margin-bottom: 15px; font-size: 20px">Налаштуй бліц</h4>
 
-          <!-- Кнопки швидкого вибору 10 слів -->
-          <div style="display: flex; gap: 10px; margin-bottom: 15px">
+          <div class="blitz-settings-card">
+            <h4>Швидкий вибір</h4>
+            <div class="blitz-number-row" style="margin-bottom: 10px">
+              <label
+                >Взяти з останніх<input
+                  id="blitz-recent-pool"
+                  type="number"
+                  min="1"
+                  value="30"
+              /></label>
+              <label
+                >Кількість для гри<input
+                  id="blitz-quick-count"
+                  type="number"
+                  min="1"
+                  value="10"
+              /></label>
+            </div>
+            <div class="blitz-choice-grid">
+              <button
+                class="secondary"
+                onclick="window.selectRandomFromRecentBlitz()"
+              >
+                🎲 Випадкові з останніх
+              </button>
+              <button class="secondary" onclick="window.selectLastNBlitz()">
+                🕒 Останні N слів
+              </button>
+            </div>
+          </div>
+
+          <!-- Залишено для сумісності зі старими сценаріями -->
+          <div style="display: none">
             <button
               class="secondary"
               onclick="window.selectRandomBlitz()"
@@ -5298,19 +5558,8 @@
             </button>
           </div>
 
-          <div
-            style="
-              background: var(--surface-solid);
-              border: 1px solid var(--card-border);
-              border-radius: 20px;
-              padding: 15px;
-              margin-bottom: 15px;
-              text-align: left;
-            "
-          >
-            <p style="font-weight: 800; margin-bottom: 10px; font-size: 15px">
-              Напрямок перекладу:
-            </p>
+          <div class="blitz-settings-card">
+            <h4>Режим і складність</h4>
             <select
               id="blitz-mode-select"
               style="
@@ -5330,9 +5579,6 @@
               <option value="cz-ua">З Чеської на Українську</option>
             </select>
 
-            <p style="font-weight: 800; margin-bottom: 10px; font-size: 15px">
-              Фільтр за складністю слів:
-            </p>
             <select
               id="blitz-difficulty-filter"
               onchange="window.filterBlitzSetup()"
@@ -6192,6 +6438,42 @@
         </div>
         <button onclick="window.saveEditedWord()">
           <i class="fas fa-check"></i> Зберегти зміни
+        </button>
+      </div>
+    </div>
+
+    <!-- МАСОВИЙ ІМПОРТ СЛІВ -->
+    <div
+      class="bottom-sheet-overlay"
+      id="bulk-import-overlay"
+      onclick="window.closeBulkImportSheet()"
+    ></div>
+    <div class="floating-sheet-panel" id="bulk-import-sheet">
+      <div class="bs-handle"></div>
+      <div class="bs-header">
+        <h3 class="bs-title">
+          <i class="fas fa-file-import" style="color: var(--accent)"></i> Додати
+          список слів
+        </h3>
+        <div class="bs-close" onclick="window.closeBulkImportSheet()">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="bs-content bulk-import-content">
+        <p>
+          Один рядок =
+          <b>чеське слово — транскрипція — український переклад</b>.
+        </p>
+        <textarea
+          id="bulk-import-input"
+          placeholder="student — [студент] — студент&#10;kniha — [кніга] — книга"
+        ></textarea>
+        <div class="bulk-import-note">
+          <i class="fas fa-arrows-rotate"></i> Повторні чеські слова буде
+          оновлено та перенесено вгору списку.
+        </div>
+        <button onclick="window.importWordList()">
+          <i class="fas fa-plus"></i> Додати до словника
         </button>
       </div>
     </div>
@@ -8240,6 +8522,69 @@
           .classList.remove("active");
         document.getElementById("edit-word-sheet").classList.remove("active");
       };
+      window.openBulkImportSheet = function () {
+        document.getElementById("bulk-import-input").value = "";
+        document.getElementById("bulk-import-overlay").classList.add("active");
+        document.getElementById("bulk-import-sheet").classList.add("active");
+      };
+      window.closeBulkImportSheet = function () {
+        document
+          .getElementById("bulk-import-overlay")
+          .classList.remove("active");
+        document.getElementById("bulk-import-sheet").classList.remove("active");
+      };
+      window.importWordList = function () {
+        const raw = document.getElementById("bulk-import-input").value.trim();
+        if (!raw) return window.showToast("Встав список слів у поле.");
+        const rows = raw
+          .split(/\r?\n/)
+          .map((line) => line.trim())
+          .filter(Boolean);
+        const parsed = [];
+        const invalid = [];
+        rows.forEach((line, index) => {
+          const parts = line
+            .split(/\s*(?:—|–|\||;|\t|-)\s*/)
+            .map((part) => part.trim());
+          if (parts.length < 3 || !parts[0] || !parts[2]) {
+            invalid.push(index + 1);
+            return;
+          }
+          parsed.push({
+            cz: parts[0].toLowerCase(),
+            tr: parts[1],
+            ua: parts.slice(2).join(" — ").toLowerCase(),
+          });
+        });
+        if (!parsed.length)
+          return window.showToast(
+            "Не вдалося прочитати рядки. Перевір формат.",
+          );
+        const incoming = new Map();
+        parsed.forEach((word) =>
+          incoming.set(normalizeAnswerText(word.cz), word),
+        );
+        const kept = appData.words.filter(
+          (word) => !incoming.has(normalizeAnswerText(word.cz)),
+        );
+        const now = new Date().toISOString().split("T")[0];
+        const inserted = [...incoming.values()]
+          .reverse()
+          .map((word, index) => ({
+            id: `${Date.now()}-${index}`,
+            ...word,
+            date: now,
+          }));
+        appData.words = [...inserted, ...kept];
+        appData.unsyncedWords = appData.unsyncedWords || [];
+        appData.unsyncedWords.push(...inserted);
+        saveData();
+        window.closeBulkImportSheet();
+        window.filterMyWordsSheet();
+        window.showToast(
+          `Додано або оновлено: ${inserted.length}${invalid.length ? `. Пропущено рядків: ${invalid.length}` : ""}`,
+        );
+      };
       window.saveEditedWord = function () {
         const id = document.getElementById("edit-word-id").value;
         const cz = document.getElementById("edit-word-cz").value.trim();
@@ -8656,6 +9001,49 @@
 
         window.showToast("🕒 Обрано 10 останніх слів!");
         window.filterBlitzSetup();
+      };
+
+      window.getBlitzQuickValues = function () {
+        const pool = Math.max(
+          1,
+          parseInt(document.getElementById("blitz-recent-pool")?.value, 10) ||
+            30,
+        );
+        const count = Math.max(
+          1,
+          parseInt(document.getElementById("blitz-quick-count")?.value, 10) ||
+            10,
+        );
+        return { pool, count };
+      };
+      window.selectRandomFromRecentBlitz = function () {
+        const { pool, count } = window.getBlitzQuickValues();
+        const source = appData.words.slice(0, pool);
+        if (!source.length) return window.showToast("Словник порожній!");
+        blitzSelectedWords.clear();
+        source
+          .sort(() => Math.random() - 0.5)
+          .slice(0, Math.min(count, source.length))
+          .forEach((word) => blitzSelectedWords.add(String(word.id)));
+        const endless = document.getElementById("blitz-endless-toggle");
+        const all = document.getElementById("blitz-testall-toggle");
+        if (endless) endless.checked = false;
+        if (all) all.checked = false;
+        window.filterBlitzSetup();
+        window.showToast(`Обрано ${blitzSelectedWords.size} випадкових слів.`);
+      };
+      window.selectLastNBlitz = function () {
+        const { count } = window.getBlitzQuickValues();
+        blitzSelectedWords.clear();
+        appData.words
+          .slice(0, count)
+          .forEach((word) => blitzSelectedWords.add(String(word.id)));
+        const endless = document.getElementById("blitz-endless-toggle");
+        const all = document.getElementById("blitz-testall-toggle");
+        if (endless) endless.checked = false;
+        if (all) all.checked = false;
+        window.filterBlitzSetup();
+        window.showToast(`Обрано ${blitzSelectedWords.size} останніх слів.`);
       };
 
       // Керування перемикачем режиму повної перевірки
@@ -9875,6 +10263,13 @@ ${text}
        ЩОДЕННЕ НАВЧАННЯ (AI ШЛЯХ)
       ========================================= */
       window.startLearningRoutine = async function () {
+        isCustomReviewLesson = false;
+        const finishTitle = document.querySelector("#lb-finish h2");
+        const finishIntro = document.querySelector("#lb-finish > p");
+        if (finishTitle) finishTitle.innerText = "День Пройдено! 🎉";
+        if (finishIntro)
+          finishIntro.innerText =
+            "Чудовий прогрес. Твоя статистика за поточну сесію:";
         if (!appData.user.geminiKey) {
           window.showToast("Вкажи API ключ Gemini у Налаштуваннях!");
           window.goToSettings();
@@ -10446,6 +10841,22 @@ ${exerciseJsonRule}`;
       }
 
       window.markBlockCompleted = function (id) {
+        // Custom review is a separate two-way translation flow, not a daily lesson.
+        if (isCustomReviewLesson) {
+          if (!appData.learning.completedBlocks.includes(id)) {
+            appData.learning.completedBlocks.push(id);
+          }
+          if (document.activeElement?.blur) document.activeElement.blur();
+          if (id === "newWords") {
+            startReverseTrainBlock();
+            return;
+          }
+          if (id === "reverseTrain") {
+            window.finishCustomReviewLesson();
+            return;
+          }
+          return;
+        }
         if (!appData.learning.completedBlocks.includes(id)) {
           appData.learning.completedBlocks.push(id);
           saveData();
@@ -10537,7 +10948,7 @@ ${exerciseJsonRule}`;
 
         // Якщо вивчили всі слова — зберігаємо їх і завершуємо блок
         if (learnState.nwWordIndex >= plan.length) {
-          appData.learning.yesterdayWords = plan;
+          if (!isCustomReviewLesson) appData.learning.yesterdayWords = plan;
           const today = new Date().toISOString().split("T")[0];
 
           plan.forEach((w) => {
@@ -10872,10 +11283,15 @@ ${exerciseJsonRule}`;
         }
       };
       window.finishLesson = function () {
+        const wasCustomReview = isCustomReviewLesson;
         window.closeFullModal("learning-overlay");
         updateUI();
         isCustomReviewLesson = false;
-        window.showToast("День успішно завершено! 🎉");
+        window.showToast(
+          wasCustomReview
+            ? "Повторення завершено! 🎉"
+            : "День успішно завершено! 🎉",
+        );
       };
       /* =========================================
    ДОДАТКОВІ ФУНКЦІЇ НАВЧАННЯ ТА ТАЙМЕРИ
@@ -11011,7 +11427,7 @@ ${exerciseJsonRule}`;
           reviewSelectedWords.size;
       };
 
-      window.startSelectedReviewLesson = async function () {
+      window.startSelectedReviewLesson = function () {
         if (reviewSelectedWords.size < 3) {
           window.showToast(
             "Вибери хоча б 3 слова для повноцінного повторення.",
@@ -11025,27 +11441,48 @@ ${exerciseJsonRule}`;
         window.closeReviewWordSelector();
         isCustomReviewLesson = true;
 
-        appData.learning.dailyPlan = null;
-        appData.learning.completedBlocks = ["review"];
-        appData.learning.dailyPlanDate = `review-${new Date().toISOString().split("T")[0]}`;
-        appData.learning.yesterdayWords = [];
+        // This temporary plan is used only by the two translation blocks.
+        // No grammar, prior-word review, AI generation, or daily-lesson state is involved.
+        appData.learning.dailyPlan = {
+          newWords: selected,
+          grammar: null,
+          exercises: [],
+        };
+        appData.learning.completedBlocks = [];
 
         window.openFullModal("learning-overlay");
-        showLearnBlock("lb-loading");
-        setGenerationProgress(
-          8,
-          "ШІ створює урок повторення з вибраних слів...",
-        );
+        startLessonTimer();
+        document.getElementById("l-nw-subtitle").innerText =
+          "Переклад: українська → чеська";
+        startNewWordsBlock();
+      };
 
-        try {
-          await fetchReviewPlanFromAI(selected);
-          saveData();
-          renderLearningMenu();
-        } catch (e) {
-          console.error(e);
-          setGenerationProgress(0, "Не вдалося створити урок повторення.");
-          window.showToast("Помилка генерації повторення.");
-        }
+      window.finishCustomReviewLesson = function () {
+        stopLessonTimer();
+        showLearnBlock("lb-finish");
+        const total = appData.learning.dailyPlan?.newWords?.length || 0;
+        const mistakes = appData.learning.stats.mistakesToday || 0;
+        const attempts = appData.learning.stats.attemptsToday || 0;
+        const correct = appData.learning.stats.correctToday || 0;
+        const accuracy = attempts
+          ? Math.round((correct / attempts) * 100)
+          : 100;
+        document.getElementById("adv-fin-words").innerText = `${total} слів`;
+        document.getElementById("adv-fin-mistakes").innerText = mistakes;
+        document.getElementById("adv-fin-time").innerText =
+          `${String(Math.floor(learnState.lessonSeconds / 60)).padStart(2, "0")}:${String(learnState.lessonSeconds % 60).padStart(2, "0")}`;
+        document.getElementById("adv-fin-accuracy").innerText = `${accuracy}%`;
+        const title = document.querySelector("#lb-finish h2");
+        const intro = document.querySelector("#lb-finish > p");
+        if (title) title.innerText = "Повторення завершено! 🎉";
+        if (intro)
+          intro.innerText =
+            "Ти пройшов переклад в обох напрямках для вибраних слів.";
+        document.getElementById("fin-loader").style.display = "none";
+        document.getElementById("fin-status").innerText =
+          "Результат збережено локально.";
+        document.getElementById("fin-btn").style.display = "block";
+        saveData();
       };
 
       async function fetchReviewPlanFromAI(selectedWords) {
@@ -11105,6 +11542,11 @@ ${exerciseJsonRule}`;
         learnState.revTrainIndex = 0;
         learnState.revTrainCycle = 1;
         shuffleArray(learnState.revTrainPool);
+
+        if (isCustomReviewLesson) {
+          const title = document.querySelector("#lb-reverse-translate h4");
+          if (title) title.innerText = "Переклад: чеська → українська";
+        }
 
         showLearnBlock("lb-reverse-translate");
         renderReverseTrainWord();
