@@ -209,61 +209,36 @@
         transform: scale(0.92);
       }
 
-      html, body {
-        touch-action: pan-y !important;
-        overscroll-behavior-y: auto !important;
-      }
-
       main {
         flex: 1;
-        overflow-y: auto !important;
+        overflow-y: auto;
         overflow-x: hidden;
         padding: 10px 20px calc(120px + env(safe-area-inset-bottom, 15px)) 20px;
-        -webkit-overflow-scrolling: touch !important;
-        overscroll-behavior-y: auto !important;
-        touch-action: pan-y !important;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: contain;
       }
 
-      /* Гарантоване гортання вгору/вниз при дотику до будь-якої точки карток */
-      *, *::before, *::after {
-        -webkit-user-drag: none;
+      .blitz-word-item-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        border-bottom: 1px solid var(--card-border);
+        cursor: pointer;
+        align-items: center;
+        touch-action: manipulation;
       }
 
-      .glass-card,
-      .home-hero-new,
-      .home-overview,
-      .home-action-card,
-      .tool-card,
-      .feature-tile,
-      .practice-priority,
-      .bento-item,
-      .analytics-card,
-      .analytics-command,
-      .settings-profile,
-      .settings-group,
-      .sheet-word-row,
-      .yellow-study-card {
-        touch-action: pan-y !important;
-      }
-
-      /* Клікабельність по всій площі картки без "вицілювання" */
-      .home-action-card,
-      .tool-card,
-      .practice-priority,
-      .bento-item,
-      .path-item,
-      .yellow-study-card {
-        cursor: pointer !important;
-        position: relative;
-        user-select: none;
-        -webkit-user-select: none;
-      }
-
-      .home-action-card *,
-      .tool-card *:not(button),
-      .practice-priority *,
-      .bento-item * {
-        pointer-events: none !important; /* Клік проходить крізь тексти та іконки прямо на картку */
+      #my-words-sheet .sheet-word-row {
+        padding: 14px;
+        border: 1px solid rgba(179, 216, 255, 0.2);
+        border-radius: 18px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.3),
+          rgba(110, 156, 255, 0.16)
+        );
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.14);
+        touch-action: manipulation;
       }
 
       .tool-card button,
@@ -4170,13 +4145,21 @@
       .yellow-study-card {
         padding: 18px;
         border-radius: 22px;
-        background: linear-gradient(135deg, rgba(245, 158, 11, 0.22) 0%, rgba(217, 119, 6, 0.12) 100%);
+        background: linear-gradient(
+          135deg,
+          rgba(245, 158, 11, 0.22) 0%,
+          rgba(217, 119, 6, 0.12) 100%
+        );
         border: 1px solid rgba(251, 191, 36, 0.4);
         margin-bottom: 12px;
         text-align: left;
       }
       .yellow-study-btn {
-        background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%) !important;
+        background: linear-gradient(
+          135deg,
+          #d97706 0%,
+          #f59e0b 100%
+        ) !important;
         color: #fff !important;
         border: 1px solid rgba(255, 255, 255, 0.4) !important;
         box-shadow: 0 8px 22px rgba(245, 158, 11, 0.35) !important;
@@ -4184,7 +4167,11 @@
         margin-bottom: 14px;
       }
       .blue-blitz-btn {
-        background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%) !important;
+        background: linear-gradient(
+          135deg,
+          #0284c7 0%,
+          #38bdf8 100%
+        ) !important;
         color: #fff !important;
         border: 1px solid rgba(255, 255, 255, 0.4) !important;
         box-shadow: 0 8px 22px rgba(14, 165, 233, 0.35) !important;
@@ -6203,7 +6190,7 @@
         <div id="blitz-setup-area" class="learn-block" style="max-width: 100%">
           <h4 style="margin-bottom: 15px; font-size: 20px">Налаштуй бліц</h4>
 
-         <!-- Кнопка швидкої перевірки синіх нових слів -->
+          <!-- Кнопка швидкої перевірки синіх нових слів -->
           <button
             class="blue-blitz-btn"
             id="btn-test-new-blue"
@@ -6211,6 +6198,9 @@
           >
             🔵 Перевірити нові слова (<span id="blitz-new-blue-count">0</span>)
           </button>
+
+          <div class="blitz-settings-card">
+            <h4>Швидкий вибір</h4>
             <div class="blitz-number-row" style="margin-bottom: 10px">
               <label
                 >Взяти з останніх<input
@@ -6238,34 +6228,6 @@
                 🕒 Останні N слів
               </button>
             </div>
-          </div>
-
-          <!-- Залишено для сумісності зі старими сценаріями -->
-          <div style="display: none">
-            <button
-              class="secondary"
-              onclick="window.selectRandomBlitz()"
-              style="
-                padding: 12px 10px;
-                font-size: 13px;
-                margin: 0;
-                font-weight: 800;
-              "
-            >
-              🎲 10 випадкових
-            </button>
-            <button
-              class="secondary"
-              onclick="window.selectLast10Blitz()"
-              style="
-                padding: 12px 10px;
-                font-size: 13px;
-                margin: 0;
-                font-weight: 800;
-              "
-            >
-              🕒 10 останніх
-            </button>
           </div>
 
           <div class="blitz-settings-card">
@@ -7393,15 +7355,25 @@
       >
         <!-- Спеціальна картка запуску вивчення важких (жовтих) слів блоками по 10 -->
         <div class="yellow-study-card">
-          <h4 style="margin: 0 0 6px 0; color: var(--text-main); font-size: 15px;">
+          <h4
+            style="margin: 0 0 6px 0; color: var(--text-main); font-size: 15px"
+          >
             🟡 Вивчення важких слів: <b id="review-yellow-count">0</b> слів
           </h4>
-          <p style="margin: 0 0 10px 0; font-size: 12px; color: var(--text-sec); line-height: 1.4;">
-            Поділ на блоки по 10 слів (Укр ➔ Чес, потім Чес ➔ Укр) з двоетапною перевіркою.
+          <p
+            style="
+              margin: 0 0 10px 0;
+              font-size: 12px;
+              color: var(--text-sec);
+              line-height: 1.4;
+            "
+          >
+            Поділ на блоки по 10 слів (Укр ➔ Чес, потім Чес ➔ Укр) з двоетапною
+            перевіркою.
           </p>
           <button
             class="yellow-study-btn"
-            style="width: 100%; padding: 12px;"
+            style="width: 100%; padding: 12px"
             onclick="window.startYellowBlocksRoutine()"
           >
             Почати вивчення жовтих слів
@@ -7409,7 +7381,7 @@
         </div>
 
         <!-- Рядок пошуку та сортування -->
-        <div class="dict-search-row" style="padding: 0 0 8px 0;">
+        <div class="dict-search-row" style="padding: 0 0 8px 0">
           <div class="dict-search-input-wrapper">
             <i class="fas fa-search"></i>
             <input
@@ -7433,41 +7405,99 @@
               </svg>
             </button>
             <div class="custom-select-dropdown">
-              <div class="custom-select-option selected" onclick="window.selectReviewSort('newest', 'Найновіші')">Найновіші</div>
-              <div class="custom-select-option" onclick="window.selectReviewSort('oldest', 'Найстаріші')">Найстаріші</div>
-              <div class="custom-select-option" onclick="window.selectReviewSort('alpha', 'А - Я')">А - Я</div>
+              <div
+                class="custom-select-option selected"
+                onclick="window.selectReviewSort('newest', 'Найновіші')"
+              >
+                Найновіші
+              </div>
+              <div
+                class="custom-select-option"
+                onclick="window.selectReviewSort('oldest', 'Найстаріші')"
+              >
+                Найстаріші
+              </div>
+              <div
+                class="custom-select-option"
+                onclick="window.selectReviewSort('alpha', 'А - Я')"
+              >
+                А - Я
+              </div>
             </div>
             <input type="hidden" id="reviewSortSelect" value="newest" />
           </div>
         </div>
 
         <!-- Швидкі фільтри поміток для повторення -->
-        <div class="svg-filter-strip" id="reviewTagFilters" style="padding: 0 0 10px 0;">
-          <div class="svg-filter-item all active" onclick="window.setReviewTagFilter('all', this)">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+        <div
+          class="svg-filter-strip"
+          id="reviewTagFilters"
+          style="padding: 0 0 10px 0"
+        >
+          <div
+            class="svg-filter-item all active"
+            onclick="window.setReviewTagFilter('all', this)"
+          >
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
             <span id="rev-count-all">0</span>
           </div>
-          <div class="svg-filter-item blue" onclick="window.setReviewTagFilter('blue', this)">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 6.8H21l-5.4 4.2 2 6.8-5.6-4.1-5.6 4.1 2-6.8L3 8.8h6.6z" /></svg>
+          <div
+            class="svg-filter-item blue"
+            onclick="window.setReviewTagFilter('blue', this)"
+          >
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 2l2.4 6.8H21l-5.4 4.2 2 6.8-5.6-4.1-5.6 4.1 2-6.8L3 8.8h6.6z"
+              />
+            </svg>
             <span id="rev-count-blue">0</span>
           </div>
-          <div class="svg-filter-item yellow" onclick="window.setReviewTagFilter('yellow', this)">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>
+          <div
+            class="svg-filter-item yellow"
+            onclick="window.setReviewTagFilter('yellow', this)"
+          >
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+              />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
             <span id="rev-count-yellow">0</span>
           </div>
-          <div class="svg-filter-item red" onclick="window.setReviewTagFilter('red', this)">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" /></svg>
+          <div
+            class="svg-filter-item red"
+            onclick="window.setReviewTagFilter('red', this)"
+          >
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"
+              />
+            </svg>
             <span id="rev-count-red">0</span>
           </div>
-          <div class="svg-filter-item green" onclick="window.setReviewTagFilter('green', this)">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><path d="M22 4L12 14.01l-3-3" /></svg>
+          <div
+            class="svg-filter-item green"
+            onclick="window.setReviewTagFilter('green', this)"
+          >
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <path d="M22 4L12 14.01l-3-3" />
+            </svg>
             <span id="rev-count-green">0</span>
           </div>
         </div>
 
         <div
           id="review-word-list-container"
-          style="flex: 1; overflow-y: auto; margin-bottom: 12px; touch-action: pan-y;"
+          style="
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 12px;
+            touch-action: pan-y;
+          "
         ></div>
         <button
           onclick="window.startSelectedReviewLesson()"
@@ -7502,36 +7532,59 @@
       ></div>
     </div>
 
-<!-- 6. МОДУЛЬ ВИВЧЕННЯ ЖОВТИХ СЛІВ (БЛОКИ ПО 10 + 2 ПЕРЕВІРКИ) -->
-    <!-- 6. МОДУЛЬ ВИВЧЕННЯ ЖОВТИХ СЛІВ (КЛАСИЧНИЙ АЛГОРИТМ 3 ПОВТОРИ + 2 КОЛА + ЗВОРОТНИЙ БЛОК) -->
+    <!-- 6. МОДУЛЬ ВИВЧЕННЯ ЖОВТИХ СЛІВ (ПОВНОЦІННИЙ РОБОЧИЙ ЕКРАН) -->
     <div id="yellow-study-modal" class="full-modal">
       <div class="fm-header">
-        <h3 id="yellow-modal-title" style="font-size: 22px;">Вивчення важких слів</h3>
+        <h3 id="yellow-modal-title" style="font-size: 22px">
+          Вивчення важких слів
+        </h3>
         <div class="fm-actions">
-          <i class="fas fa-times settings-btn" onclick="window.closeYellowStudyModal()"></i>
+          <i
+            class="fas fa-times settings-btn"
+            onclick="window.closeYellowStudyModal()"
+          ></i>
         </div>
       </div>
-      <div class="fm-body" style="padding: 16px;">
-        <!-- ЕКРАН 1: ОСНОВНЕ ВИВЧЕННЯ (УКР -> ЧЕСЬКА: 3 рази слово + 2 рази пул) -->
-        <div id="ys-play-block" class="learn-block">
+      <div class="fm-body" style="padding: 20px 16px">
+        <!-- ЕКРАН 1: ВИВЧЕННЯ ТА ЗАКРІПЛЕННЯ ПУЛУ (УКР ➔ ЧЕС) -->
+        <div id="ys-play-block" class="learn-block active">
           <div class="block-progress-indicator">
-            <span id="ys-block-label">Блок 1 з X</span>
-            <span id="ys-phase-badge" style="color: var(--accent); font-weight: 800;">ВИВЧЕННЯ</span>
+            <span id="ys-block-label">Блок 1</span>
+            <span
+              id="ys-phase-badge"
+              style="color: var(--accent); font-weight: 800"
+              >ВИВЧЕННЯ</span
+            >
           </div>
-          
-          <div class="learn-counters" style="margin-bottom: 20px;">
+
+          <div
+            class="learn-counters"
+            style="
+              display: flex;
+              justify-content: space-around;
+              margin: 15px 0 20px;
+            "
+          >
             <span>Слово: <b id="ys-word-num">1/10</b></span>
             <span id="ys-rep-label">Повтор: 0/3</span>
           </div>
 
-          <div class="word-display" style="margin-bottom: 20px;">
-            <span id="ys-question-word">...</span>
-            <button class="icon-btn" id="ys-speak-btn" style="box-shadow: none; border: none; background: none;" onclick="window.speakYellowWord()">
+          <div
+            class="word-display"
+            style="min-height: 60px; margin-bottom: 20px"
+          >
+            <span id="ys-question-word">Завантаження...</span>
+            <button
+              class="icon-btn"
+              id="ys-speak-btn"
+              style="box-shadow: none; border: none; background: none"
+              onclick="window.speakYellowWord()"
+            >
               <i class="fas fa-volume-up"></i>
             </button>
           </div>
 
-          <div class="input-group" style="position: relative;">
+          <div class="input-group" style="position: relative; margin-top: 10px">
             <div class="hint-popup" id="ys-hint-popup">...</div>
             <input
               type="text"
@@ -7542,31 +7595,61 @@
               autocapitalize="none"
               spellcheck="false"
               enterkeyhint="done"
-              onkeypress="if(event.key==='Enter') window.checkYellowWord();"
+              onkeypress="if (event.key === 'Enter') window.checkYellowWord();"
             />
-            <button class="hint-btn" onclick="window.showYellowHint()">
+            <button
+              class="hint-btn"
+              type="button"
+              onclick="window.showYellowHint()"
+            >
               <i class="fas fa-eye"></i> Підказка
             </button>
           </div>
 
-          <button onclick="window.checkYellowWord()" style="margin-top: 10px;">Підтвердити</button>
+          <button
+            type="button"
+            onclick="window.checkYellowWord()"
+            style="margin-top: 15px"
+          >
+            Підтвердити
+          </button>
         </div>
 
-        <!-- ЕКРАН 1.5: ЗВОРОТНИЙ ПЕРЕКЛАД БЛОКУ (ЧЕСЬКА -> УКРАЇНСЬКА, 3 КОЛА) -->
+        <!-- ЕКРАН 2: ЗВОРОТНИЙ ПЕРЕКЛАД БЛОКУ (ЧЕС ➔ УКР) -->
         <div id="ys-reverse-block" class="learn-block">
           <div class="block-progress-indicator">
-            <span id="ys-rev-block-label">Блок 1 з X</span>
-            <span style="color: var(--warning); font-weight: 800;">ЗАКРІПЛЕННЯ (ЧЕС ➔ УКР)</span>
+            <span id="ys-rev-block-label">Блок 1</span>
+            <span style="color: var(--warning); font-weight: 800"
+              >ЗАКРІПЛЕННЯ (Чес ➔ Укр)</span
+            >
           </div>
 
-          <div class="learn-counters" style="margin-bottom: 20px;">
+          <div
+            class="learn-counters"
+            style="
+              display: flex;
+              justify-content: space-around;
+              margin: 15px 0 20px;
+            "
+          >
             <span>Слово: <b id="ys-rev-word-num">1/10</b></span>
             <span>Коло: <b id="ys-rev-cycle-num">1/3</b></span>
           </div>
 
-          <div class="word-display" style="margin-bottom: 20px;">
+          <div
+            class="word-display"
+            style="min-height: 60px; margin-bottom: 20px"
+          >
             <span id="ys-rev-question-word">...</span>
-            <button class="icon-btn" style="box-shadow: none; border: none; background: none;" onclick="window.speak(document.getElementById('ys-rev-question-word').innerText)">
+            <button
+              class="icon-btn"
+              style="box-shadow: none; border: none; background: none"
+              onclick="
+                window.speak(
+                  document.getElementById('ys-rev-question-word').innerText,
+                )
+              "
+            >
               <i class="fas fa-volume-up"></i>
             </button>
           </div>
@@ -7581,36 +7664,71 @@
               autocapitalize="none"
               spellcheck="false"
               enterkeyhint="done"
-              onkeypress="if(event.key==='Enter') window.checkYellowReverseWord();"
+              onkeypress="
+                if (event.key === 'Enter') window.checkYellowReverseWord();
+              "
             />
           </div>
 
-          <button onclick="window.checkYellowReverseWord()" style="margin-top: 10px;">Підтвердити</button>
+          <button
+            type="button"
+            onclick="window.checkYellowReverseWord()"
+            style="margin-top: 15px"
+          >
+            Підтвердити
+          </button>
         </div>
 
-        <!-- ЕКРАН 2: ТАЙМЕР 1 ГОДИНА МІЖ ПЕРЕВІРКАМИ -->
-        <div id="ys-timer-block" class="learn-block" style="text-align: center; padding: 20px 0;">
-          <i class="fas fa-hourglass-half" style="font-size: 60px; color: var(--warning); margin-bottom: 12px;"></i>
-          <h3 style="font-size: 24px; margin-bottom: 8px;">Всі блоки пройдено!</h3>
-          <p style="color: var(--text-sec); font-size: 14px; font-weight: 600; line-height: 1.5;">
-            Перший етап завершено. Для міцного запам'ятовування фінальна бліц-перевірка відкриється через 1 годину.
+        <!-- ЕКРАН 3: ТАЙМЕР 1 ГОДИНА МІЖ ПЕРЕВІРКАМИ -->
+        <div
+          id="ys-timer-block"
+          class="learn-block"
+          style="text-align: center; padding: 20px 0"
+        >
+          <i
+            class="fas fa-hourglass-half"
+            style="font-size: 60px; color: var(--warning); margin-bottom: 15px"
+          ></i>
+          <h3 style="font-size: 24px; margin-bottom: 8px">Блоки вивчено!</h3>
+          <p
+            style="
+              color: var(--text-sec);
+              font-size: 14px;
+              font-weight: 600;
+              line-height: 1.5;
+              margin-bottom: 10px;
+            "
+          >
+            Для закріплення в довготривалій пам'яті фінальна перевірка буде
+            доступна через 1 годину.
           </p>
           <div class="hour-timer-display" id="ys-hour-countdown">60:00</div>
-          <p style="font-size: 12px; color: var(--text-sec); margin-bottom: 20px;">
-            Ви можете закрити вікно — прогрес повністю збережено.
+          <p
+            style="font-size: 12px; color: var(--text-sec); margin-bottom: 25px"
+          >
+            Ви можете закрити вікно — прогрес пройдених блоків збережено.
           </p>
-          <button class="yellow-study-btn" onclick="window.startFinalYellowCheck(true)">
+          <button
+            type="button"
+            class="yellow-study-btn"
+            onclick="window.startFinalYellowCheck(true)"
+          >
             Пройти перевірку зараз
           </button>
         </div>
 
-        <!-- ЕКРАН 3: ФІНАЛЬНА ПЕРЕВІРКА (БЛІЦ) -->
+        <!-- ЕКРАН 4: ФІНАЛЬНИЙ БЛІЦ -->
         <div id="ys-blitz-block" class="learn-block">
           <div class="block-progress-indicator">
-            <span>Фінальна бліц-перевірка</span>
-            <span id="ys-blitz-progress-text" style="color: var(--accent);">1/X</span>
+            <span>Фінальний бліц</span>
+            <span id="ys-blitz-progress-text" style="color: var(--accent)"
+              >1/X</span
+            >
           </div>
-          <div class="word-display" style="margin-bottom: 25px;">
+          <div
+            class="word-display"
+            style="min-height: 60px; margin-bottom: 25px"
+          >
             <span id="ys-blitz-q">...</span>
           </div>
           <div class="input-group">
@@ -7623,32 +7741,68 @@
               autocapitalize="none"
               spellcheck="false"
               enterkeyhint="done"
-              onkeypress="if(event.key==='Enter') window.checkYellowBlitzWord();"
+              onkeypress="
+                if (event.key === 'Enter') window.checkYellowBlitzWord();
+              "
             />
           </div>
-          <button onclick="window.checkYellowBlitzWord()">Відповісти</button>
+          <button
+            type="button"
+            onclick="window.checkYellowBlitzWord()"
+            style="margin-top: 15px"
+          >
+            Відповісти
+          </button>
         </div>
 
-        <!-- ЕКРАН 4: СТАТИСТИКА ЗАСВОЄННЯ -->
-        <div id="ys-summary-block" class="learn-block" style="text-align: center;">
-          <h2 style="font-size: 32px; margin-bottom: 10px; background: var(--accent-gradient); -webkit-background-clip: text; color: transparent;">
-            Результати вивчення! 🎓
+        <!-- ЕКРАН 5: СТАТИСТИКА ЗАСВОЄННЯ -->
+        <div
+          id="ys-summary-block"
+          class="learn-block"
+          style="text-align: center"
+        >
+          <h2
+            style="
+              font-size: 32px;
+              margin-bottom: 10px;
+              background: var(--accent-gradient);
+              -webkit-background-clip: text;
+              color: transparent;
+            "
+          >
+            Слова засвоєно! 🎓
           </h2>
-          <div class="advanced-stats-card" style="margin: 20px 0;">
+          <div class="advanced-stats-card" style="margin: 20px 0">
             <div class="adv-stat-row">
               <span class="adv-stat-lbl">Опрацьовано слів:</span>
               <span class="adv-stat-val" id="ys-stat-total">0</span>
             </div>
             <div class="adv-stat-row">
               <span class="adv-stat-lbl">Переведено у «Засвоєні» 🟢:</span>
-              <span class="adv-stat-val" id="ys-stat-learned" style="color: var(--success);">0</span>
+              <span
+                class="adv-stat-val"
+                id="ys-stat-learned"
+                style="color: var(--success)"
+                >0</span
+              >
             </div>
             <div class="adv-stat-row">
               <span class="adv-stat-lbl">Залишилися в повторенні 🟡:</span>
-              <span class="adv-stat-val" id="ys-stat-remained" style="color: var(--warning);">0</span>
+              <span
+                class="adv-stat-val"
+                id="ys-stat-remained"
+                style="color: var(--warning)"
+                >0</span
+              >
             </div>
           </div>
-          <button class="gradient-btn" onclick="window.closeYellowStudyModal()">Завершити</button>
+          <button
+            type="button"
+            class="gradient-btn"
+            onclick="window.closeYellowStudyModal()"
+          >
+            Завершити
+          </button>
         </div>
       </div>
     </div>
@@ -7733,7 +7887,7 @@
             words: [],
             completedBlockIndex: 0,
             firstCheckDone: false,
-            secondCheckUnlockTime: null
+            secondCheckUnlockTime: null,
           },
           timeSpentInLessons: 0, // У секундах для детальної аналітики
           dailyQuestDate: null,
@@ -8172,7 +8326,6 @@
       function initSwipeNavigation() {
         let touchstartX = 0;
         let touchstartY = 0;
-        let isVerticalScroll = false;
         const tabs = ["dictionary", "study", "home", "stats", "settings"];
         const appElement = document.getElementById("main-scroll");
         if (!appElement) return;
@@ -8180,22 +8333,8 @@
         appElement.addEventListener(
           "touchstart",
           (e) => {
-            touchstartX = e.touches[0].clientX;
-            touchstartY = e.touches[0].clientY;
-            isVerticalScroll = false;
-          },
-          { passive: true },
-        );
-
-        appElement.addEventListener(
-          "touchmove",
-          (e) => {
-            const dx = Math.abs(e.touches[0].clientX - touchstartX);
-            const dy = Math.abs(e.touches[0].clientY - touchstartY);
-            // Якщо є хоч найменший вертикальний рух — миттєво віддаємо контроль нативному скролу
-            if (dy > 6 || dy > dx) {
-              isVerticalScroll = true;
-            }
+            touchstartX = e.changedTouches[0].screenX;
+            touchstartY = e.changedTouches[0].screenY;
           },
           { passive: true },
         );
@@ -8204,32 +8343,55 @@
           "touchend",
           (e) => {
             if (
-              isVerticalScroll ||
               document.querySelector(".full-modal.active") ||
               document.querySelector(".confirm-overlay.active") ||
-              document.querySelector(".floating-sheet-panel.active") ||
-              document.querySelector(".bottom-sheet.active")
-            ) {
+              document.querySelector(".bottom-sheet.active") ||
+              document.querySelector(".floating-sheet-panel.active")
+            )
               return;
-            }
 
-            const dx = e.changedTouches[0].clientX - touchstartX;
-            const dy = e.changedTouches[0].clientY - touchstartY;
+            let touchendX = e.changedTouches[0].screenX;
+            let touchendY = e.changedTouches[0].screenY;
+            let dx = touchendX - touchstartX;
+            let dy = touchendY - touchstartY;
 
-            // Перемикання екранів тільки при строго горизонтальному швидкому свайпі
-            if (Math.abs(dx) > 90 && Math.abs(dx) > Math.abs(dy) * 3) {
-              const currentActive = document.querySelector("section.active")?.id;
-              const idx = tabs.indexOf(currentActive);
+            if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+              let currentActive = document.querySelector("section.active")?.id;
+              let idx = tabs.indexOf(currentActive);
               if (dx < 0 && idx < tabs.length - 1) {
-                window.switchTab(tabs[idx + 1], document.querySelectorAll("#bottom-nav .nav-item")[idx + 1], "left");
-              } else if (dx > 0 && idx > 0) {
-                window.switchTab(tabs[idx - 1], document.querySelectorAll("#bottom-nav .nav-item")[idx - 1], "right");
+                window.switchTab(
+                  tabs[idx + 1],
+                  document.querySelectorAll("#bottom-nav .nav-item")[idx + 1],
+                  "left",
+                );
+              }
+              if (dx > 0 && idx > 0) {
+                window.switchTab(
+                  tabs[idx - 1],
+                  document.querySelectorAll("#bottom-nav .nav-item")[idx - 1],
+                  "right",
+                );
               }
             }
           },
           { passive: true },
         );
       }
+
+      let wordLongPressTimer = null;
+      window.beginWordLongPress = function (event, id) {
+        if (event.target.closest("button")) return;
+        window.cancelWordLongPress();
+        wordLongPressTimer = setTimeout(() => {
+          wordLongPressTimer = null;
+          if (navigator.vibrate) navigator.vibrate(18);
+          window.openEditWord(id);
+        }, 550);
+      };
+      window.cancelWordLongPress = function () {
+        if (wordLongPressTimer) clearTimeout(wordLongPressTimer);
+        wordLongPressTimer = null;
+      };
 
       /* =========================================
        VIRTUAL SCROLLER ДЛЯ СЛОВНИКА (ЗНИЩЕННЯ ЛАГІВ)
@@ -8875,16 +9037,20 @@
         updateDayProgressUI();
       }
 
-// Оновлення лічильника синіх слів у меню бліцу
+      // Оновлення лічильника синіх слів у меню бліцу
       function updateBlueWordsCountInBlitz() {
-        const blueCount = appData.words.filter(w => (w.difficulty || 'blue') === 'blue').length;
-        const countSpan = document.getElementById('blitz-new-blue-count');
+        const blueCount = appData.words.filter(
+          (w) => (w.difficulty || "blue") === "blue",
+        ).length;
+        const countSpan = document.getElementById("blitz-new-blue-count");
         if (countSpan) countSpan.innerText = blueCount;
       }
 
       // Запуск перевірки тільки синіх (нових) слів
       window.startNewWordsCheckBlitz = function () {
-        const blueWords = appData.words.filter(w => (w.difficulty || 'blue') === 'blue');
+        const blueWords = appData.words.filter(
+          (w) => (w.difficulty || "blue") === "blue",
+        );
         if (blueWords.length === 0) {
           window.showToast("Немає нових синіх слів для перевірки!");
           return;
@@ -8899,7 +9065,9 @@
         blitzState.seconds = 0;
         blitzState.wrongWordsList = [];
 
-        document.querySelectorAll("#blitz-modal .learn-block").forEach(b => b.classList.remove("active"));
+        document
+          .querySelectorAll("#blitz-modal .learn-block")
+          .forEach((b) => b.classList.remove("active"));
         document.getElementById("blitz-play-area").classList.add("active");
 
         renderBlitzWord();
@@ -9608,22 +9776,6 @@
           .getElementById("my-words-sheet-overlay")
           .classList.remove("active");
         document.getElementById("my-words-sheet").classList.remove("active");
-      };
-
-      let wordLongPressTimer = null;
-      let longPressStartY = 0;
-
-      window.beginWordLongPress = function (event, id) {
-        if (event.target.closest("button")) return;
-        window.cancelWordLongPress();
-        longPressStartY =
-          event.clientY || (event.touches ? event.touches[0].clientY : 0);
-
-        wordLongPressTimer = setTimeout(() => {
-          wordLongPressTimer = null;
-          if (navigator.vibrate) navigator.vibrate(18);
-          window.openEditWord(id);
-        }, 500);
       };
 
       window.cancelWordLongPress = function () {
@@ -10683,7 +10835,6 @@
           const isCzechTarget = blitzState.mode === "ua-cz";
           targetWord = (isCzechTarget ? w.cz : w.ua).toLowerCase().trim();
 
-          // Отримуємо посилання на оригінальне слово в основній базі
           const originalWord = appData.words.find(
             (x) => String(x.id) === String(w.id),
           );
@@ -10694,51 +10845,33 @@
             registerStats(true, isCzechTarget, w.cz);
 
             if (originalWord) {
-              // Якщо це перевірка нових слів: правильна відповідь робить слово ЗЕЛЕНИМ
-              if (!originalWord.difficulty || originalWord.difficulty === "blue") {
+              if (
+                !originalWord.difficulty ||
+                originalWord.difficulty === "blue"
+              ) {
                 originalWord.difficulty = "green";
                 originalWord.correctStreak = 1;
                 originalWord.incorrectCount = 0;
               } else if (originalWord.difficulty === "yellow") {
-                originalWord.correctStreak = (originalWord.correctStreak || 0) + 1;
+                originalWord.correctStreak =
+                  (originalWord.correctStreak || 0) + 1;
                 if (originalWord.correctStreak >= 2) {
                   originalWord.difficulty = "green";
                   originalWord.correctStreak = 0;
                 }
               } else if (originalWord.difficulty === "red") {
-                originalWord.correctStreak = (originalWord.correctStreak || 0) + 1;
+                originalWord.correctStreak =
+                  (originalWord.correctStreak || 0) + 1;
                 if (originalWord.correctStreak >= 3) {
                   originalWord.difficulty = "yellow";
                 }
               }
             }
-          }
-         } else {
+          } else {
             blitzState.wrong++;
             registerStats(false, false, null, false);
             window.showToast(`Правильно: ${targetWord}`);
 
-            if (originalWord) {
-              // Якщо це нове синій слово і зроблено помилку — воно стає ЖОВТИМ
-              if (!originalWord.difficulty || originalWord.difficulty === "blue") {
-                originalWord.difficulty = "yellow";
-                originalWord.incorrectCount = 1;
-                originalWord.correctStreak = 0;
-              } else if (originalWord.difficulty === "green") {
-                originalWord.difficulty = "yellow";
-                originalWord.incorrectCount = 1;
-              } else if (originalWord.difficulty === "yellow") {
-                originalWord.incorrectCount = (originalWord.incorrectCount || 0) + 1;
-                if (originalWord.incorrectCount >= 3) {
-                  originalWord.difficulty = "red";
-                }
-              }
-            } else {
-            blitzState.wrong++;
-            registerStats(false, false, null, false);
-            window.showToast(`Правильно буде: ${targetWord}`);
-
-            // Додаємо слово до списку зроблених помилок для виведення результату
             if (!blitzState.wrongWordsList) blitzState.wrongWordsList = [];
             blitzState.wrongWordsList.push({
               cz: w.cz,
@@ -10746,37 +10879,23 @@
               userTyped: inp.value.trim(),
             });
 
-            // Зміна міток складності у разі помилки
             if (originalWord) {
-              if (!originalWord.difficulty) originalWord.difficulty = "green";
-              if (originalWord.incorrectCount === undefined)
-                originalWord.incorrectCount = 0;
-              if (originalWord.correctStreak === undefined)
+              if (
+                !originalWord.difficulty ||
+                originalWord.difficulty === "blue"
+              ) {
+                originalWord.difficulty = "yellow";
+                originalWord.incorrectCount = 1;
                 originalWord.correctStreak = 0;
-
-              originalWord.incorrectCount++;
-
-              if (originalWord.difficulty === "green") {
-                if (originalWord.incorrectCount >= 1) {
-                  originalWord.difficulty = "yellow";
-                  originalWord.correctStreak = 0;
-                }
+              } else if (originalWord.difficulty === "green") {
+                originalWord.difficulty = "yellow";
+                originalWord.incorrectCount = 1;
               } else if (originalWord.difficulty === "yellow") {
+                originalWord.incorrectCount =
+                  (originalWord.incorrectCount || 0) + 1;
                 if (originalWord.incorrectCount >= 3) {
                   originalWord.difficulty = "red";
-                  originalWord.correctStreak = 0;
-                } else {
-                  // Відкочуємось на 2 кроки назад (не менше нуля)
-                  originalWord.correctStreak = Math.max(
-                    0,
-                    originalWord.correctStreak - 2,
-                  );
                 }
-              } else if (originalWord.difficulty === "red") {
-                originalWord.correctStreak = Math.max(
-                  0,
-                  originalWord.correctStreak - 2,
-                );
               }
             }
           }
@@ -10788,7 +10907,7 @@
 
           setTimeout(() => {
             inp.style.borderColor = "transparent";
-            window.isCheckingAnswer = false; // Знімаємо блок перевірки
+            window.isCheckingAnswer = false;
 
             if (blitzState.isEndless) {
               blitzState.index++;
@@ -11035,12 +11154,14 @@
         }
       };
 
-let currentReviewTag = "all";
+      let currentReviewTag = "all";
       let currentReviewSort = "newest";
 
       window.setReviewTagFilter = function (tag, el) {
         currentReviewTag = tag;
-        document.querySelectorAll("#reviewTagFilters .svg-filter-item").forEach(item => item.classList.remove("active"));
+        document
+          .querySelectorAll("#reviewTagFilters .svg-filter-item")
+          .forEach((item) => item.classList.remove("active"));
         if (el) el.classList.add("active");
         window.filterReviewWordSelector();
       };
@@ -11049,7 +11170,7 @@ let currentReviewTag = "all";
         currentReviewSort = mode;
         const wrapper = document.getElementById("reviewSortWrapper");
         if (wrapper) {
-          wrapper.querySelectorAll(".custom-select-option").forEach(opt => {
+          wrapper.querySelectorAll(".custom-select-option").forEach((opt) => {
             opt.classList.toggle("selected", opt.innerText.trim() === label);
           });
           wrapper.classList.remove("open");
@@ -12744,25 +12865,45 @@ ${exerciseJsonRule}`;
       };
 
       window.filterReviewWordSelector = function () {
-        const q = normalizeAnswerText(document.getElementById("review-sheet-search")?.value || "");
+        const q = normalizeAnswerText(
+          document.getElementById("review-sheet-search")?.value || "",
+        );
         const list = document.getElementById("review-word-list-container");
         if (!list) return;
 
         // Лічильники
-        const countBlue = appData.words.filter(w => (w.difficulty || "blue") === "blue").length;
-        const countYellow = appData.words.filter(w => w.difficulty === "yellow").length;
-        const countRed = appData.words.filter(w => w.difficulty === "red").length;
-        const countGreen = appData.words.filter(w => w.difficulty === "green").length;
+        const countBlue = appData.words.filter(
+          (w) => (w.difficulty || "blue") === "blue",
+        ).length;
+        const countYellow = appData.words.filter(
+          (w) => w.difficulty === "yellow",
+        ).length;
+        const countRed = appData.words.filter(
+          (w) => w.difficulty === "red",
+        ).length;
+        const countGreen = appData.words.filter(
+          (w) => w.difficulty === "green",
+        ).length;
 
-        if (document.getElementById("rev-count-all")) document.getElementById("rev-count-all").innerText = appData.words.length;
-        if (document.getElementById("rev-count-blue")) document.getElementById("rev-count-blue").innerText = countBlue;
-        if (document.getElementById("rev-count-yellow")) document.getElementById("rev-count-yellow").innerText = countYellow;
-        if (document.getElementById("rev-count-red")) document.getElementById("rev-count-red").innerText = countRed;
-        if (document.getElementById("rev-count-green")) document.getElementById("rev-count-green").innerText = countGreen;
-        if (document.getElementById("review-yellow-count")) document.getElementById("review-yellow-count").innerText = countYellow;
+        if (document.getElementById("rev-count-all"))
+          document.getElementById("rev-count-all").innerText =
+            appData.words.length;
+        if (document.getElementById("rev-count-blue"))
+          document.getElementById("rev-count-blue").innerText = countBlue;
+        if (document.getElementById("rev-count-yellow"))
+          document.getElementById("rev-count-yellow").innerText = countYellow;
+        if (document.getElementById("rev-count-red"))
+          document.getElementById("rev-count-red").innerText = countRed;
+        if (document.getElementById("rev-count-green"))
+          document.getElementById("rev-count-green").innerText = countGreen;
+        if (document.getElementById("review-yellow-count"))
+          document.getElementById("review-yellow-count").innerText =
+            countYellow;
 
         let words = appData.words.filter((w) => {
-          const match = normalizeAnswerText(w.cz).includes(q) || normalizeAnswerText(w.ua).includes(q);
+          const match =
+            normalizeAnswerText(w.cz).includes(q) ||
+            normalizeAnswerText(w.ua).includes(q);
           if (!match) return false;
           const diff = getNormalizedDifficulty(w);
           if (currentReviewTag === "all") return true;
@@ -12771,16 +12912,22 @@ ${exerciseJsonRule}`;
 
         // Сортування
         words.sort((a, b) => {
-          if (currentReviewSort === "newest") return (Number(b.id) || 0) - (Number(a.id) || 0);
-          if (currentReviewSort === "oldest") return (Number(a.id) || 0) - (Number(b.id) || 0);
-          if (currentReviewSort === "alpha") return String(a.cz).localeCompare(String(b.cz), "cs");
+          if (currentReviewSort === "newest")
+            return (Number(b.id) || 0) - (Number(a.id) || 0);
+          if (currentReviewSort === "oldest")
+            return (Number(a.id) || 0) - (Number(b.id) || 0);
+          if (currentReviewSort === "alpha")
+            return String(a.cz).localeCompare(String(b.cz), "cs");
           return 0;
         });
 
-        list.innerHTML = words.map(w => {
-          const checked = reviewSelectedWords.has(String(w.id)) ? "checked" : "";
-          const diff = getNormalizedDifficulty(w);
-          return `
+        list.innerHTML = words
+          .map((w) => {
+            const checked = reviewSelectedWords.has(String(w.id))
+              ? "checked"
+              : "";
+            const diff = getNormalizedDifficulty(w);
+            return `
             <label class="blitz-word-item-row" style="touch-action: pan-y;">
               <span style="font-weight: 700; display:flex; align-items:center; gap:8px;">
                 <span class="badge-dot ${diff}"></span>
@@ -12790,7 +12937,8 @@ ${exerciseJsonRule}`;
               <input type="checkbox" value="${w.id}" ${checked} onchange="window.toggleReviewWord(this)" style="width:22px; height:22px; box-shadow:none;">
             </label>
           `;
-        }).join("");
+          })
+          .join("");
       };
 
       window.toggleReviewWord = function (checkbox) {
@@ -12830,8 +12978,11 @@ ${exerciseJsonRule}`;
         startNewWordsBlock();
       };
 
-// =========================================================================
+      // =========================================================================
       // АЛГОРИТМ ВИВЧЕННЯ ЖОВТИХ СЛІВ (АНАЛОГІЧНО ДО ДЕФОЛТНОГО РЕЖИМУ УРОКУ)
+      // =========================================================================
+      // =========================================================================
+      // АЛГОРИТМ ВИВЧЕННЯ ЖОВТИХ СЛІВ (ТОЧНА КОПІЯ ЛОГІКИ НОВИХ СЛІВ)
       // =========================================================================
       let yellowRoutine = {
         pool: [],
@@ -12839,7 +12990,7 @@ ${exerciseJsonRule}`;
         currentBlockIndex: 0,
 
         // Стан поточного блоку (Укр -> Чес)
-        phase: "learn", // 'learn' (3 рази одне слово) або 'review' (2 кола пулу)
+        phase: "learn", // 'learn' (3 рази слово) або 'review' (2 кола пулу)
         wordIndex: 0,
         learnReps: 0,
         reviewReps: 0,
@@ -12853,17 +13004,25 @@ ${exerciseJsonRule}`;
         revCycle: 1,
 
         // Фінальний бліц
+        blitzPool: [],
         blitzIndex: 0,
         blitzCorrect: 0,
         blitzWrong: 0,
-        countdownTimer: null
+        countdownTimer: null,
       };
 
-      const YS_TARGET_LEARN_REPS = 3;  // 3 рази вводимо слово
-      const YS_TARGET_REVIEW_ROUNDS = 2; // 2 кола повторення накопиченого пулу
+      const YS_TARGET_LEARN_REPS = 3; // Слово пишеться 3 рази
+      const YS_TARGET_REVIEW_ROUNDS = 2; // Накопичений пул повторюється 2 повних кола
 
       window.startYellowBlocksRoutine = function () {
-        const yellowWords = appData.words.filter((w) => w.difficulty === "yellow");
+        // Знаходимо всі жовті слова (також підтягуємо слова, у яких difficulty === 'yellow')
+        const yellowWords = appData.words.filter(
+          (w) =>
+            w &&
+            (w.difficulty === "yellow" ||
+              (w.incorrectCount > 0 && w.difficulty !== "red")),
+        );
+
         if (yellowWords.length === 0) {
           window.showToast("У вас немає жовтих (важких) слів для вивчення!");
           return;
@@ -12871,8 +13030,15 @@ ${exerciseJsonRule}`;
 
         window.closeReviewWordSelector();
 
-        // Розбиваємо слова на блоки по 10
-        yellowRoutine.pool = [...yellowWords];
+        // Формуємо чистий пул слів
+        yellowRoutine.pool = yellowWords.map((w) => ({
+          id: w.id,
+          cz: String(w.cz || "").trim(),
+          ua: String(w.ua || "").trim(),
+          tr: w.tr || "",
+        }));
+
+        // Розбиваємо строго на блоки по 10 слів
         yellowRoutine.blocks = [];
         for (let i = 0; i < yellowRoutine.pool.length; i += 10) {
           yellowRoutine.blocks.push(yellowRoutine.pool.slice(i, i + 10));
@@ -12884,7 +13050,362 @@ ${exerciseJsonRule}`;
       };
 
       function showYellowScreen(screenId) {
-        document.querySelectorAll("#yellow-study-modal .learn-block").forEach((b) => b.classList.remove("active"));
+        document
+          .querySelectorAll("#yellow-study-modal .learn-block")
+          .forEach((b) => b.classList.remove("active"));
+        const target = document.getElementById(screenId);
+        if (target) target.classList.add("active");
+      }
+
+      function initYellowBlock() {
+        yellowRoutine.phase = "learn";
+        yellowRoutine.wordIndex = 0;
+        yellowRoutine.learnReps = 0;
+        yellowRoutine.reviewReps = 0;
+        yellowRoutine.reviewQueue = [];
+
+        showYellowScreen("ys-play-block");
+        renderYellowState();
+      }
+
+      function renderYellowState() {
+        window.isCheckingAnswer = false; // Знімаємо будь-яке блокування
+        const block = yellowRoutine.blocks[yellowRoutine.currentBlockIndex];
+        if (!block || block.length === 0) {
+          window.closeYellowStudyModal();
+          return;
+        }
+
+        // Якщо всі 10 слів блоку вивчені та закріплені в пулі — запускаємо зворотний блок (Чеська -> Укр)
+        if (yellowRoutine.wordIndex >= block.length) {
+          initYellowReverseBlock();
+          return;
+        }
+
+        document.getElementById("ys-block-label").innerText =
+          `Блок ${yellowRoutine.currentBlockIndex + 1} з ${yellowRoutine.blocks.length}`;
+        const inp = document.getElementById("ys-input");
+        if (inp) {
+          inp.value = "";
+          inp.style.borderColor = "transparent";
+        }
+
+        if (yellowRoutine.phase === "learn") {
+          const cw = block[yellowRoutine.wordIndex];
+          window.currentYellowWord = cw.cz;
+          document.getElementById("ys-phase-badge").innerText = "ВИВЧЕННЯ";
+          document.getElementById("ys-phase-badge").style.color =
+            "var(--accent)";
+          document.getElementById("ys-question-word").innerText =
+            cw.ua || cw.cz;
+          document.getElementById("ys-word-num").innerText =
+            `${yellowRoutine.wordIndex + 1}/${block.length}`;
+          document.getElementById("ys-rep-label").innerText =
+            `Повтор: ${yellowRoutine.learnReps}/${YS_TARGET_LEARN_REPS}`;
+        } else {
+          const rw =
+            yellowRoutine.currentReviewList[yellowRoutine.reviewListIndex];
+          window.currentYellowWord = rw.cz;
+          document.getElementById("ys-phase-badge").innerText =
+            "ЗАКРІПЛЕННЯ ПУЛУ";
+          document.getElementById("ys-phase-badge").style.color =
+            "var(--success)";
+          document.getElementById("ys-question-word").innerText =
+            rw.ua || rw.cz;
+          document.getElementById("ys-word-num").innerText =
+            `${yellowRoutine.reviewListIndex + 1}/${yellowRoutine.currentReviewList.length}`;
+          document.getElementById("ys-rep-label").innerText =
+            `Коло: ${yellowRoutine.reviewReps + 1}/${YS_TARGET_REVIEW_ROUNDS}`;
+        }
+
+        setTimeout(() => {
+          if (inp) inp.focus();
+        }, 100);
+      }
+
+      function prepareYellowReviewList() {
+        yellowRoutine.currentReviewList = [...yellowRoutine.reviewQueue].sort(
+          () => Math.random() - 0.5,
+        );
+        yellowRoutine.reviewListIndex = 0;
+      }
+
+      window.checkYellowWord = function () {
+        if (window.isCheckingAnswer) return;
+        const block = yellowRoutine.blocks[yellowRoutine.currentBlockIndex];
+        const targetObj =
+          yellowRoutine.phase === "learn"
+            ? block[yellowRoutine.wordIndex]
+            : yellowRoutine.currentReviewList[yellowRoutine.reviewListIndex];
+
+        if (!targetObj) return;
+
+        const inp = document.getElementById("ys-input");
+        const val = normalizeAnswerText(inp ? inp.value : "");
+        const target = normalizeAnswerText(targetObj.cz);
+
+        window.isCheckingAnswer = true;
+
+        if (isAcceptedAnswer(val, target)) {
+          if (appData.user.autoAudio) window.speak(targetObj.cz);
+          if (inp) inp.style.borderColor = "var(--success)";
+
+          setTimeout(() => {
+            window.isCheckingAnswer = false;
+
+            if (yellowRoutine.phase === "learn") {
+              yellowRoutine.learnReps++;
+              if (yellowRoutine.learnReps >= YS_TARGET_LEARN_REPS) {
+                // Додаємо слово до пулу закріплення
+                yellowRoutine.reviewQueue.push(targetObj);
+                yellowRoutine.phase = "review";
+                yellowRoutine.reviewReps = 0;
+                prepareYellowReviewList();
+              }
+            } else {
+              yellowRoutine.reviewListIndex++;
+              if (
+                yellowRoutine.reviewListIndex >=
+                yellowRoutine.currentReviewList.length
+              ) {
+                yellowRoutine.reviewReps++;
+                if (yellowRoutine.reviewReps >= YS_TARGET_REVIEW_ROUNDS) {
+                  // Пул пройдено! Переходимо до наступного слова блоку
+                  yellowRoutine.phase = "learn";
+                  yellowRoutine.wordIndex++;
+                  yellowRoutine.learnReps = 0;
+                } else {
+                  prepareYellowReviewList();
+                }
+              }
+            }
+            renderYellowState();
+          }, 250);
+        } else {
+          if (inp) inp.style.borderColor = "var(--danger)";
+          window.showToast(`Правильно: ${targetObj.cz}`);
+          setTimeout(() => {
+            window.isCheckingAnswer = false;
+            if (inp) {
+              inp.style.borderColor = "transparent";
+              inp.focus();
+            }
+          }, 800);
+        }
+      };
+
+      window.showYellowHint = function () {
+        const popup = document.getElementById("ys-hint-popup");
+        if (!popup) return;
+        popup.innerText = window.currentYellowWord || "";
+        popup.classList.add("show");
+        setTimeout(() => popup.classList.remove("show"), 2500);
+      };
+
+      window.speakYellowWord = function () {
+        if (window.currentYellowWord) window.speak(window.currentYellowWord);
+      };
+
+      // ================= ЗВОРОТНИЙ БЛОК (ЧЕС ➔ УКР, 3 КОЛА) =================
+      function initYellowReverseBlock() {
+        const block = yellowRoutine.blocks[yellowRoutine.currentBlockIndex];
+        yellowRoutine.revPool = [...block].sort(() => Math.random() - 0.5);
+        yellowRoutine.revIndex = 0;
+        yellowRoutine.revCycle = 1;
+
+        showYellowScreen("ys-reverse-block");
+        renderYellowReverseStep();
+      }
+
+      function renderYellowReverseStep() {
+        window.isCheckingAnswer = false;
+        if (yellowRoutine.revCycle > 3) {
+          // Блок повністю пройдено в обох напрямках!
+          yellowRoutine.currentBlockIndex++;
+          saveData(); // Фіксуємо прогрес пройденого блоку
+          window.showToast(
+            `🎉 Блок ${yellowRoutine.currentBlockIndex} повністю пройдено!`,
+          );
+
+          if (yellowRoutine.currentBlockIndex >= yellowRoutine.blocks.length) {
+            // Всі блоки пройдено -> таймер 1 година до фінального бліцу
+            startOneHourWait();
+          } else {
+            initYellowBlock();
+          }
+          return;
+        }
+
+        const w = yellowRoutine.revPool[yellowRoutine.revIndex];
+        document.getElementById("ys-rev-block-label").innerText =
+          `Блок ${yellowRoutine.currentBlockIndex + 1} з ${yellowRoutine.blocks.length}`;
+        document.getElementById("ys-rev-word-num").innerText =
+          `${yellowRoutine.revIndex + 1}/${yellowRoutine.revPool.length}`;
+        document.getElementById("ys-rev-cycle-num").innerText =
+          `${yellowRoutine.revCycle}/3`;
+        document.getElementById("ys-rev-question-word").innerText =
+          w.cz || w.ua;
+
+        const inp = document.getElementById("ys-rev-input");
+        if (inp) {
+          inp.value = "";
+          inp.style.borderColor = "transparent";
+          setTimeout(() => inp.focus(), 80);
+        }
+      }
+
+      window.checkYellowReverseWord = function () {
+        if (window.isCheckingAnswer) return;
+        const w = yellowRoutine.revPool[yellowRoutine.revIndex];
+        if (!w) return;
+
+        const inp = document.getElementById("ys-rev-input");
+        const val = normalizeAnswerText(inp ? inp.value : "");
+        const target = normalizeAnswerText(w.ua);
+
+        window.isCheckingAnswer = true;
+
+        if (isAcceptedAnswer(val, target)) {
+          if (inp) inp.style.borderColor = "var(--success)";
+          setTimeout(() => {
+            window.isCheckingAnswer = false;
+            yellowRoutine.revIndex++;
+            if (yellowRoutine.revIndex >= yellowRoutine.revPool.length) {
+              yellowRoutine.revIndex = 0;
+              yellowRoutine.revCycle++;
+              yellowRoutine.revPool.sort(() => Math.random() - 0.5);
+            }
+            renderYellowReverseStep();
+          }, 250);
+        } else {
+          if (inp) inp.style.borderColor = "var(--danger)";
+          window.showToast(`Правильно: ${w.ua}`);
+          setTimeout(() => {
+            window.isCheckingAnswer = false;
+            if (inp) {
+              inp.style.borderColor = "transparent";
+              inp.focus();
+            }
+          }, 800);
+        }
+      };
+
+      // ================= ТАЙМЕР 1 ГОДИНА ТА ФІНАЛЬНИЙ БЛІЦ =================
+      function startOneHourWait() {
+        showYellowScreen("ys-timer-block");
+        let duration = 3600; // 60 хв
+        clearInterval(yellowRoutine.countdownTimer);
+
+        const updateTimer = () => {
+          const m = String(Math.floor(duration / 60)).padStart(2, "0");
+          const s = String(duration % 60).padStart(2, "0");
+          const el = document.getElementById("ys-hour-countdown");
+          if (el) el.innerText = `${m}:${s}`;
+          if (duration <= 0) {
+            clearInterval(yellowRoutine.countdownTimer);
+            window.startFinalYellowCheck(false);
+          }
+          duration--;
+        };
+
+        updateTimer();
+        yellowRoutine.countdownTimer = setInterval(updateTimer, 1000);
+      }
+
+      window.startFinalYellowCheck = function (skipWait = false) {
+        clearInterval(yellowRoutine.countdownTimer);
+        window.showToast("🎯 Фінальна бліц-перевірка знань!");
+
+        yellowRoutine.blitzPool = [...yellowRoutine.pool].sort(
+          () => Math.random() - 0.5,
+        );
+        yellowRoutine.blitzIndex = 0;
+        yellowRoutine.blitzCorrect = 0;
+        yellowRoutine.blitzWrong = 0;
+
+        showYellowScreen("ys-blitz-block");
+        renderYellowBlitzStep();
+      };
+
+      function renderYellowBlitzStep() {
+        window.isCheckingAnswer = false;
+        if (yellowRoutine.blitzIndex >= yellowRoutine.blitzPool.length) {
+          finishYellowSession();
+          return;
+        }
+
+        const w = yellowRoutine.blitzPool[yellowRoutine.blitzIndex];
+        document.getElementById("ys-blitz-progress-text").innerText =
+          `${yellowRoutine.blitzIndex + 1}/${yellowRoutine.blitzPool.length}`;
+        document.getElementById("ys-blitz-q").innerText = w.ua || w.cz;
+        const inp = document.getElementById("ys-blitz-input");
+        if (inp) {
+          inp.value = "";
+          inp.style.borderColor = "transparent";
+          setTimeout(() => inp.focus(), 80);
+        }
+      }
+
+      window.checkYellowBlitzWord = function () {
+        if (window.isCheckingAnswer) return;
+        const w = yellowRoutine.blitzPool[yellowRoutine.blitzIndex];
+        if (!w) return;
+
+        const inp = document.getElementById("ys-blitz-input");
+        const val = normalizeAnswerText(inp ? inp.value : "");
+        const target = normalizeAnswerText(w.cz);
+
+        window.isCheckingAnswer = true;
+        const orig = appData.words.find((x) => String(x.id) === String(w.id));
+
+        if (isAcceptedAnswer(val, target)) {
+          yellowRoutine.blitzCorrect++;
+          if (orig) {
+            orig.difficulty = "green"; // Успішно вивчено ➔ стає зеленим!
+            orig.correctStreak = (orig.correctStreak || 0) + 1;
+            orig.incorrectCount = 0;
+          }
+          if (inp) inp.style.borderColor = "var(--success)";
+        } else {
+          yellowRoutine.blitzWrong++;
+          window.showToast(`Правильно: ${w.cz}`);
+          if (orig) {
+            orig.difficulty = "yellow"; // Залишається жовтим
+          }
+          if (inp) inp.style.borderColor = "var(--danger)";
+        }
+
+        setTimeout(() => {
+          window.isCheckingAnswer = false;
+          yellowRoutine.blitzIndex++;
+          renderYellowBlitzStep();
+        }, 300);
+      };
+
+      function finishYellowSession() {
+        document.getElementById("ys-stat-total").innerText =
+          yellowRoutine.pool.length;
+        document.getElementById("ys-stat-learned").innerText =
+          yellowRoutine.blitzCorrect;
+        document.getElementById("ys-stat-remained").innerText =
+          yellowRoutine.blitzWrong;
+
+        showYellowScreen("ys-summary-block");
+        saveData();
+      }
+
+      window.closeYellowStudyModal = function () {
+        clearInterval(yellowRoutine.countdownTimer);
+        document
+          .getElementById("yellow-study-modal")
+          .classList.remove("active");
+        updateUI();
+      };
+
+      function showYellowScreen(screenId) {
+        document
+          .querySelectorAll("#yellow-study-modal .learn-block")
+          .forEach((b) => b.classList.remove("active"));
         document.getElementById(screenId).classList.add("active");
       }
 
@@ -12901,14 +13422,15 @@ ${exerciseJsonRule}`;
 
       function renderYellowState() {
         const block = yellowRoutine.blocks[yellowRoutine.currentBlockIndex];
-        
+
         // Якщо всі 10 слів блоку вивчені та повторені в пулі — переходимо до зворотного перекладу цього ж блоку
         if (yellowRoutine.wordIndex >= block.length) {
           initYellowReverseBlock();
           return;
         }
 
-        document.getElementById("ys-block-label").innerText = `Блок ${yellowRoutine.currentBlockIndex + 1} з ${yellowRoutine.blocks.length}`;
+        document.getElementById("ys-block-label").innerText =
+          `Блок ${yellowRoutine.currentBlockIndex + 1} з ${yellowRoutine.blocks.length}`;
         const inp = document.getElementById("ys-input");
         inp.value = "";
 
@@ -12916,34 +13438,45 @@ ${exerciseJsonRule}`;
           const cw = block[yellowRoutine.wordIndex];
           window.currentYellowWord = cw.cz;
           document.getElementById("ys-phase-badge").innerText = "ВИВЧЕННЯ";
-          document.getElementById("ys-phase-badge").style.color = "var(--accent)";
+          document.getElementById("ys-phase-badge").style.color =
+            "var(--accent)";
           document.getElementById("ys-question-word").innerText = cw.ua;
-          document.getElementById("ys-word-num").innerText = `${yellowRoutine.wordIndex + 1}/${block.length}`;
-          document.getElementById("ys-rep-label").innerText = `Повтор: ${yellowRoutine.learnReps}/${YS_TARGET_LEARN_REPS}`;
+          document.getElementById("ys-word-num").innerText =
+            `${yellowRoutine.wordIndex + 1}/${block.length}`;
+          document.getElementById("ys-rep-label").innerText =
+            `Повтор: ${yellowRoutine.learnReps}/${YS_TARGET_LEARN_REPS}`;
         } else {
-          const rw = yellowRoutine.currentReviewList[yellowRoutine.reviewListIndex];
+          const rw =
+            yellowRoutine.currentReviewList[yellowRoutine.reviewListIndex];
           window.currentYellowWord = rw.cz;
-          document.getElementById("ys-phase-badge").innerText = "ЗАКРІПЛЕННЯ ПУЛУ";
-          document.getElementById("ys-phase-badge").style.color = "var(--success)";
+          document.getElementById("ys-phase-badge").innerText =
+            "ЗАКРІПЛЕННЯ ПУЛУ";
+          document.getElementById("ys-phase-badge").style.color =
+            "var(--success)";
           document.getElementById("ys-question-word").innerText = rw.ua;
-          document.getElementById("ys-word-num").innerText = `${yellowRoutine.reviewListIndex + 1}/${yellowRoutine.currentReviewList.length}`;
-          document.getElementById("ys-rep-label").innerText = `Коло: ${yellowRoutine.reviewReps + 1}/${YS_TARGET_REVIEW_ROUNDS}`;
+          document.getElementById("ys-word-num").innerText =
+            `${yellowRoutine.reviewListIndex + 1}/${yellowRoutine.currentReviewList.length}`;
+          document.getElementById("ys-rep-label").innerText =
+            `Коло: ${yellowRoutine.reviewReps + 1}/${YS_TARGET_REVIEW_ROUNDS}`;
         }
 
         setTimeout(() => inp.focus(), 60);
       }
 
       function prepareYellowReviewList() {
-        yellowRoutine.currentReviewList = [...yellowRoutine.reviewQueue].sort(() => Math.random() - 0.5);
+        yellowRoutine.currentReviewList = [...yellowRoutine.reviewQueue].sort(
+          () => Math.random() - 0.5,
+        );
         yellowRoutine.reviewListIndex = 0;
       }
 
       window.checkYellowWord = function () {
         const block = yellowRoutine.blocks[yellowRoutine.currentBlockIndex];
-        const targetObj = yellowRoutine.phase === "learn"
-          ? block[yellowRoutine.wordIndex]
-          : yellowRoutine.currentReviewList[yellowRoutine.reviewListIndex];
-        
+        const targetObj =
+          yellowRoutine.phase === "learn"
+            ? block[yellowRoutine.wordIndex]
+            : yellowRoutine.currentReviewList[yellowRoutine.reviewListIndex];
+
         if (!targetObj) return;
 
         const inp = document.getElementById("ys-input");
@@ -12968,7 +13501,10 @@ ${exerciseJsonRule}`;
               }
             } else {
               yellowRoutine.reviewListIndex++;
-              if (yellowRoutine.reviewListIndex >= yellowRoutine.currentReviewList.length) {
+              if (
+                yellowRoutine.reviewListIndex >=
+                yellowRoutine.currentReviewList.length
+              ) {
                 yellowRoutine.reviewReps++;
                 if (yellowRoutine.reviewReps >= YS_TARGET_REVIEW_ROUNDS) {
                   // Пул пройдено! Переходимо до наступного слова блоку
@@ -13020,7 +13556,9 @@ ${exerciseJsonRule}`;
           // Повністю завершено блок із 10 слів в обох напрямках!
           yellowRoutine.currentBlockIndex++;
           saveData(); // Прогрес блоку надійно збережено
-          window.showToast(`🎉 Блок ${yellowRoutine.currentBlockIndex} повністю засвоєно!`);
+          window.showToast(
+            `🎉 Блок ${yellowRoutine.currentBlockIndex} повністю засвоєно!`,
+          );
 
           if (yellowRoutine.currentBlockIndex >= yellowRoutine.blocks.length) {
             // Всі блоки по 10 завершені -> вмикаємо таймер на 1 годину до фінальної перевірки
@@ -13032,9 +13570,12 @@ ${exerciseJsonRule}`;
         }
 
         const w = yellowRoutine.revPool[yellowRoutine.revIndex];
-        document.getElementById("ys-rev-block-label").innerText = `Блок ${yellowRoutine.currentBlockIndex + 1} з ${yellowRoutine.blocks.length}`;
-        document.getElementById("ys-rev-word-num").innerText = `${yellowRoutine.revIndex + 1}/${yellowRoutine.revPool.length}`;
-        document.getElementById("ys-rev-cycle-num").innerText = `${yellowRoutine.revCycle}/3`;
+        document.getElementById("ys-rev-block-label").innerText =
+          `Блок ${yellowRoutine.currentBlockIndex + 1} з ${yellowRoutine.blocks.length}`;
+        document.getElementById("ys-rev-word-num").innerText =
+          `${yellowRoutine.revIndex + 1}/${yellowRoutine.revPool.length}`;
+        document.getElementById("ys-rev-cycle-num").innerText =
+          `${yellowRoutine.revCycle}/3`;
         document.getElementById("ys-rev-question-word").innerText = w.cz;
 
         const inp = document.getElementById("ys-rev-input");
@@ -13096,7 +13637,9 @@ ${exerciseJsonRule}`;
         clearInterval(yellowRoutine.countdownTimer);
         window.showToast("🎯 Фінальна бліц-перевірка знань!");
 
-        yellowRoutine.blitzPool = [...yellowRoutine.pool].sort(() => Math.random() - 0.5);
+        yellowRoutine.blitzPool = [...yellowRoutine.pool].sort(
+          () => Math.random() - 0.5,
+        );
         yellowRoutine.blitzIndex = 0;
         yellowRoutine.blitzCorrect = 0;
         yellowRoutine.blitzWrong = 0;
@@ -13112,7 +13655,8 @@ ${exerciseJsonRule}`;
         }
 
         const w = yellowRoutine.blitzPool[yellowRoutine.blitzIndex];
-        document.getElementById("ys-blitz-progress-text").innerText = `${yellowRoutine.blitzIndex + 1}/${yellowRoutine.blitzPool.length}`;
+        document.getElementById("ys-blitz-progress-text").innerText =
+          `${yellowRoutine.blitzIndex + 1}/${yellowRoutine.blitzPool.length}`;
         document.getElementById("ys-blitz-q").innerText = w.ua;
         const inp = document.getElementById("ys-blitz-input");
         inp.value = "";
@@ -13146,9 +13690,12 @@ ${exerciseJsonRule}`;
       };
 
       function finishYellowSession() {
-        document.getElementById("ys-stat-total").innerText = yellowRoutine.pool.length;
-        document.getElementById("ys-stat-learned").innerText = yellowRoutine.blitzCorrect;
-        document.getElementById("ys-stat-remained").innerText = yellowRoutine.blitzWrong;
+        document.getElementById("ys-stat-total").innerText =
+          yellowRoutine.pool.length;
+        document.getElementById("ys-stat-learned").innerText =
+          yellowRoutine.blitzCorrect;
+        document.getElementById("ys-stat-remained").innerText =
+          yellowRoutine.blitzWrong;
 
         showYellowScreen("ys-summary-block");
         saveData();
@@ -13156,49 +13703,34 @@ ${exerciseJsonRule}`;
 
       window.closeYellowStudyModal = function () {
         clearInterval(yellowRoutine.countdownTimer);
-        document.getElementById("yellow-study-modal").classList.remove("active");
+        document
+          .getElementById("yellow-study-modal")
+          .classList.remove("active");
         updateUI();
       };
 
       // Старт сесії вивчення жовтих слів
-      window.startYellowBlocksRoutine = function () {
-        const yellowWords = appData.words.filter(w => w.difficulty === "yellow");
-        if (yellowWords.length === 0) {
-          window.showToast("У вас немає жовтих (важких) слів для вивчення!");
-          return;
-        }
-
-        window.closeReviewWordSelector();
-
-        // Ділимо слова на блоки по 10
-        yellowRoutine.pool = [...yellowWords];
-        yellowRoutine.blocks = [];
-        for (let i = 0; i < yellowRoutine.pool.length; i += 10) {
-          yellowRoutine.blocks.push(yellowRoutine.pool.slice(i, i + 10));
-        }
-
-        yellowRoutine.currentBlockIndex = 0;
-        yellowRoutine.phase = "ua-cz";
-        yellowRoutine.stepIndex = 0;
-        yellowRoutine.testStage = 0;
-
-        document.getElementById("yellow-study-modal").classList.add("active");
-        showYellowScreen("ys-play-block");
-        renderYellowStep();
-      };
 
       function showYellowScreen(screenId) {
-        document.querySelectorAll("#yellow-study-modal .learn-block").forEach(b => b.classList.remove("active"));
+        document
+          .querySelectorAll("#yellow-study-modal .learn-block")
+          .forEach((b) => b.classList.remove("active"));
         document.getElementById(screenId).classList.add("active");
       }
 
       function renderYellowStep() {
-        const currentBlock = yellowRoutine.blocks[yellowRoutine.currentBlockIndex];
+        const currentBlock =
+          yellowRoutine.blocks[yellowRoutine.currentBlockIndex];
         const word = currentBlock[yellowRoutine.stepIndex];
 
-        document.getElementById("ys-block-label").innerText = `Блок ${yellowRoutine.currentBlockIndex + 1} з ${yellowRoutine.blocks.length}`;
-        document.getElementById("ys-phase-label").innerText = yellowRoutine.phase === "ua-cz" ? "Етап 1: Укр ➔ Чеська" : "Етап 2: Чеська ➔ Укр";
-        document.getElementById("ys-step-progress").innerText = `Слово ${yellowRoutine.stepIndex + 1} з ${currentBlock.length}`;
+        document.getElementById("ys-block-label").innerText =
+          `Блок ${yellowRoutine.currentBlockIndex + 1} з ${yellowRoutine.blocks.length}`;
+        document.getElementById("ys-phase-label").innerText =
+          yellowRoutine.phase === "ua-cz"
+            ? "Етап 1: Укр ➔ Чеська"
+            : "Етап 2: Чеська ➔ Укр";
+        document.getElementById("ys-step-progress").innerText =
+          `Слово ${yellowRoutine.stepIndex + 1} з ${currentBlock.length}`;
 
         const qWord = document.getElementById("ys-question-word");
         const speakBtn = document.getElementById("ys-speak-btn");
@@ -13221,12 +13753,15 @@ ${exerciseJsonRule}`;
       }
 
       window.checkYellowWordAnswer = function () {
-        const currentBlock = yellowRoutine.blocks[yellowRoutine.currentBlockIndex];
+        const currentBlock =
+          yellowRoutine.blocks[yellowRoutine.currentBlockIndex];
         const word = currentBlock[yellowRoutine.stepIndex];
         const inp = document.getElementById("ys-input");
         const userVal = inp.value.trim().toLowerCase();
 
-        const target = (yellowRoutine.phase === "ua-cz" ? word.cz : word.ua).toLowerCase();
+        const target = (
+          yellowRoutine.phase === "ua-cz" ? word.cz : word.ua
+        ).toLowerCase();
 
         if (!isAcceptedAnswer(userVal, target)) {
           window.showToast(`Правильно: ${target}`);
@@ -13243,7 +13778,9 @@ ${exerciseJsonRule}`;
           if (yellowRoutine.phase === "ua-cz") {
             yellowRoutine.phase = "cz-ua";
             yellowRoutine.stepIndex = 0;
-            window.showToast("✨ Перша частина блоку пройдена! Тепер закріплення.");
+            window.showToast(
+              "✨ Перша частина блоку пройдена! Тепер закріплення.",
+            );
           } else {
             // Повністю завершено блок із 10 слів
             yellowRoutine.currentBlockIndex++;
@@ -13252,9 +13789,13 @@ ${exerciseJsonRule}`;
 
             // Зберігаємо прогрес пройденого блоку
             saveData();
-            window.showToast(`🎉 Блок ${yellowRoutine.currentBlockIndex} успішно пройдено!`);
+            window.showToast(
+              `🎉 Блок ${yellowRoutine.currentBlockIndex} успішно пройдено!`,
+            );
 
-            if (yellowRoutine.currentBlockIndex >= yellowRoutine.blocks.length) {
+            if (
+              yellowRoutine.currentBlockIndex >= yellowRoutine.blocks.length
+            ) {
               // Всі блоки пройдено! Переходимо до 1-ї перевірки (бліц)
               startFirstCheckQuiz();
               return;
@@ -13266,7 +13807,8 @@ ${exerciseJsonRule}`;
       };
 
       window.showYellowWordHint = function () {
-        const currentBlock = yellowRoutine.blocks[yellowRoutine.currentBlockIndex];
+        const currentBlock =
+          yellowRoutine.blocks[yellowRoutine.currentBlockIndex];
         const word = currentBlock[yellowRoutine.stepIndex];
         const target = yellowRoutine.phase === "ua-cz" ? word.cz : word.ua;
         window.showToast(`Підказка: ${target}`);
@@ -13276,7 +13818,9 @@ ${exerciseJsonRule}`;
       function startFirstCheckQuiz() {
         yellowRoutine.testStage = 1;
         window.showToast("🚀 Перша швидка перевірка всіх слів!");
-        blitzState.words = [...yellowRoutine.pool].sort(() => 0.5 - Math.random());
+        blitzState.words = [...yellowRoutine.pool].sort(
+          () => 0.5 - Math.random(),
+        );
         blitzState.index = 0;
         blitzState.correct = 0;
         blitzState.wrong = 0;
@@ -13293,9 +13837,12 @@ ${exerciseJsonRule}`;
           return;
         }
         const w = blitzState.words[blitzState.index];
-        document.getElementById("ys-block-label").innerText = "Бліц-перевірка #1";
-        document.getElementById("ys-phase-label").innerText = "Одразу після вивчення";
-        document.getElementById("ys-step-progress").innerText = `Слово ${blitzState.index + 1} з ${blitzState.words.length}`;
+        document.getElementById("ys-block-label").innerText =
+          "Бліц-перевірка #1";
+        document.getElementById("ys-phase-label").innerText =
+          "Одразу після вивчення";
+        document.getElementById("ys-step-progress").innerText =
+          `Слово ${blitzState.index + 1} з ${blitzState.words.length}`;
         document.getElementById("ys-question-word").innerText = w.ua;
         document.getElementById("ys-speak-btn").style.display = "none";
         document.getElementById("ys-input").value = "";
@@ -13333,7 +13880,9 @@ ${exerciseJsonRule}`;
         yellowRoutine.testStage = 3;
         window.showToast("🎯 Фінальна перевірка знань!");
 
-        blitzState.words = [...yellowRoutine.pool].sort(() => 0.5 - Math.random());
+        blitzState.words = [...yellowRoutine.pool].sort(
+          () => 0.5 - Math.random(),
+        );
         blitzState.index = 0;
         blitzState.correct = 0;
         blitzState.wrong = 0;
@@ -13348,9 +13897,11 @@ ${exerciseJsonRule}`;
           return;
         }
         const w = blitzState.words[blitzState.index];
-        document.getElementById("ys-block-label").innerText = "Фінальна перевірка #2";
+        document.getElementById("ys-block-label").innerText =
+          "Фінальна перевірка #2";
         document.getElementById("ys-phase-label").innerText = "Через 1 годину";
-        document.getElementById("ys-step-progress").innerText = `Слово ${blitzState.index + 1} з ${blitzState.words.length}`;
+        document.getElementById("ys-step-progress").innerText =
+          `Слово ${blitzState.index + 1} з ${blitzState.words.length}`;
         document.getElementById("ys-question-word").innerText = w.ua;
         document.getElementById("ys-speak-btn").style.display = "none";
         document.getElementById("ys-input").value = "";
@@ -13361,8 +13912,8 @@ ${exerciseJsonRule}`;
         let learnedCount = 0;
         let remainedCount = 0;
 
-        yellowRoutine.pool.forEach(w => {
-          const orig = appData.words.find(x => String(x.id) === String(w.id));
+        yellowRoutine.pool.forEach((w) => {
+          const orig = appData.words.find((x) => String(x.id) === String(w.id));
           if (orig) {
             // Якщо відповіли правильно без помилок — переводимо в зелене
             orig.difficulty = "green";
@@ -13371,7 +13922,8 @@ ${exerciseJsonRule}`;
           }
         });
 
-        document.getElementById("ys-stat-total").innerText = yellowRoutine.pool.length;
+        document.getElementById("ys-stat-total").innerText =
+          yellowRoutine.pool.length;
         document.getElementById("ys-stat-learned").innerText = learnedCount;
         document.getElementById("ys-stat-remained").innerText = remainedCount;
 
@@ -13381,7 +13933,9 @@ ${exerciseJsonRule}`;
 
       window.closeYellowStudyModal = function () {
         clearInterval(yellowRoutine.countdownTimer);
-        document.getElementById("yellow-study-modal").classList.remove("active");
+        document
+          .getElementById("yellow-study-modal")
+          .classList.remove("active");
         updateUI();
       };
 
