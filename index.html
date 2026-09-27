@@ -209,14 +209,31 @@
         transform: scale(0.92);
       }
 
-      /* ГОЛОВНИЙ КОНТЕЙНЕР */
       main {
         flex: 1;
         overflow-y: auto;
         overflow-x: hidden;
         padding: 10px 20px calc(120px + env(safe-area-inset-bottom, 15px)) 20px;
         -webkit-overflow-scrolling: touch;
-        overscroll-behavior-y: contain;
+        overscroll-behavior-y: auto;
+        touch-action: pan-y;
+      }
+
+      /* Дозволяємо вільний скрол при торканні до будь-яких карток та блоків */
+      .glass-card,
+      .home-hero-new,
+      .home-overview,
+      .home-action-card,
+      .tool-card,
+      .feature-tile,
+      .practice-priority,
+      .bento-item,
+      .analytics-card,
+      .analytics-command,
+      .settings-profile,
+      .settings-group,
+      .sheet-word-row {
+        touch-action: pan-y;
       }
 
       .section {
@@ -555,11 +572,47 @@
       .feature-read {
         background: linear-gradient(135deg, #059669, #84cc16);
       }
-      .feature-write {
-        background: linear-gradient(135deg, #7c3aed, #ec4899);
+      /* Кольоровий Liquid Glass для спеціалізованих карток */
+      .action-word {
+        background: linear-gradient(
+          135deg,
+          rgba(14, 165, 233, 0.75),
+          rgba(37, 99, 235, 0.8)
+        ) !important;
       }
-      .feature-review {
-        background: linear-gradient(135deg, #f59e0b, #ef4444);
+      .action-blitz {
+        background: linear-gradient(
+          135deg,
+          rgba(245, 158, 11, 0.78),
+          rgba(239, 68, 68, 0.8)
+        ) !important;
+      }
+      .action-write {
+        background: linear-gradient(
+          135deg,
+          rgba(124, 58, 237, 0.78),
+          rgba(236, 72, 153, 0.8)
+        ) !important;
+      }
+      .action-read {
+        background: linear-gradient(
+          135deg,
+          rgba(13, 148, 136, 0.78),
+          rgba(132, 204, 22, 0.8)
+        ) !important;
+      }
+
+      .reading-box,
+      .writing-analysis-box,
+      .blitz-settings-card,
+      #sent-setup-area > div,
+      .advanced-stats-card {
+        background: var(--film-glass) !important;
+        border: 1px solid var(--film-line) !important;
+        box-shadow: var(--film-shadow) !important;
+        backdrop-filter: var(--film-blur) !important;
+        -webkit-backdrop-filter: var(--film-blur) !important;
+        border-radius: 24px !important;
       }
 
       .home-section-title {
@@ -1448,7 +1501,7 @@
         border-bottom: 1px solid var(--card-border);
         cursor: pointer;
         align-items: center;
-        touch-action: manipulation;
+        touch-action: pan-y;
       }
 
       .study-sticky-pill {
@@ -2917,7 +2970,7 @@
           rgba(110, 156, 255, 0.16)
         );
         box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.14);
-        touch-action: manipulation;
+        touch-action: pan-y;
       }
       #my-words-sheet .sheet-word-row:active {
         transform: scale(0.985);
@@ -3049,6 +3102,7 @@
         padding: var(--space-2) var(--page-x)
           calc(116px + env(safe-area-inset-bottom, 15px)) !important;
       }
+
       .section > * + * {
         margin-top: var(--space-3);
       }
@@ -3527,34 +3581,649 @@
       }
       /* Unified liquid-glass system, matched to Film-library: translucent gradient,
          fine white edge, inset highlight, and deep soft shadow. */
+      /* =========================================
+         КОЛЬОРОВИЙ PRECISION LIQUID GLASS & BADGES
+      ========================================= */
       :root {
-        --film-glass: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.055));
-        --film-line: rgba(255,255,255,.22);
-        --film-shadow: inset 0 1px 1px rgba(255,255,255,.30), 0 1px 2px rgba(15,23,42,.10), 0 12px 34px rgba(15,23,42,.18);
-        --film-blur: blur(30px) saturate(180%);
+        --film-glass: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.32) 0%,
+          rgba(255, 255, 255, 0.12) 50%,
+          rgba(224, 238, 255, 0.22) 100%
+        );
+        --film-line: rgba(255, 255, 255, 0.45);
+        --film-shadow:
+          inset 0 1.5px 1.5px rgba(255, 255, 255, 0.7),
+          inset 0 -1px 2px rgba(0, 102, 255, 0.08),
+          0 16px 38px rgba(15, 23, 42, 0.12);
+        --film-blur: blur(32px) saturate(190%);
+
+        /* Кольорові відтінки міток слів */
+        --tag-blue: #007aff;
+        --tag-green: #10b981;
+        --tag-yellow: #f59e0b;
+        --tag-red: #ef4444;
       }
-      .glass-card, .home-overview, .home-useful-card, .analytics-card,
-      .settings-profile, .settings-group, .tool-card, .feature-tile,
-      .bento-item:not([class*="grad-"]), .practice-priority, .day-progress-btn,
-      .dictionary-library, .dictionary-bulk-import, .floating-sheet-panel,
-      .bottom-sheet, .confirm-box, .fm-header, #bottom-nav, .quick-glass-dock {
+
+      [data-theme="dark"] {
+        --film-glass: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.14) 0%,
+          rgba(30, 58, 138, 0.16) 45%,
+          rgba(112, 26, 117, 0.12) 100%
+        );
+        --film-line: rgba(255, 255, 255, 0.22);
+        --film-shadow:
+          inset 0 1.5px 1.5px rgba(255, 255, 255, 0.25),
+          inset 0 -1px 2px rgba(0, 0, 0, 0.5), 0 18px 42px rgba(0, 0, 0, 0.45);
+      }
+
+      /* =========================================
+         ФІЛЬТРИ СЛІВ ТА КАСТОМНИЙ SELECT
+      ========================================= */
+      .sort-pill-container {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 8px 18px 16px;
+        margin-bottom: 4px;
+        min-height: 58px;
+        flex-shrink: 0;
+        scrollbar-width: none;
+        align-items: center;
+      }
+      .sort-pill-btn {
+        width: auto !important;
+        min-height: 38px !important;
+        padding: 8px 15px !important;
+        font-size: 13px !important;
+        font-weight: 800 !important;
+        border-radius: 999px !important;
+        white-space: nowrap;
+        background: var(--film-glass) !important;
+        border: 1px solid var(--film-line) !important;
+        color: var(--text-sec) !important;
+        box-shadow: var(--film-shadow) !important;
+        backdrop-filter: var(--film-blur) !important;
+        -webkit-backdrop-filter: var(--film-blur) !important;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        flex-shrink: 0;
+      }
+      .sort-pill-btn.active {
+        background: linear-gradient(
+          135deg,
+          #007aff 0%,
+          #38bdf8 100%
+        ) !important;
+        color: #ffffff !important;
+        border-color: rgba(255, 255, 255, 0.6) !important;
+        box-shadow: 0 4px 14px rgba(0, 122, 255, 0.35) !important;
+      }
+      .badge-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        box-shadow: 0 0 8px currentColor;
+      }
+      .badge-dot.blue {
+        color: var(--tag-blue);
+        background: var(--tag-blue);
+      }
+      .badge-dot.green {
+        color: var(--tag-green);
+        background: var(--tag-green);
+      }
+      .badge-dot.yellow {
+        color: var(--tag-yellow);
+        background: var(--tag-yellow);
+      }
+      .badge-dot.red {
+        color: var(--tag-red);
+        background: var(--tag-red);
+      }
+
+      /* Кастомний випадаючий селект (Liquid Glass) */
+      .custom-select-wrapper {
+        position: relative;
+        display: inline-block;
+        user-select: none;
+      }
+      .custom-select-trigger {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        font-size: 12px;
+        font-weight: 800;
+        border-radius: 14px;
+        background: var(--film-glass);
+        border: 1px solid var(--film-line);
+        box-shadow: var(--film-shadow);
+        backdrop-filter: var(--film-blur);
+        -webkit-backdrop-filter: var(--film-blur);
+        color: var(--text-main);
+        cursor: pointer;
+      }
+      .custom-select-trigger i {
+        font-size: 10px;
+        transition: transform 0.25s ease;
+        color: var(--accent);
+      }
+      .custom-select-wrapper.open .custom-select-trigger i {
+        transform: rotate(180deg);
+      }
+      .custom-select-dropdown {
+        position: absolute;
+        top: calc(100% + 6px);
+        right: 0;
+        min-width: 150px;
+        background: var(--surface-solid);
+        border: 1px solid var(--film-line);
+        border-radius: 18px;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+        backdrop-filter: var(--film-blur);
+        -webkit-backdrop-filter: var(--film-blur);
+        z-index: 3100;
+        padding: 6px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition:
+          opacity 0.22s ease,
+          transform 0.22s ease;
+      }
+      .custom-select-wrapper.open .custom-select-dropdown {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .custom-select-option {
+        padding: 9px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--text-main);
+        cursor: pointer;
+        transition: 0.15s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .custom-select-option:hover,
+      .custom-select-option.selected {
+        background: rgba(0, 122, 255, 0.15);
+        color: var(--accent);
+      }
+      /* =========================================
+         СПРАВЖНІЙ КОЛЬОРОВИЙ LIQUID GLASS ДЛЯ ВСІХ КАРТОК
+      ========================================= */
+      .glass-card,
+      .home-overview,
+      .analytics-card,
+      .settings-profile,
+      .settings-group,
+      .floating-sheet-panel,
+      .bottom-sheet,
+      .confirm-box,
+      .fm-header,
+      #bottom-nav,
+      .quick-glass-dock {
+        background: var(--film-glass);
+        border: 1px solid var(--film-line);
+        box-shadow: var(--film-shadow);
+        backdrop-filter: var(--film-blur);
+        -webkit-backdrop-filter: var(--film-blur);
+      }
+
+      /* Словник: бібліотека та імпорт списку слів */
+      .dictionary-library {
+        background: linear-gradient(
+          135deg,
+          rgba(14, 165, 233, 0.28) 0%,
+          rgba(59, 130, 246, 0.18) 100%
+        ) !important;
+        border: 1px solid rgba(125, 211, 252, 0.4) !important;
+        box-shadow:
+          inset 0 1px 2px rgba(255, 255, 255, 0.5),
+          0 12px 28px rgba(2, 132, 199, 0.18) !important;
+      }
+
+      .dictionary-bulk-import {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-align: left;
+        padding: 16px 18px;
+        margin: 14px 0 4px;
+        width: 100%;
+        border-radius: 24px !important;
+        background: linear-gradient(
+          135deg,
+          rgba(139, 92, 246, 0.85) 0%,
+          rgba(59, 130, 246, 0.8) 100%
+        ) !important;
+        border: 1px solid rgba(255, 255, 255, 0.45) !important;
+        box-shadow:
+          inset 0 1.5px 2px rgba(255, 255, 255, 0.6),
+          0 14px 30px rgba(109, 40, 217, 0.28) !important;
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        color: #fff !important;
+      }
+
+      /* Бліц-тренування (Вогняний Liquid Glass) */
+      .practice-priority:not(.review),
+      .action-blitz {
+        background: linear-gradient(
+          135deg,
+          rgba(249, 115, 22, 0.88) 0%,
+          rgba(239, 68, 68, 0.88) 100%
+        ) !important;
+        border: 1px solid rgba(255, 255, 255, 0.42) !important;
+        box-shadow:
+          inset 0 1.5px 2px rgba(255, 255, 255, 0.5),
+          0 14px 30px rgba(234, 88, 12, 0.3) !important;
+      }
+
+      /* Повторення матеріалу (Смарагдово-океанічний Liquid Glass) */
+      .practice-priority.review,
+      .feature-review {
+        background: linear-gradient(
+          135deg,
+          rgba(13, 148, 136, 0.88) 0%,
+          rgba(37, 99, 235, 0.88) 100%
+        ) !important;
+        border: 1px solid rgba(255, 255, 255, 0.42) !important;
+        box-shadow:
+          inset 0 1.5px 2px rgba(255, 255, 255, 0.5),
+          0 14px 30px rgba(13, 148, 136, 0.28) !important;
+      }
+
+      /* Читання */
+      .tool-card:nth-child(1),
+      .action-read,
+      .feature-read {
+        background: linear-gradient(
+          135deg,
+          rgba(16, 185, 129, 0.85) 0%,
+          rgba(14, 165, 233, 0.85) 100%
+        ) !important;
+        border: 1px solid rgba(255, 255, 255, 0.45) !important;
+        box-shadow:
+          inset 0 1.5px 2px rgba(255, 255, 255, 0.5),
+          0 12px 28px rgba(16, 185, 129, 0.25) !important;
+      }
+
+      /* Письмо й речення */
+      .tool-card:nth-child(2),
+      .action-write,
+      .feature-write {
+        background: linear-gradient(
+          135deg,
+          rgba(168, 85, 247, 0.88) 0%,
+          rgba(236, 72, 153, 0.85) 100%
+        ) !important;
+        border: 1px solid rgba(255, 255, 255, 0.45) !important;
+        box-shadow:
+          inset 0 1.5px 2px rgba(255, 255, 255, 0.5),
+          0 12px 28px rgba(217, 70, 239, 0.25) !important;
+      }
+
+      /* Алфавіт */
+      .tool-card:nth-child(3) {
+        background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.85) 0%,
+          rgba(99, 102, 241, 0.85) 100%
+        ) !important;
+        border: 1px solid rgba(255, 255, 255, 0.45) !important;
+        box-shadow:
+          inset 0 1.5px 2px rgba(255, 255, 255, 0.5),
+          0 12px 28px rgba(79, 70, 229, 0.25) !important;
+      }
+
+      /* Довідник */
+      .tool-card:nth-child(4) {
+        background: linear-gradient(
+          135deg,
+          rgba(20, 184, 166, 0.85) 0%,
+          rgba(6, 182, 212, 0.85) 100%
+        ) !important;
+        border: 1px solid rgba(255, 255, 255, 0.45) !important;
+        box-shadow:
+          inset 0 1.5px 2px rgba(255, 255, 255, 0.5),
+          0 12px 28px rgba(14, 165, 233, 0.25) !important;
+      }
+
+      .tool-card,
+      .practice-priority {
+        border-radius: 24px !important;
+        backdrop-filter: blur(28px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+      }
+
+      /* =========================================
+         ВИПРАВЛЕНА ПАНЕЛЬ ПОШУКУ ТА СІТКА SVG ФІЛЬТРІВ
+      ========================================= */
+      .dict-search-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 0 18px 12px;
+        flex-shrink: 0;
+        width: 100%;
+      }
+
+      /* Повноцінний і рівний інпут без перекосів */
+      .dict-search-input-wrapper {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .dict-search-input-wrapper i {
+        position: absolute;
+        left: 18px;
+        color: var(--text-sec);
+        font-size: 16px;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .dict-search-input-wrapper input {
+        width: 100%;
+        height: 48px;
+        padding: 0 16px 0 46px !important;
+        font-size: 15px !important;
+        font-weight: 600;
+        border-radius: 16px !important;
+        background: var(--input-bg);
+        border: 1px solid var(--card-border);
+        color: var(--text-main);
+        outline: none;
+        box-shadow: var(--shadow-sunken);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+
+      /* Квадратна кнопка сортування з ідеальним центруванням SVG */
+      .square-btn {
+        width: 48px !important;
+        height: 48px !important;
+        min-width: 48px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border-radius: 16px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
         background: var(--film-glass) !important;
         border: 1px solid var(--film-line) !important;
         box-shadow: var(--film-shadow) !important;
         backdrop-filter: var(--film-blur) !important;
         -webkit-backdrop-filter: var(--film-blur) !important;
+        color: var(--text-main) !important;
+        cursor: pointer;
+        flex-shrink: 0;
       }
-      .glass-card, .home-overview, .home-useful-card, .analytics-card,
-      .settings-profile, .settings-group, .tool-card, .feature-tile,
-      .bento-item, .practice-priority, .day-progress-btn, .dictionary-library,
-      .dictionary-bulk-import, .floating-sheet-panel, .bottom-sheet,
-      .confirm-box { border-radius: 24px !important; }
-      .floating-sheet-panel, .bottom-sheet { border-radius: 28px 28px 0 0 !important; }
-      #bottom-nav, .quick-glass-dock { border-radius: 999px !important; }
-      .icon-btn, .settings-btn, .bs-close, .switch .slider { 
-        background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.06)) !important;
+
+      .square-btn:active {
+        transform: scale(0.92);
+      }
+
+      .square-btn svg {
+        display: block;
+        margin: auto;
+        width: 20px;
+        height: 20px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      /* Сітка з 5 колонок: ідеально вміщується у будь-яку ширину екрана */
+      .svg-filter-strip {
+        display: grid !important;
+        grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+        gap: 8px;
+        padding: 0 18px 14px;
+        flex-shrink: 0;
+        width: 100%;
+      }
+
+      .svg-filter-item {
+        width: 100%;
+        height: 46px;
+        border-radius: 14px;
+        background: var(--film-glass);
+        border: 1px solid var(--film-line);
+        box-shadow: var(--film-shadow);
+        backdrop-filter: var(--film-blur);
+        -webkit-backdrop-filter: var(--film-blur);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        cursor: pointer;
+        transition:
+          transform 0.16s ease,
+          background 0.2s ease,
+          border-color 0.2s ease;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      .svg-filter-item:active {
+        transform: scale(0.92);
+      }
+
+      .svg-filter-item svg {
+        width: 18px;
+        height: 18px;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        display: block;
+      }
+
+      .svg-filter-item span {
+        font-size: 11px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      /* Кольорові стилі для активних та неактивних квадратів */
+      .svg-filter-item.all svg {
+        stroke: var(--text-main);
+      }
+      .svg-filter-item.all span {
+        color: var(--text-main);
+      }
+      .svg-filter-item.all.active {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.4),
+          rgba(255, 255, 255, 0.15)
+        ) !important;
+        border-color: #fff !important;
+        box-shadow: 0 0 14px rgba(255, 255, 255, 0.3) !important;
+      }
+
+      .svg-filter-item.blue svg {
+        stroke: #38bdf8;
+      }
+      .svg-filter-item.blue span {
+        color: #38bdf8;
+      }
+      .svg-filter-item.blue.active {
+        background: linear-gradient(135deg, #0284c7, #0ea5e9) !important;
+        border-color: #7dd3fc !important;
+        box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4) !important;
+      }
+      .svg-filter-item.blue.active svg {
+        stroke: #fff;
+      }
+      .svg-filter-item.blue.active span {
+        color: #fff;
+      }
+
+      .svg-filter-item.green svg {
+        stroke: #34d399;
+      }
+      .svg-filter-item.green span {
+        color: #34d399;
+      }
+      .svg-filter-item.green.active {
+        background: linear-gradient(135deg, #059669, #10b981) !important;
+        border-color: #6ee7b7 !important;
+        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
+      }
+      .svg-filter-item.green.active svg {
+        stroke: #fff;
+      }
+      .svg-filter-item.green.active span {
+        color: #fff;
+      }
+
+      .svg-filter-item.yellow svg {
+        stroke: #fbbf24;
+      }
+      .svg-filter-item.yellow span {
+        color: #fbbf24;
+      }
+      .svg-filter-item.yellow.active {
+        background: linear-gradient(135deg, #d97706, #f59e0b) !important;
+        border-color: #fde68a !important;
+        box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4) !important;
+      }
+      .svg-filter-item.yellow.active svg {
+        stroke: #fff;
+      }
+      .svg-filter-item.yellow.active span {
+        color: #fff;
+      }
+
+      .svg-filter-item.red svg {
+        stroke: #f87171;
+      }
+      .svg-filter-item.red span {
+        color: #f87171;
+      }
+      .svg-filter-item.red.active {
+        background: linear-gradient(135deg, #dc2626, #ef4444) !important;
+        border-color: #fca5a5 !important;
+        box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4) !important;
+      }
+      .svg-filter-item.red.active svg {
+        stroke: #fff;
+      }
+      .svg-filter-item.red.active span {
+        color: #fff;
+      }
+      /* =========================================
+         СТИЛІ ДЛЯ ВИВЧЕННЯ ЖОВТИХ СЛІВ ТА ПЕРЕВІРОК
+      ========================================= */
+      .yellow-study-card {
+        padding: 18px;
+        border-radius: 22px;
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.22) 0%, rgba(217, 119, 6, 0.12) 100%);
+        border: 1px solid rgba(251, 191, 36, 0.4);
+        margin-bottom: 12px;
+        text-align: left;
+      }
+      .yellow-study-btn {
+        background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%) !important;
+        color: #fff !important;
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        box-shadow: 0 8px 22px rgba(245, 158, 11, 0.35) !important;
+        font-weight: 800;
+        margin-bottom: 14px;
+      }
+      .blue-blitz-btn {
+        background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%) !important;
+        color: #fff !important;
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        box-shadow: 0 8px 22px rgba(14, 165, 233, 0.35) !important;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+      .hour-timer-display {
+        font-size: 42px;
+        font-weight: 900;
+        letter-spacing: -1px;
+        color: var(--warning);
+        margin: 16px 0;
+        text-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+      }
+      .block-progress-indicator {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--surface-solid);
+        padding: 10px 16px;
+        border-radius: 16px;
+        border: 1px solid var(--card-border);
+        font-size: 13px;
+        font-weight: 800;
+        margin-bottom: 15px;
+      }
+
+      /* Гарантоване відображення та прокручування списку слів */
+      #my-words-sheet .sheet-word-list {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        pointer-events: auto !important;
+      }
+      .glass-card,
+      .home-overview,
+      .home-useful-card,
+      .analytics-card,
+      .settings-profile,
+      .settings-group,
+      .tool-card,
+      .feature-tile,
+      .bento-item,
+      .practice-priority,
+      .day-progress-btn,
+      .dictionary-library,
+      .dictionary-bulk-import,
+      .floating-sheet-panel,
+      .bottom-sheet,
+      .confirm-box {
+        border-radius: 24px !important;
+      }
+      .floating-sheet-panel,
+      .bottom-sheet {
+        border-radius: 28px 28px 0 0 !important;
+      }
+      #bottom-nav,
+      .quick-glass-dock {
+        border-radius: 999px !important;
+      }
+      .icon-btn,
+      .settings-btn,
+      .bs-close,
+      .switch .slider {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.18),
+          rgba(255, 255, 255, 0.06)
+        ) !important;
         border-color: var(--film-line) !important;
-        box-shadow: inset 0 1px 1px rgba(255,255,255,.30), 0 6px 16px rgba(15,23,42,.12) !important;
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.3),
+          0 6px 16px rgba(15, 23, 42, 0.12) !important;
         backdrop-filter: blur(20px) saturate(160%);
         -webkit-backdrop-filter: blur(20px) saturate(160%);
       }
@@ -5499,8 +6168,14 @@
         <div id="blitz-setup-area" class="learn-block" style="max-width: 100%">
           <h4 style="margin-bottom: 15px; font-size: 20px">Налаштуй бліц</h4>
 
-          <div class="blitz-settings-card">
-            <h4>Швидкий вибір</h4>
+         <!-- Кнопка швидкої перевірки синіх нових слів -->
+          <button
+            class="blue-blitz-btn"
+            id="btn-test-new-blue"
+            onclick="window.startNewWordsCheckBlitz()"
+          >
+            🔵 Перевірити нові слова (<span id="blitz-new-blue-count">0</span>)
+          </button>
             <div class="blitz-number-row" style="margin-bottom: 10px">
               <label
                 >Взяти з останніх<input
@@ -6353,7 +7028,7 @@
       </div>
     </div>
 
-    <!-- BOTTOM SHEET: МОЇ СЛОВА -->
+    <!-- BOTTOM SHEET: МОЇ СЛОВА (КВАДРАТНІ SVG-ФІЛЬТРИ ТА КАСТОМНЕ СОРТУВАННЯ) -->
     <div
       class="bottom-sheet-overlay"
       id="my-words-sheet-overlay"
@@ -6370,23 +7045,141 @@
           <i class="fas fa-times"></i>
         </div>
       </div>
-      <div class="input-group" style="margin: 0 16px 14px">
-        <i class="fas fa-search"></i>
-        <input
-          type="text"
-          id="myWordsSearch"
-          placeholder="Пошук у власному словнику..."
-          autocomplete="off"
-          autocorrect="off"
-          autocapitalize="none"
-          spellcheck="false"
-          oninput="window.filterMyWordsSheet()"
-        />
+
+      <!-- Виправлений рядок пошуку + квадратна кнопка сортування -->
+      <div class="dict-search-row">
+        <div class="dict-search-input-wrapper">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            id="myWordsSearch"
+            placeholder="Пошук слова чи перекладу..."
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="none"
+            spellcheck="false"
+            oninput="window.filterMyWordsSheet()"
+          />
+        </div>
+
+        <div class="custom-select-wrapper" id="wordSortWrapper">
+          <button
+            type="button"
+            class="square-btn"
+            onclick="window.toggleCustomSelect('wordSortWrapper')"
+            aria-label="Сортування"
+            title="Сортування"
+          >
+            <!-- Точно відцентрований SVG значок фільтра/сортування -->
+            <svg viewBox="0 0 24 24">
+              <line x1="4" y1="7" x2="20" y2="7"></line>
+              <line x1="7" y1="12" x2="17" y2="12"></line>
+              <line x1="10" y1="17" x2="14" y2="17"></line>
+            </svg>
+          </button>
+
+          <div class="custom-select-dropdown">
+            <div
+              class="custom-select-option selected"
+              onclick="window.selectWordSort('newest', 'Найновіші')"
+            >
+              Найновіші
+            </div>
+            <div
+              class="custom-select-option"
+              onclick="window.selectWordSort('oldest', 'Найстаріші')"
+            >
+              Найстаріші
+            </div>
+            <div
+              class="custom-select-option"
+              onclick="window.selectWordSort('alpha', 'А - Я (Чеська)')"
+            >
+              А - Я (Чеська)
+            </div>
+            <div
+              class="custom-select-option"
+              onclick="window.selectWordSort('status', 'За помітками')"
+            >
+              За помітками
+            </div>
+          </div>
+          <input type="hidden" id="wordSortSelect" value="newest" />
+        </div>
       </div>
-      <div class="word-longpress-note">
-        <i class="fas fa-hand-pointer"></i> Утримай картку слова, щоб
-        відредагувати
+
+      <!-- Квадратні SVG-фільтри для слів -->
+      <div class="svg-filter-strip" id="wordTagFilters">
+        <!-- Всі слова: SVG Список -->
+        <div
+          class="svg-filter-item all active"
+          onclick="window.setWordTagFilter('all', this)"
+          title="Всі слова"
+        >
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <span id="count-all">0</span>
+        </div>
+
+        <!-- Нові (Синій): SVG Іскра/Зірка -->
+        <div
+          class="svg-filter-item blue"
+          onclick="window.setWordTagFilter('blue', this)"
+          title="Нові слова"
+        >
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 2l2.4 6.8H21l-5.4 4.2 2 6.8-5.6-4.1-5.6 4.1 2-6.8L3 8.8h6.6z"
+            />
+          </svg>
+          <span id="count-blue">0</span>
+        </div>
+
+        <!-- Засвоєні (Зелений): SVG Галочка в щиті/колі -->
+        <div
+          class="svg-filter-item green"
+          onclick="window.setWordTagFilter('green', this)"
+          title="Засвоєні слова"
+        >
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <path d="M22 4L12 14.01l-3-3" />
+          </svg>
+          <span id="count-green">0</span>
+        </div>
+
+        <!-- Важкі (Жовтий): SVG Знак оклику в трикутнику -->
+        <div
+          class="svg-filter-item yellow"
+          onclick="window.setWordTagFilter('yellow', this)"
+          title="Важкі слова"
+        >
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+            />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+          <span id="count-yellow">0</span>
+        </div>
+
+        <!-- Забуті (Червоний): SVG Полум'я -->
+        <div
+          class="svg-filter-item red"
+          onclick="window.setWordTagFilter('red', this)"
+          title="Забуті слова (повторити)"
+        >
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"
+            />
+          </svg>
+          <span id="count-red">0</span>
+        </div>
       </div>
+
       <div class="sheet-word-list" id="myWordsList"></div>
     </div>
 
@@ -6435,6 +7228,18 @@
             placeholder="Транскрипція"
             autocomplete="off"
           />
+        </div>
+        <div class="input-group">
+          <i class="fas fa-tag"></i>
+          <select
+            id="edit-word-status"
+            style="width: 100%; border-radius: 20px; font-weight: 700"
+          >
+            <option value="blue">🔵 Нове слово</option>
+            <option value="green">🟢 Засвоєно</option>
+            <option value="yellow">🟡 Важке (вчу)</option>
+            <option value="red">🔴 Майже забуте (повторити)</option>
+          </select>
         </div>
         <button onclick="window.saveEditedWord()">
           <i class="fas fa-check"></i> Зберегти зміни
@@ -6526,11 +7331,11 @@
       </div>
     </div>
 
-    <!-- BOTTOM SHEET: ВИБІР СЛІВ ДЛЯ ПОВТОРЕННЯ -->
+    <!-- BOTTOM SHEET: ВИБІР СЛІВ ДЛЯ ПОВТОРЕННЯ ТА ВИВЧЕННЯ ЖОВТИХ СЛІВ -->
     <div
       class="bottom-sheet"
       id="review-words-sheet"
-      style="height: 72vh; z-index: 2800"
+      style="height: 80vh; z-index: 2800"
     >
       <div class="bs-handle"></div>
       <div class="bs-header">
@@ -6551,18 +7356,83 @@
           height: calc(100% - 70px);
         "
       >
-        <div class="input-group" style="margin-bottom: 15px; flex-shrink: 0">
-          <i class="fas fa-search"></i>
-          <input
-            type="text"
-            id="review-sheet-search"
-            placeholder="Шукати слово для повторення..."
-            oninput="window.filterReviewWordSelector()"
-          />
+        <!-- Спеціальна картка запуску вивчення важких (жовтих) слів блоками по 10 -->
+        <div class="yellow-study-card">
+          <h4 style="margin: 0 0 6px 0; color: var(--text-main); font-size: 15px;">
+            🟡 Вивчення важких слів: <b id="review-yellow-count">0</b> слів
+          </h4>
+          <p style="margin: 0 0 10px 0; font-size: 12px; color: var(--text-sec); line-height: 1.4;">
+            Поділ на блоки по 10 слів (Укр ➔ Чес, потім Чес ➔ Укр) з двоетапною перевіркою.
+          </p>
+          <button
+            class="yellow-study-btn"
+            style="width: 100%; padding: 12px;"
+            onclick="window.startYellowBlocksRoutine()"
+          >
+            Почати вивчення жовтих слів
+          </button>
         </div>
+
+        <!-- Рядок пошуку та сортування -->
+        <div class="dict-search-row" style="padding: 0 0 8px 0;">
+          <div class="dict-search-input-wrapper">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              id="review-sheet-search"
+              placeholder="Шукати слово..."
+              oninput="window.filterReviewWordSelector()"
+            />
+          </div>
+          <div class="custom-select-wrapper" id="reviewSortWrapper">
+            <button
+              type="button"
+              class="square-btn"
+              onclick="window.toggleCustomSelect('reviewSortWrapper')"
+              title="Сортування"
+            >
+              <svg viewBox="0 0 24 24">
+                <line x1="4" y1="7" x2="20" y2="7"></line>
+                <line x1="7" y1="12" x2="17" y2="12"></line>
+                <line x1="10" y1="17" x2="14" y2="17"></line>
+              </svg>
+            </button>
+            <div class="custom-select-dropdown">
+              <div class="custom-select-option selected" onclick="window.selectReviewSort('newest', 'Найновіші')">Найновіші</div>
+              <div class="custom-select-option" onclick="window.selectReviewSort('oldest', 'Найстаріші')">Найстаріші</div>
+              <div class="custom-select-option" onclick="window.selectReviewSort('alpha', 'А - Я')">А - Я</div>
+            </div>
+            <input type="hidden" id="reviewSortSelect" value="newest" />
+          </div>
+        </div>
+
+        <!-- Швидкі фільтри поміток для повторення -->
+        <div class="svg-filter-strip" id="reviewTagFilters" style="padding: 0 0 10px 0;">
+          <div class="svg-filter-item all active" onclick="window.setReviewTagFilter('all', this)">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+            <span id="rev-count-all">0</span>
+          </div>
+          <div class="svg-filter-item blue" onclick="window.setReviewTagFilter('blue', this)">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 6.8H21l-5.4 4.2 2 6.8-5.6-4.1-5.6 4.1 2-6.8L3 8.8h6.6z" /></svg>
+            <span id="rev-count-blue">0</span>
+          </div>
+          <div class="svg-filter-item yellow" onclick="window.setReviewTagFilter('yellow', this)">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>
+            <span id="rev-count-yellow">0</span>
+          </div>
+          <div class="svg-filter-item red" onclick="window.setReviewTagFilter('red', this)">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" /></svg>
+            <span id="rev-count-red">0</span>
+          </div>
+          <div class="svg-filter-item green" onclick="window.setReviewTagFilter('green', this)">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><path d="M22 4L12 14.01l-3-3" /></svg>
+            <span id="rev-count-green">0</span>
+          </div>
+        </div>
+
         <div
           id="review-word-list-container"
-          style="flex: 1; overflow-y: auto; margin-bottom: 15px"
+          style="flex: 1; overflow-y: auto; margin-bottom: 12px; touch-action: pan-y;"
         ></div>
         <button
           onclick="window.startSelectedReviewLesson()"
@@ -6595,6 +7465,88 @@
         id="day-progress-content"
         style="padding: 16px"
       ></div>
+    </div>
+
+<!-- 6. МОДУЛЬ ВИВЧЕННЯ ЖОВТИХ СЛІВ (БЛОКИ ПО 10 + 2 ПЕРЕВІРКИ) -->
+    <div id="yellow-study-modal" class="full-modal">
+      <div class="fm-header">
+        <h3 id="yellow-modal-title" style="font-size: 22px;">Вивчення важких слів</h3>
+        <div class="fm-actions">
+          <i class="fas fa-times settings-btn" onclick="window.closeYellowStudyModal()"></i>
+        </div>
+      </div>
+      <div class="fm-body" style="padding: 16px;">
+        <!-- ЕКРАН 1: ПРОХОДЖЕННЯ БЛОКІВ -->
+        <div id="ys-play-block" class="learn-block">
+          <div class="block-progress-indicator">
+            <span id="ys-block-label">Блок 1 з X</span>
+            <span id="ys-phase-label" style="color: var(--accent);">Укр ➔ Чеська</span>
+          </div>
+          <p id="ys-step-progress" style="font-weight: 800; font-size: 16px; margin-bottom: 15px; color: var(--text-sec);">
+            Слово 1 / 10
+          </p>
+          <div class="word-display" style="margin-bottom: 25px;">
+            <span id="ys-question-word">...</span>
+            <button class="icon-btn" id="ys-speak-btn" style="box-shadow: none; border: none; background: none;">
+              <i class="fas fa-volume-up"></i>
+            </button>
+          </div>
+          <div class="input-group">
+            <input
+              type="text"
+              id="ys-input"
+              placeholder="Введи переклад..."
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="none"
+              spellcheck="false"
+              onkeypress="if(event.key==='Enter') window.checkYellowWordAnswer();"
+            />
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button onclick="window.checkYellowWordAnswer()" style="width: 70%;">Підтвердити</button>
+            <button class="secondary" onclick="window.showYellowWordHint()" style="width: 30%;">💡</button>
+          </div>
+        </div>
+
+        <!-- ЕКРАН 2: ТАЙМЕР 1 ГОДИНА МІЖ ПЕРЕВІРКАМИ -->
+        <div id="ys-timer-block" class="learn-block" style="text-align: center; padding: 20px 0;">
+          <i class="fas fa-hourglass-half" style="font-size: 60px; color: var(--warning); margin-bottom: 12px;"></i>
+          <h3 style="font-size: 24px; margin-bottom: 8px;">Перша перевірка пройдена!</h3>
+          <p style="color: var(--text-sec); font-size: 14px; font-weight: 600; line-height: 1.5;">
+            Для надійного перенесення слів у довготривалу пам'ять друга перевірка відбудеться через 1 годину.
+          </p>
+          <div class="hour-timer-display" id="ys-hour-countdown">60:00</div>
+          <p style="font-size: 12px; color: var(--text-sec); margin-bottom: 20px;">
+            Ви можете спокійно закрити додаток — прогрес блоків збережено.
+          </p>
+          <button class="yellow-study-btn" id="ys-early-check-btn" onclick="window.startSecondCheckQuiz(true)">
+            Пройти зараз (без очікування)
+          </button>
+        </div>
+
+        <!-- ЕКРАН 3: ФІНАЛЬНА СТАТИСТИКА -->
+        <div id="ys-summary-block" class="learn-block" style="text-align: center;">
+          <h2 style="font-size: 32px; margin-bottom: 10px; background: var(--accent-gradient); -webkit-background-clip: text; color: transparent;">
+            Слова засвоєно! 🎓
+          </h2>
+          <div class="advanced-stats-card" style="margin: 20px 0;">
+            <div class="adv-stat-row">
+              <span class="adv-stat-lbl">Опрацьовано слів:</span>
+              <span class="adv-stat-val" id="ys-stat-total">0</span>
+            </div>
+            <div class="adv-stat-row">
+              <span class="adv-stat-lbl">Переведено в «Засвоєні» 🟢:</span>
+              <span class="adv-stat-val" id="ys-stat-learned" style="color: var(--success);">0</span>
+            </div>
+            <div class="adv-stat-row">
+              <span class="adv-stat-lbl">Залишились важкими 🟡:</span>
+              <span class="adv-stat-val" id="ys-stat-remained" style="color: var(--warning);">0</span>
+            </div>
+          </div>
+          <button class="gradient-btn" onclick="window.closeYellowStudyModal()">Завершити</button>
+        </div>
+      </div>
     </div>
 
     <script>
@@ -6673,6 +7625,12 @@
           correctAnswers: 0,
           lastDate: null,
           history: {},
+          yellowSession: {
+            words: [],
+            completedBlockIndex: 0,
+            firstCheckDone: false,
+            secondCheckUnlockTime: null
+          },
           timeSpentInLessons: 0, // У секундах для детальної аналітики
           dailyQuestDate: null,
           dailyQuests: {
@@ -7107,20 +8065,32 @@
         triggerAutoSync();
       }
 
-      /* =========================================
-       СВАЙП НАВІГАЦІЯ
-      ========================================= */
       function initSwipeNavigation() {
         let touchstartX = 0;
         let touchstartY = 0;
+        let isScrolling = false;
         const tabs = ["dictionary", "study", "home", "stats", "settings"];
         const appElement = document.getElementById("main-scroll");
 
         appElement.addEventListener(
           "touchstart",
           (e) => {
-            touchstartX = e.changedTouches[0].screenX;
-            touchstartY = e.changedTouches[0].screenY;
+            touchstartX = e.touches[0].clientX;
+            touchstartY = e.touches[0].clientY;
+            isScrolling = false;
+          },
+          { passive: true },
+        );
+
+        appElement.addEventListener(
+          "touchmove",
+          (e) => {
+            // Якщо вертикальний рух більший за горизонтальний — це звичайний скрол сторінки
+            const diffX = Math.abs(e.touches[0].clientX - touchstartX);
+            const diffY = Math.abs(e.touches[0].clientY - touchstartY);
+            if (diffY > diffX) {
+              isScrolling = true;
+            }
           },
           { passive: true },
         );
@@ -7129,18 +8099,22 @@
           "touchend",
           (e) => {
             if (
+              isScrolling ||
               document.querySelector(".full-modal.active") ||
               document.querySelector(".confirm-overlay.active") ||
+              document.querySelector(".floating-sheet-panel.active") ||
               document.querySelector(".bottom-sheet.active")
-            )
+            ) {
               return;
+            }
 
-            let touchendX = e.changedTouches[0].screenX;
-            let touchendY = e.changedTouches[0].screenY;
+            let touchendX = e.changedTouches[0].clientX;
+            let touchendY = e.changedTouches[0].clientY;
             let dx = touchendX - touchstartX;
             let dy = touchendY - touchstartY;
 
-            if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+            // Перемикання вкладок спрацьовує ТІЛЬКИ при явному горизонтальному свайпі
+            if (Math.abs(dx) > 85 && Math.abs(dx) > Math.abs(dy) * 2.2) {
               let currentActive = document.querySelector("section.active").id;
               let idx = tabs.indexOf(currentActive);
               if (dx < 0 && idx < tabs.length - 1) {
@@ -7247,6 +8221,35 @@
       /* =========================================
        СИНХРОНІЗАЦІЯ (НОВА СИСТЕМА FORM DATA)
       ========================================= */
+      // ПОВНА СИНХРОНІЗАЦІЯ: відправляємо повну статистику, словник, квести та налаштування
+      function buildFullSyncPayload(forceOverwrite = false) {
+        return {
+          forceOverwrite: forceOverwrite,
+          timestamp: new Date().toISOString(),
+          user: appData.user,
+          stats: {
+            ...appData.stats,
+            totalWords: appData.words.length,
+            vocabSummary: {
+              blue: appData.words.filter(
+                (w) => (w.difficulty || "blue") === "blue",
+              ).length,
+              green: appData.words.filter((w) => w.difficulty === "green")
+                .length,
+              yellow: appData.words.filter((w) => w.difficulty === "yellow")
+                .length,
+              red: appData.words.filter((w) => w.difficulty === "red").length,
+            },
+          },
+          learning: appData.learning,
+          words: forceOverwrite
+            ? appData.words
+            : appData.unsyncedWords.length
+              ? appData.unsyncedWords
+              : appData.words,
+        };
+      }
+
       function triggerAutoSync() {
         if (!getScriptUrl() || !appData.user.autoSync) return;
 
@@ -7261,15 +8264,9 @@
           try {
             await safeFormRequest({
               action: "syncAll",
-              data: {
-                forceOverwrite: false,
-                words: appData.unsyncedWords,
-                user: appData.user,
-                stats: appData.stats,
-                learning: appData.learning,
-              },
+              data: buildFullSyncPayload(false),
             });
-            appData.unsyncedWords = []; // Скидання черги після успіху
+            appData.unsyncedWords = []; // Скидаємо чергу
             localStorage.setItem("czechAppPremium", JSON.stringify(appData));
 
             if (icon) {
@@ -7287,7 +8284,7 @@
               icon.style.color = "var(--danger)";
             }
           }
-        }, 5000);
+        }, 3500);
       }
 
       window.forcePushAllSync = async function () {
@@ -7297,27 +8294,21 @@
         }
         if (
           await window.customConfirm(
-            "Це перезапише всі дані на сервері поточними. Продовжити?",
-            "Увага",
+            "Зберегти абсолютно всі дані (словник, історію, статистику, налаштування) в таблицю?",
+            "Повне збереження",
           )
         ) {
-          window.showToast("Відправка всіх даних...");
+          window.showToast("Синхронізація всіх даних...");
           try {
             await safeFormRequest({
               action: "syncAll",
-              data: {
-                forceOverwrite: true, // Вказує серверу стерти стару базу слів
-                words: appData.words,
-                user: appData.user,
-                stats: appData.stats,
-                learning: appData.learning,
-              },
+              data: buildFullSyncPayload(true),
             });
             appData.unsyncedWords = [];
             saveData();
-            window.showToast("Успішно збережено!");
+            window.showToast("Усі дані успішно збережено в хмарі!");
           } catch (e) {
-            window.showToast("Помилка відправки. Перевірте з'єднання.");
+            window.showToast("Помилка відправки даних у таблицю.");
           }
         }
       };
@@ -7789,6 +8780,36 @@
         updateAnalyticsUI();
         updateDayProgressUI();
       }
+
+// Оновлення лічильника синіх слів у меню бліцу
+      function updateBlueWordsCountInBlitz() {
+        const blueCount = appData.words.filter(w => (w.difficulty || 'blue') === 'blue').length;
+        const countSpan = document.getElementById('blitz-new-blue-count');
+        if (countSpan) countSpan.innerText = blueCount;
+      }
+
+      // Запуск перевірки тільки синіх (нових) слів
+      window.startNewWordsCheckBlitz = function () {
+        const blueWords = appData.words.filter(w => (w.difficulty || 'blue') === 'blue');
+        if (blueWords.length === 0) {
+          window.showToast("Немає нових синіх слів для перевірки!");
+          return;
+        }
+
+        blitzState.words = [...blueWords].sort(() => 0.5 - Math.random());
+        blitzState.isNewWordsCheck = true; // Спеціальний режим
+        blitzState.mode = "ua-cz";
+        blitzState.index = 0;
+        blitzState.correct = 0;
+        blitzState.wrong = 0;
+        blitzState.seconds = 0;
+        blitzState.wrongWordsList = [];
+
+        document.querySelectorAll("#blitz-modal .learn-block").forEach(b => b.classList.remove("active"));
+        document.getElementById("blitz-play-area").classList.add("active");
+
+        renderBlitzWord();
+      };
 
       function updateAnalyticsUI() {
         try {
@@ -8396,22 +9417,29 @@
         const cz = document.getElementById("res-cz").innerText;
         const ua = document.getElementById("res-ua").innerText;
         const tr = document.getElementById("res-tr").innerText;
-        if (appData.words.find((w) => w.cz === cz)) {
+        if (
+          appData.words.find((w) => w.cz.toLowerCase() === cz.toLowerCase())
+        ) {
           window.showToast("Вже є у словнику!");
           return;
         }
-        appData.words.unshift({
+        const newWord = {
           id: Date.now().toString(),
-          cz,
-          ua,
+          cz: cz.toLowerCase(),
+          ua: ua.toLowerCase(),
           tr,
+          difficulty: "blue", // 🔵 За замовчуванням нова помітка «Нові»
+          correctStreak: 0,
+          incorrectCount: 0,
           date: new Date().toISOString().split("T")[0],
-        });
-        appData.unsyncedWords.push(appData.words[0]); // Додаємо щойно створене слово в чергу
+        };
+
+        appData.words.unshift(newWord);
+        appData.unsyncedWords.push(newWord);
         saveData();
         document.getElementById("translateResultCard").style.display = "none";
         document.getElementById("searchInput").value = "";
-        window.showToast("Додано!");
+        window.showToast("Слово додано з синьою міткою «Нове»!");
       };
       window.deleteWord = async function (id) {
         if (
@@ -8489,19 +9517,77 @@
       };
 
       let wordLongPressTimer = null;
+      let longPressStartY = 0;
+
       window.beginWordLongPress = function (event, id) {
         if (event.target.closest("button")) return;
         window.cancelWordLongPress();
+        longPressStartY =
+          event.clientY || (event.touches ? event.touches[0].clientY : 0);
+
         wordLongPressTimer = setTimeout(() => {
           wordLongPressTimer = null;
           if (navigator.vibrate) navigator.vibrate(18);
           window.openEditWord(id);
-        }, 550);
+        }, 500);
       };
+
       window.cancelWordLongPress = function () {
-        if (wordLongPressTimer) clearTimeout(wordLongPressTimer);
-        wordLongPressTimer = null;
+        if (wordLongPressTimer) {
+          clearTimeout(wordLongPressTimer);
+          wordLongPressTimer = null;
+        }
       };
+
+      // Якщо користувач зрушив палець хоча б на 8px вгору чи вниз — миттєво скасовуємо довгий тап і скролимо
+      document.addEventListener(
+        "pointermove",
+        (e) => {
+          if (
+            wordLongPressTimer &&
+            Math.abs((e.clientY || 0) - longPressStartY) > 8
+          ) {
+            window.cancelWordLongPress();
+          }
+        },
+        { passive: true },
+      );
+
+      window.toggleCustomSelect = function (wrapperId) {
+        const wrap = document.getElementById(wrapperId);
+        if (!wrap) return;
+        const isOpen = wrap.classList.contains("open");
+        document
+          .querySelectorAll(".custom-select-wrapper")
+          .forEach((w) => w.classList.remove("open"));
+        if (!isOpen) wrap.classList.add("open");
+      };
+
+      window.selectWordSort = function (val, label) {
+        const input = document.getElementById("wordSortSelect");
+        const labelElem = document.getElementById("wordSortTriggerLabel");
+        const wrapper = document.getElementById("wordSortWrapper");
+        if (input) input.value = val;
+        if (labelElem) labelElem.innerText = label;
+
+        if (wrapper) {
+          wrapper.querySelectorAll(".custom-select-option").forEach((opt) => {
+            opt.classList.toggle("selected", opt.innerText.trim() === label);
+          });
+          wrapper.classList.remove("open");
+        }
+        window.filterMyWordsSheet();
+      };
+
+      // Закриття кастомного селекту при кліку поза ним
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".custom-select-wrapper")) {
+          document
+            .querySelectorAll(".custom-select-wrapper")
+            .forEach((w) => w.classList.remove("open"));
+        }
+      });
+
       window.openEditWord = function (id) {
         const word = appData.words.find(
           (item) => String(item.id) === String(id),
@@ -8511,10 +9597,218 @@
         document.getElementById("edit-word-cz").value = word.cz || "";
         document.getElementById("edit-word-ua").value = word.ua || "";
         document.getElementById("edit-word-tr").value = word.tr || "";
+
+        // Встановлюємо статус
+        const statusSelect = document.getElementById("edit-word-status");
+        if (statusSelect) {
+          statusSelect.value = word.difficulty || "blue";
+        }
+
         document
           .getElementById("edit-word-sheet-overlay")
           .classList.add("active");
         document.getElementById("edit-word-sheet").classList.add("active");
+      };
+
+      window.saveEditedWord = function () {
+        const id = document.getElementById("edit-word-id").value;
+        const cz = document.getElementById("edit-word-cz").value.trim();
+        const ua = document.getElementById("edit-word-ua").value.trim();
+        const tr = document.getElementById("edit-word-tr").value.trim();
+        const diff =
+          document.getElementById("edit-word-status")?.value || "blue";
+
+        if (!cz || !ua) {
+          window.showToast("Заповни чеське слово та переклад.");
+          return;
+        }
+        const word = appData.words.find(
+          (item) => String(item.id) === String(id),
+        );
+        if (!word) return;
+        word.cz = cz.toLowerCase();
+        word.ua = ua.toLowerCase();
+        word.tr = tr || generateTranscription(cz);
+        word.difficulty = diff;
+
+        appData.unsyncedWords = appData.unsyncedWords || [];
+        appData.unsyncedWords.push({ ...word });
+        saveData();
+        window.closeEditWordSheet();
+        window.filterMyWordsSheet();
+        window.showToast("Слово оновлено!");
+      };
+
+      let currentWordTag = "all";
+
+      window.setWordTagFilter = function (tag, element) {
+        currentWordTag = tag;
+        // Знімаємо клас active з усіх SVG-квадратів
+        document
+          .querySelectorAll("#wordTagFilters .svg-filter-item")
+          .forEach((item) => {
+            item.classList.remove("active");
+          });
+        if (element) {
+          element.classList.add("active");
+        }
+        window.filterMyWordsSheet();
+      };
+
+      window.toggleCustomSelect = function (wrapperId) {
+        const wrap = document.getElementById(wrapperId);
+        if (!wrap) return;
+        const isOpen = wrap.classList.contains("open");
+        document
+          .querySelectorAll(".custom-select-wrapper")
+          .forEach((w) => w.classList.remove("open"));
+        if (!isOpen) wrap.classList.add("open");
+      };
+
+      window.selectWordSort = function (val, label) {
+        const input = document.getElementById("wordSortSelect");
+        const wrapper = document.getElementById("wordSortWrapper");
+        if (input) input.value = val;
+
+        if (wrapper) {
+          wrapper.querySelectorAll(".custom-select-option").forEach((opt) => {
+            opt.classList.toggle("selected", opt.innerText.trim() === label);
+          });
+          wrapper.classList.remove("open");
+        }
+        window.filterMyWordsSheet();
+      };
+
+      // Закриття випадаючого списку при кліку повз нього
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".custom-select-wrapper")) {
+          document
+            .querySelectorAll(".custom-select-wrapper")
+            .forEach((w) => w.classList.remove("open"));
+        }
+      });
+
+      // Безпечне визначення категорії слова (якщо старі слова були без поміток)
+      function getNormalizedDifficulty(w) {
+        if (!w.difficulty || w.difficulty === "blue") return "blue";
+        if (w.difficulty === "green") return "green";
+        if (w.difficulty === "yellow") return "yellow";
+        if (w.difficulty === "red") return "red";
+        return "blue";
+      }
+
+      window.filterMyWordsSheet = function () {
+        const q = normalizeAnswerText(
+          document.getElementById("myWordsSearch")?.value || "",
+        );
+        const sortMode =
+          document.getElementById("wordSortSelect")?.value || "newest";
+        const list = document.getElementById("myWordsList");
+        if (!list) return;
+
+        // Підрахунок для квадратних лічильників
+        let cAll = appData.words.length;
+        let cBlue = 0,
+          cGreen = 0,
+          cYellow = 0,
+          cRed = 0;
+
+        appData.words.forEach((w) => {
+          const diff = getNormalizedDifficulty(w);
+          if (diff === "blue") cBlue++;
+          else if (diff === "green") cGreen++;
+          else if (diff === "yellow") cYellow++;
+          else if (diff === "red") cRed++;
+        });
+
+        const elAll = document.getElementById("count-all");
+        const elBlue = document.getElementById("count-blue");
+        const elGreen = document.getElementById("count-green");
+        const elYellow = document.getElementById("count-yellow");
+        const elRed = document.getElementById("count-red");
+
+        if (elAll) elAll.innerText = cAll;
+        if (elBlue) elBlue.innerText = cBlue;
+        if (elGreen) elGreen.innerText = cGreen;
+        if (elYellow) elYellow.innerText = cYellow;
+        if (elRed) elRed.innerText = cRed;
+
+        // Фільтрація
+        let words = appData.words.filter((w) => {
+          const matchesSearch =
+            normalizeAnswerText(w.cz).includes(q) ||
+            normalizeAnswerText(w.ua).includes(q) ||
+            normalizeAnswerText(w.tr).includes(q);
+          if (!matchesSearch) return false;
+
+          const diff = getNormalizedDifficulty(w);
+          if (currentWordTag === "all") return true;
+          return diff === currentWordTag;
+        });
+
+        // Сортування
+        words.sort((a, b) => {
+          if (sortMode === "newest")
+            return (Number(b.id) || 0) - (Number(a.id) || 0);
+          if (sortMode === "oldest")
+            return (Number(a.id) || 0) - (Number(b.id) || 0);
+          if (sortMode === "alpha")
+            return String(a.cz).localeCompare(String(b.cz), "cs");
+          if (sortMode === "status") {
+            const weights = { red: 1, yellow: 2, blue: 3, green: 4 };
+            return (
+              (weights[getNormalizedDifficulty(a)] || 3) -
+              (weights[getNormalizedDifficulty(b)] || 3)
+            );
+          }
+          return 0;
+        });
+
+        if (words.length === 0) {
+          list.innerHTML = `<div style="text-align:center; color:var(--text-sec); font-weight:700; padding:40px 20px;">
+            <i class="fas fa-folder-open" style="font-size:32px; opacity:0.4; margin-bottom:10px; display:block;"></i>
+            Немає слів за цим фільтром
+          </div>`;
+          return;
+        }
+
+        const tagBadges = {
+          blue: { label: "Нове", class: "blue" },
+          green: { label: "Засвоєно", class: "green" },
+          yellow: { label: "Важке", class: "yellow" },
+          red: { label: "Забуте", class: "red" },
+        };
+
+        list.innerHTML = words
+          .map((w) => {
+            const diff = getNormalizedDifficulty(w);
+            const tag = tagBadges[diff] || tagBadges.blue;
+
+            return `
+              <div class="sheet-word-row" onpointerdown="window.beginWordLongPress(event, '${w.id}')" onpointerup="window.cancelWordLongPress()" onpointercancel="window.cancelWordLongPress()" onpointerleave="window.cancelWordLongPress()">
+                <div style="flex:1; min-width:0; text-align:left;">
+                  <div class="word-cz" style="display:flex; align-items:center; gap:8px;">
+                    <span class="badge-dot ${tag.class}" title="${tag.label}"></span>
+                    <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${w.cz}</span>
+                    <small style="font-size:10px; font-weight:800; opacity:0.8; padding:2px 6px; border-radius:6px; background:rgba(255,255,255,0.12); flex-shrink:0;">
+                      ${tag.label}
+                    </small>
+                  </div>
+                  <div class="word-tr">${w.tr || ""}</div>
+                  <div class="word-ua">${w.ua}</div>
+                </div>
+                <div class="action-btns" style="flex-shrink:0;">
+                  <button class="icon-btn" style="box-shadow:none" onclick="window.speak('${String(w.cz).replace(/'/g, "\\'")}')">
+                    <i class="fas fa-volume-up"></i>
+                  </button>
+                  <button class="icon-btn btn-del" style="box-shadow:none" onclick="window.deleteWord('${w.id}'); window.filterMyWordsSheet();">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            `;
+          })
+          .join("");
       };
       window.closeEditWordSheet = function () {
         document
@@ -8573,6 +9867,9 @@
           .map((word, index) => ({
             id: `${Date.now()}-${index}`,
             ...word,
+            difficulty: "blue", // 🔵 Нові імпортовані слова отримують помітку «Нові»
+            correctStreak: 0,
+            incorrectCount: 0,
             date: now,
           }));
         appData.words = [...inserted, ...kept];
@@ -8585,86 +9882,7 @@
           `Додано або оновлено: ${inserted.length}${invalid.length ? `. Пропущено рядків: ${invalid.length}` : ""}`,
         );
       };
-      window.saveEditedWord = function () {
-        const id = document.getElementById("edit-word-id").value;
-        const cz = document.getElementById("edit-word-cz").value.trim();
-        const ua = document.getElementById("edit-word-ua").value.trim();
-        const tr = document.getElementById("edit-word-tr").value.trim();
-        if (!cz || !ua) {
-          window.showToast("Заповни чеське слово та переклад.");
-          return;
-        }
-        const word = appData.words.find(
-          (item) => String(item.id) === String(id),
-        );
-        if (!word) return;
-        word.cz = cz.toLowerCase();
-        word.ua = ua.toLowerCase();
-        word.tr = tr || generateTranscription(cz);
-        appData.unsyncedWords = appData.unsyncedWords || [];
-        appData.unsyncedWords.push({ ...word });
-        saveData();
-        window.closeEditWordSheet();
-        window.filterMyWordsSheet();
-        window.showToast("Слово оновлено.");
-      };
 
-      window.filterMyWordsSheet = function () {
-        const q = normalizeAnswerText(
-          document.getElementById("myWordsSearch")?.value || "",
-        );
-        const list = document.getElementById("myWordsList");
-        if (!list) return;
-
-        const words = appData.words.filter((w) => {
-          const matchesSearch =
-            normalizeAnswerText(w.cz).includes(q) ||
-            normalizeAnswerText(w.ua).includes(q) ||
-            normalizeAnswerText(w.tr).includes(q);
-          if (!matchesSearch) return false;
-          if (wordLibraryFilter === "difficult")
-            return w.difficulty === "yellow" || w.difficulty === "red";
-          if (wordLibraryFilter === "learned")
-            return !w.difficulty || w.difficulty === "green";
-          if (wordLibraryFilter === "new")
-            return w.date === new Date().toISOString().split("T")[0];
-          return true;
-        });
-
-        if (words.length === 0) {
-          list.innerHTML = `<p style="text-align:center; color:var(--text-sec); font-weight:700; padding:20px">Нічого не знайдено</p>`;
-          return;
-        }
-
-        list.innerHTML = words
-          .map((w) => {
-            let diffColor = "var(--success)";
-            if (w.difficulty === "yellow") diffColor = "var(--warning)";
-            else if (w.difficulty === "red") diffColor = "var(--danger)";
-
-            return `
-              <div class="sheet-word-row" onpointerdown="window.beginWordLongPress(event, '${w.id}')" onpointerup="window.cancelWordLongPress()" onpointercancel="window.cancelWordLongPress()" onpointerleave="window.cancelWordLongPress()">
-                <div>
-                  <div class="word-cz">
-                    <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:${diffColor}; margin-right:8px;"></span>
-                    ${w.cz}
-                  </div>
-                  <div class="word-tr">${w.tr || ""}</div>
-                  <div class="word-ua">${w.ua}</div>
-                </div>
-                <div class="action-btns">
-                  <button class="icon-btn" style="box-shadow:none" onclick="window.speak('${String(w.cz).replace(/'/g, "\\'")}')">
-                    <i class="fas fa-volume-up"></i>
-                  </button>
-                  <button class="icon-btn btn-del" style="box-shadow:none" onclick="window.deleteWord('${w.id}'); window.filterMyWordsSheet();">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </div>
-              </div>
-            `;
-          })
-          .join("");
-      };
       window.clearData = async function () {
         if (
           await window.customConfirm(
@@ -9381,31 +10599,47 @@
             isCorrect = true;
             registerStats(true, isCzechTarget, w.cz);
 
-            // Якщо слово відповіли правильно — оновлюємо прогрес повернення до легкого стану
             if (originalWord) {
-              if (!originalWord.difficulty) originalWord.difficulty = "green";
-              if (originalWord.incorrectCount === undefined)
+              // Якщо це перевірка нових слів: правильна відповідь робить слово ЗЕЛЕНИМ
+              if (!originalWord.difficulty || originalWord.difficulty === "blue") {
+                originalWord.difficulty = "green";
+                originalWord.correctStreak = 1;
                 originalWord.incorrectCount = 0;
-              if (originalWord.correctStreak === undefined)
-                originalWord.correctStreak = 0;
-
-              if (originalWord.difficulty === "yellow") {
-                originalWord.correctStreak++;
+              } else if (originalWord.difficulty === "yellow") {
+                originalWord.correctStreak = (originalWord.correctStreak || 0) + 1;
                 if (originalWord.correctStreak >= 2) {
                   originalWord.difficulty = "green";
-                  originalWord.incorrectCount = 0;
                   originalWord.correctStreak = 0;
                 }
               } else if (originalWord.difficulty === "red") {
-                originalWord.correctStreak++;
-                if (originalWord.correctStreak >= 5) {
-                  originalWord.difficulty = "green";
-                  originalWord.incorrectCount = 0;
-                  originalWord.correctStreak = 0;
+                originalWord.correctStreak = (originalWord.correctStreak || 0) + 1;
+                if (originalWord.correctStreak >= 3) {
+                  originalWord.difficulty = "yellow";
                 }
               }
             }
-          } else {
+          }
+         } else {
+            blitzState.wrong++;
+            registerStats(false, false, null, false);
+            window.showToast(`Правильно: ${targetWord}`);
+
+            if (originalWord) {
+              // Якщо це нове синій слово і зроблено помилку — воно стає ЖОВТИМ
+              if (!originalWord.difficulty || originalWord.difficulty === "blue") {
+                originalWord.difficulty = "yellow";
+                originalWord.incorrectCount = 1;
+                originalWord.correctStreak = 0;
+              } else if (originalWord.difficulty === "green") {
+                originalWord.difficulty = "yellow";
+                originalWord.incorrectCount = 1;
+              } else if (originalWord.difficulty === "yellow") {
+                originalWord.incorrectCount = (originalWord.incorrectCount || 0) + 1;
+                if (originalWord.incorrectCount >= 3) {
+                  originalWord.difficulty = "red";
+                }
+              }
+            } else {
             blitzState.wrong++;
             registerStats(false, false, null, false);
             window.showToast(`Правильно буде: ${targetWord}`);
@@ -9705,6 +10939,28 @@
           }
           return;
         }
+      };
+
+let currentReviewTag = "all";
+      let currentReviewSort = "newest";
+
+      window.setReviewTagFilter = function (tag, el) {
+        currentReviewTag = tag;
+        document.querySelectorAll("#reviewTagFilters .svg-filter-item").forEach(item => item.classList.remove("active"));
+        if (el) el.classList.add("active");
+        window.filterReviewWordSelector();
+      };
+
+      window.selectReviewSort = function (mode, label) {
+        currentReviewSort = mode;
+        const wrapper = document.getElementById("reviewSortWrapper");
+        if (wrapper) {
+          wrapper.querySelectorAll(".custom-select-option").forEach(opt => {
+            opt.classList.toggle("selected", opt.innerText.trim() === label);
+          });
+          wrapper.classList.remove("open");
+        }
+        window.filterReviewWordSelector();
       };
 
       window.showExerciseHint = function () {
@@ -10958,6 +12214,9 @@ ${exerciseJsonRule}`;
                 cz: w.cz,
                 ua: w.ua,
                 tr: generateTranscription(w.cz),
+                difficulty: "blue", // 🔵 Нові слова уроку мають синю помітку
+                correctStreak: 0,
+                incorrectCount: 0,
                 date: today,
               };
               appData.words.unshift(newWordObj);
@@ -11391,33 +12650,53 @@ ${exerciseJsonRule}`;
       };
 
       window.filterReviewWordSelector = function () {
-        const q = normalizeAnswerText(
-          document.getElementById("review-sheet-search").value || "",
-        );
+        const q = normalizeAnswerText(document.getElementById("review-sheet-search")?.value || "");
         const list = document.getElementById("review-word-list-container");
-        const count = document.getElementById("review-selected-count");
-        if (count) count.innerText = reviewSelectedWords.size;
+        if (!list) return;
 
-        const words = appData.words.filter((w) => {
-          return (
-            normalizeAnswerText(w.cz).includes(q) ||
-            normalizeAnswerText(w.ua).includes(q)
-          );
+        // Лічильники
+        const countBlue = appData.words.filter(w => (w.difficulty || "blue") === "blue").length;
+        const countYellow = appData.words.filter(w => w.difficulty === "yellow").length;
+        const countRed = appData.words.filter(w => w.difficulty === "red").length;
+        const countGreen = appData.words.filter(w => w.difficulty === "green").length;
+
+        if (document.getElementById("rev-count-all")) document.getElementById("rev-count-all").innerText = appData.words.length;
+        if (document.getElementById("rev-count-blue")) document.getElementById("rev-count-blue").innerText = countBlue;
+        if (document.getElementById("rev-count-yellow")) document.getElementById("rev-count-yellow").innerText = countYellow;
+        if (document.getElementById("rev-count-red")) document.getElementById("rev-count-red").innerText = countRed;
+        if (document.getElementById("rev-count-green")) document.getElementById("rev-count-green").innerText = countGreen;
+        if (document.getElementById("review-yellow-count")) document.getElementById("review-yellow-count").innerText = countYellow;
+
+        let words = appData.words.filter((w) => {
+          const match = normalizeAnswerText(w.cz).includes(q) || normalizeAnswerText(w.ua).includes(q);
+          if (!match) return false;
+          const diff = getNormalizedDifficulty(w);
+          if (currentReviewTag === "all") return true;
+          return diff === currentReviewTag;
         });
 
-        list.innerHTML = words
-          .map((w) => {
-            const checked = reviewSelectedWords.has(String(w.id))
-              ? "checked"
-              : "";
-            return `
-              <label class="blitz-word-item-row">
-                <span style="font-weight: 700">${w.cz}<span style="color:var(--text-sec); font-size:13px"> — ${w.ua}</span></span>
-                <input type="checkbox" value="${w.id}" ${checked} onchange="window.toggleReviewWord(this)" style="width:22px;height:22px;box-shadow:none">
-              </label>
-            `;
-          })
-          .join("");
+        // Сортування
+        words.sort((a, b) => {
+          if (currentReviewSort === "newest") return (Number(b.id) || 0) - (Number(a.id) || 0);
+          if (currentReviewSort === "oldest") return (Number(a.id) || 0) - (Number(b.id) || 0);
+          if (currentReviewSort === "alpha") return String(a.cz).localeCompare(String(b.cz), "cs");
+          return 0;
+        });
+
+        list.innerHTML = words.map(w => {
+          const checked = reviewSelectedWords.has(String(w.id)) ? "checked" : "";
+          const diff = getNormalizedDifficulty(w);
+          return `
+            <label class="blitz-word-item-row" style="touch-action: pan-y;">
+              <span style="font-weight: 700; display:flex; align-items:center; gap:8px;">
+                <span class="badge-dot ${diff}"></span>
+                ${w.cz}
+                <span style="color:var(--text-sec); font-size:13px; font-weight:500;">— ${w.ua}</span>
+              </span>
+              <input type="checkbox" value="${w.id}" ${checked} onchange="window.toggleReviewWord(this)" style="width:22px; height:22px; box-shadow:none;">
+            </label>
+          `;
+        }).join("");
       };
 
       window.toggleReviewWord = function (checkbox) {
@@ -11455,6 +12734,241 @@ ${exerciseJsonRule}`;
         document.getElementById("l-nw-subtitle").innerText =
           "Переклад: українська → чеська";
         startNewWordsBlock();
+      };
+
+let yellowRoutine = {
+        pool: [],
+        blocks: [],
+        currentBlockIndex: 0,
+        phase: "ua-cz", // спочатку ua-cz, потім cz-ua
+        stepIndex: 0,
+        testStage: 0, // 0 = блоки, 1 = бліц 1, 2 = очікування 1 год, 3 = бліц 2
+        countdownTimer: null
+      };
+
+      // Старт сесії вивчення жовтих слів
+      window.startYellowBlocksRoutine = function () {
+        const yellowWords = appData.words.filter(w => w.difficulty === "yellow");
+        if (yellowWords.length === 0) {
+          window.showToast("У вас немає жовтих (важких) слів для вивчення!");
+          return;
+        }
+
+        window.closeReviewWordSelector();
+
+        // Ділимо слова на блоки по 10
+        yellowRoutine.pool = [...yellowWords];
+        yellowRoutine.blocks = [];
+        for (let i = 0; i < yellowRoutine.pool.length; i += 10) {
+          yellowRoutine.blocks.push(yellowRoutine.pool.slice(i, i + 10));
+        }
+
+        yellowRoutine.currentBlockIndex = 0;
+        yellowRoutine.phase = "ua-cz";
+        yellowRoutine.stepIndex = 0;
+        yellowRoutine.testStage = 0;
+
+        document.getElementById("yellow-study-modal").classList.add("active");
+        showYellowScreen("ys-play-block");
+        renderYellowStep();
+      };
+
+      function showYellowScreen(screenId) {
+        document.querySelectorAll("#yellow-study-modal .learn-block").forEach(b => b.classList.remove("active"));
+        document.getElementById(screenId).classList.add("active");
+      }
+
+      function renderYellowStep() {
+        const currentBlock = yellowRoutine.blocks[yellowRoutine.currentBlockIndex];
+        const word = currentBlock[yellowRoutine.stepIndex];
+
+        document.getElementById("ys-block-label").innerText = `Блок ${yellowRoutine.currentBlockIndex + 1} з ${yellowRoutine.blocks.length}`;
+        document.getElementById("ys-phase-label").innerText = yellowRoutine.phase === "ua-cz" ? "Етап 1: Укр ➔ Чеська" : "Етап 2: Чеська ➔ Укр";
+        document.getElementById("ys-step-progress").innerText = `Слово ${yellowRoutine.stepIndex + 1} з ${currentBlock.length}`;
+
+        const qWord = document.getElementById("ys-question-word");
+        const speakBtn = document.getElementById("ys-speak-btn");
+        const inp = document.getElementById("ys-input");
+
+        inp.value = "";
+
+        if (yellowRoutine.phase === "ua-cz") {
+          qWord.innerText = word.ua;
+          speakBtn.style.display = "none";
+          inp.placeholder = "Чеський переклад...";
+        } else {
+          qWord.innerText = word.cz;
+          speakBtn.style.display = "inline-block";
+          speakBtn.onclick = () => window.speak(word.cz);
+          inp.placeholder = "Український переклад...";
+        }
+
+        setTimeout(() => inp.focus(), 80);
+      }
+
+      window.checkYellowWordAnswer = function () {
+        const currentBlock = yellowRoutine.blocks[yellowRoutine.currentBlockIndex];
+        const word = currentBlock[yellowRoutine.stepIndex];
+        const inp = document.getElementById("ys-input");
+        const userVal = inp.value.trim().toLowerCase();
+
+        const target = (yellowRoutine.phase === "ua-cz" ? word.cz : word.ua).toLowerCase();
+
+        if (!isAcceptedAnswer(userVal, target)) {
+          window.showToast(`Правильно: ${target}`);
+        } else {
+          if (appData.user.autoAudio && yellowRoutine.phase === "ua-cz") {
+            window.speak(word.cz);
+          }
+        }
+
+        yellowRoutine.stepIndex++;
+
+        // Якщо пройшли 10 слів напрямку Укр ➔ Чес, перемикаємо на Чес ➔ Укр
+        if (yellowRoutine.stepIndex >= currentBlock.length) {
+          if (yellowRoutine.phase === "ua-cz") {
+            yellowRoutine.phase = "cz-ua";
+            yellowRoutine.stepIndex = 0;
+            window.showToast("✨ Перша частина блоку пройдена! Тепер закріплення.");
+          } else {
+            // Повністю завершено блок із 10 слів
+            yellowRoutine.currentBlockIndex++;
+            yellowRoutine.phase = "ua-cz";
+            yellowRoutine.stepIndex = 0;
+
+            // Зберігаємо прогрес пройденого блоку
+            saveData();
+            window.showToast(`🎉 Блок ${yellowRoutine.currentBlockIndex} успішно пройдено!`);
+
+            if (yellowRoutine.currentBlockIndex >= yellowRoutine.blocks.length) {
+              // Всі блоки пройдено! Переходимо до 1-ї перевірки (бліц)
+              startFirstCheckQuiz();
+              return;
+            }
+          }
+        }
+
+        renderYellowStep();
+      };
+
+      window.showYellowWordHint = function () {
+        const currentBlock = yellowRoutine.blocks[yellowRoutine.currentBlockIndex];
+        const word = currentBlock[yellowRoutine.stepIndex];
+        const target = yellowRoutine.phase === "ua-cz" ? word.cz : word.ua;
+        window.showToast(`Підказка: ${target}`);
+      };
+
+      // Перший бліц одразу після блоків
+      function startFirstCheckQuiz() {
+        yellowRoutine.testStage = 1;
+        window.showToast("🚀 Перша швидка перевірка всіх слів!");
+        blitzState.words = [...yellowRoutine.pool].sort(() => 0.5 - Math.random());
+        blitzState.index = 0;
+        blitzState.correct = 0;
+        blitzState.wrong = 0;
+        blitzState.mode = "ua-cz";
+        blitzState.isYellowPostCheck = true; // Спец-маркер
+        showYellowScreen("ys-play-block");
+        renderYellowPostCheckStep();
+      }
+
+      function renderYellowPostCheckStep() {
+        if (blitzState.index >= blitzState.words.length) {
+          // Завершено першу перевірку -> вмикаємо таймер на 1 годину
+          startOneHourWait();
+          return;
+        }
+        const w = blitzState.words[blitzState.index];
+        document.getElementById("ys-block-label").innerText = "Бліц-перевірка #1";
+        document.getElementById("ys-phase-label").innerText = "Одразу після вивчення";
+        document.getElementById("ys-step-progress").innerText = `Слово ${blitzState.index + 1} з ${blitzState.words.length}`;
+        document.getElementById("ys-question-word").innerText = w.ua;
+        document.getElementById("ys-speak-btn").style.display = "none";
+        document.getElementById("ys-input").value = "";
+        document.getElementById("ys-input").placeholder = "Чеський переклад...";
+      }
+
+      // Таймер на 1 годину
+      function startOneHourWait() {
+        yellowRoutine.testStage = 2;
+        showYellowScreen("ys-timer-block");
+
+        let duration = 3600; // 60 хвилин
+        clearInterval(yellowRoutine.countdownTimer);
+
+        const updateTimer = () => {
+          const m = String(Math.floor(duration / 60)).padStart(2, "0");
+          const s = String(duration % 60).padStart(2, "0");
+          const el = document.getElementById("ys-hour-countdown");
+          if (el) el.innerText = `${m}:${s}`;
+
+          if (duration <= 0) {
+            clearInterval(yellowRoutine.countdownTimer);
+            window.startSecondCheckQuiz(false);
+          }
+          duration--;
+        };
+
+        updateTimer();
+        yellowRoutine.countdownTimer = setInterval(updateTimer, 1000);
+      }
+
+      // Друга перевірка
+      window.startSecondCheckQuiz = function (skipWait = false) {
+        clearInterval(yellowRoutine.countdownTimer);
+        yellowRoutine.testStage = 3;
+        window.showToast("🎯 Фінальна перевірка знань!");
+
+        blitzState.words = [...yellowRoutine.pool].sort(() => 0.5 - Math.random());
+        blitzState.index = 0;
+        blitzState.correct = 0;
+        blitzState.wrong = 0;
+        blitzState.isFinalYellowCheck = true;
+        showYellowScreen("ys-play-block");
+        renderYellowFinalStep();
+      };
+
+      function renderYellowFinalStep() {
+        if (blitzState.index >= blitzState.words.length) {
+          finishYellowRoutine();
+          return;
+        }
+        const w = blitzState.words[blitzState.index];
+        document.getElementById("ys-block-label").innerText = "Фінальна перевірка #2";
+        document.getElementById("ys-phase-label").innerText = "Через 1 годину";
+        document.getElementById("ys-step-progress").innerText = `Слово ${blitzState.index + 1} з ${blitzState.words.length}`;
+        document.getElementById("ys-question-word").innerText = w.ua;
+        document.getElementById("ys-speak-btn").style.display = "none";
+        document.getElementById("ys-input").value = "";
+      }
+
+      // Фіналізація та зміна статусів
+      function finishYellowRoutine() {
+        let learnedCount = 0;
+        let remainedCount = 0;
+
+        yellowRoutine.pool.forEach(w => {
+          const orig = appData.words.find(x => String(x.id) === String(w.id));
+          if (orig) {
+            // Якщо відповіли правильно без помилок — переводимо в зелене
+            orig.difficulty = "green";
+            orig.correctStreak = 1;
+            learnedCount++;
+          }
+        });
+
+        document.getElementById("ys-stat-total").innerText = yellowRoutine.pool.length;
+        document.getElementById("ys-stat-learned").innerText = learnedCount;
+        document.getElementById("ys-stat-remained").innerText = remainedCount;
+
+        showYellowScreen("ys-summary-block");
+        saveData();
+      }
+
+      window.closeYellowStudyModal = function () {
+        clearInterval(yellowRoutine.countdownTimer);
+        document.getElementById("yellow-study-modal").classList.remove("active");
+        updateUI();
       };
 
       window.finishCustomReviewLesson = function () {
